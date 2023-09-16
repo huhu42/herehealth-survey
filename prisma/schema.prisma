@@ -2,19 +2,22 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_POOL_URL")
+  // migrations cannot use the pooled connection; prisma uses this variable as an escape hatch
+  directUrl = env("POSTGRES_URL")
 }
 
-model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@index([name])
+model Survey {
+  id        BigInt   @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String
+  request   Json
+  response  Json
+  createdAt DateTime @default(now())
 }
