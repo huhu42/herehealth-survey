@@ -9,7 +9,6 @@ export const env = createEnv({
   server: {
     POSTGRES_URL: z.string().url(),
     POSTGRES_POOL_URL: z.string().url(),
-    SUPABASE_ANON_KEY: z.string().min(1),
     NODE_ENV: z.enum(["development", "test", "production"]),
   },
 
@@ -30,7 +29,6 @@ export const env = createEnv({
   runtimeEnv: {
     POSTGRES_URL: process.env.POSTGRES_URL,
     POSTGRES_POOL_URL: process.env.POSTGRES_POOL_URL,
-    SUPABASE_ANON_KEY:  process.env.SUPABASE_ANON_KEY,
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY:  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
