@@ -11,6 +11,7 @@ import superjson from "superjson";
 import {ZodError} from "zod";
 import {prisma} from "~/server/prisma";
 import {createSurveyService} from "~/server/service/surveyService";
+import {createModel} from "~/server/service/model";
 
 /**
  * This is the actual context you will use in your router. It will be used to process every request
@@ -19,8 +20,9 @@ import {createSurveyService} from "~/server/service/surveyService";
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = async () => {
+    const model = createModel();
     return {
-        service: createSurveyService(prisma),
+        service: createSurveyService(prisma, model),
     };
 };
 
