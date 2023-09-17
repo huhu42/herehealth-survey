@@ -17,7 +17,7 @@ model Survey {
   firstName String
   lastName  String
   email     String
-  request   Json
-  response  Json
+  input     Json
+  result    Json
   createdAt DateTime @default(now())
 }

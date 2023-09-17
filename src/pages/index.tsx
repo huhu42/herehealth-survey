@@ -41,7 +41,7 @@ export default function Home() {
             </Link>
           </div>
           <p className={styles.showcaseText}>
-            "Hello!"
+            Hello!
           </p>
         </div>
       </main>

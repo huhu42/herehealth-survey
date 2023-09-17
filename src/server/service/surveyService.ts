@@ -1,6 +1,6 @@
 import {Id, Request, Response, SurveyService} from "~/server/service/types";
 import {PrismaClient} from "@prisma/client";
-import {Model} from "~/server/service/model";
+import {Model, ModelResult} from "~/server/service/model";
 import {newId} from "~/server/utils";
 
 export function createSurveyService(
@@ -17,16 +17,28 @@ export function createSurveyService(
                     firstName: input.firstName,
                     lastName: input.lastName,
                     email: input.email,
-                    request: input.survey,
-                    response: modelResult
+                    input: input.survey,
+                    result: modelResult
                 },
                 select: {id: true},
             })
             .then((r) => r.id);
     }
 
-    function response(id: Id): Promise<Response> {
-        throw new Error("unimplemented");
+    async function response(id: Id): Promise<Response> {
+        let r = await prisma.survey.findUniqueOrThrow({
+            where: {id: id},
+            select: {
+                firstName: true,
+                lastName: true,
+                result: true
+            },
+        });
+        return {
+            firstName: r.firstName,
+            lastName: r.lastName,
+            result: r.result as ModelResult
+        };
     }
 
     return {
