@@ -13,7 +13,7 @@ datasource db {
 }
 
 model Survey {
-  id        BigInt   @id @default(autoincrement())
+  id        String   @id
   firstName String
   lastName  String
   email     String

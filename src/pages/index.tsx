@@ -1,12 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 
-import { api } from "~/utils/api";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
       <Head>
@@ -44,7 +41,7 @@ export default function Home() {
             </Link>
           </div>
           <p className={styles.showcaseText}>
-            {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+            "Hello!"
           </p>
         </div>
       </main>
