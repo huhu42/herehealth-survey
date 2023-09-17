@@ -2,8 +2,8 @@ import {z} from "zod";
 import {ModelResult} from "~/server/service/model";
 
 export type SurveyService = {
-    request(input: Request): Id
-    response(id: Id): Response
+    request(input: Request): Promise<Id>
+    response(id: Id): Promise<Response>
 };
 
 export type Id = string;

@@ -10,7 +10,7 @@ export const surveyRouter = createTRPCRouter({
             return ctx.service.request(input);
         }),
     response: publicProcedure
-        .input(z.string())
+        .input(z.string().length(8))
         .query(({ctx, input}) => {
             return ctx.service.response(input);
         })
