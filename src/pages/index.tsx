@@ -1,8 +1,6 @@
 import React from "react";
-import {Center, Flex, Slider, Text} from "@chakra-ui/react";
+import {Center, Flex, Text} from "@chakra-ui/react";
 import Logo from "~/client/components/Logo";
-import ContactForm from "~/client/components/ContactForm";
-import LoadingSpinner from "~/client/components/LoadingSpinner";
 
 export default function Survey() {
     function Splash() {
