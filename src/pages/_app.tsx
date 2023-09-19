@@ -11,12 +11,6 @@ const MyApp: AppType = ({Component, pageProps}) => {
             <title>Uniphye Survey</title>
             <meta name="description" content="Find your calling."/>
             <link rel="icon" href="/favicon.ico"/>
-            <link
-                rel="apple-touch-icon"
-                href="/apple-icon?<generated>"
-                type="image/<generated>"
-                sizes="<generated>"
-            />
         </Head>
         <Component {...pageProps} />
     </ChakraProvider>;
