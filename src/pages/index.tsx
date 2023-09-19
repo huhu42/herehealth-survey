@@ -2,6 +2,7 @@ import React from "react";
 import {Center, Flex, Slider, Text} from "@chakra-ui/react";
 import Logo from "~/client/components/Logo";
 import ContactForm from "~/client/components/ContactForm";
+import LoadingSpinner from "~/client/components/LoadingSpinner";
 
 export default function Survey() {
     function Splash() {
@@ -15,7 +16,7 @@ export default function Survey() {
 
     return (
         <Center w={"100vw"} h={"100vh"} bgGradient={'linear(to-b, purple.900, purple.600)'}>
-            <ContactForm/>
+            <Splash/>
         </Center>
     );
 }
