@@ -1,5 +1,5 @@
 import React from "react";
-import {Center, Flex, Text} from "@chakra-ui/react";
+import {Center, Flex, Slider, Text} from "@chakra-ui/react";
 import Logo from "~/client/components/Logo";
 
 export default function Survey() {
