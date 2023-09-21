@@ -1,5 +1,5 @@
-import { animate, MotionValue, useMotionValue } from "framer-motion";
-import { useEffect } from "react";
+import {animate, MotionValue, useMotionValue} from "framer-motion";
+import {useEffect} from "react";
 
 const inactiveShadow = "0px 0px 0px rgba(0,0,0,0.8)";
 
@@ -8,7 +8,7 @@ export function useRaisedShadow(value: MotionValue<number>) {
 
     useEffect(() => {
         let isActive = false;
-        value.onChange((latest) => {
+        value.on("change", (latest) => {
             const wasActive = isActive;
             if (latest !== 0) {
                 isActive = true;

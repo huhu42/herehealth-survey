@@ -1,7 +1,6 @@
 import React from "react";
-import {Center, Flex, Spacer, Text} from "@chakra-ui/react";
+import {Center, Flex, Text} from "@chakra-ui/react";
 import Logo from "~/client/components/Logo";
-import DragAndDropQuestion from "~/client/components/DragAndDropQuestion";
 
 export default function Survey() {
     function Splash() {
