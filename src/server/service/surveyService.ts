@@ -41,6 +41,13 @@ export function createSurveyService(
     }
 
     async function submitFollowUp(input: FollowUp): Promise<void> {
+        const followUp = await prisma.survey.findUniqueOrThrow({
+            where: {id: input.id},
+            select: {id: true, email: true},
+        });
+        if (!!followUp.email) {
+            throw new Error("cannot update user follow-up once submitted");
+        }
         await prisma.survey
             .update({
                 where: {
