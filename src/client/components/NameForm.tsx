@@ -7,10 +7,9 @@ import {
 } from "@chakra-ui/react";
 import React, {useState} from "react";
 
-export default function ContactForm() {
+export default function NameForm() {
     const [firstNameInput, setFirstNameInput] = useState("");
     const [lastNameInput, setLastNameInput] = useState("");
-    const [emailInput, setEmailInput] = useState("");
 
     return (
         <Flex
@@ -44,19 +43,6 @@ export default function ContactForm() {
                     variant="outline"
                     onChange={(e) => setLastNameInput(e.target.value)}
                     placeholder="e.g., Smith"
-                />
-            </FormControl>
-            <FormControl isInvalid={emailInput === ""}>
-                <FormLabel color={"white"}>Email</FormLabel>
-                <Input
-                    type={"email"}
-                    my={2}
-                    value={emailInput}
-                    color="white"
-                    colorScheme="white"
-                    variant="outline"
-                    onChange={(e) => setEmailInput(e.target.value)}
-                    placeholder="e.g., jsmith@gmail.com"
                 />
             </FormControl>
         </Flex>
