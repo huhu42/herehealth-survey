@@ -16,9 +16,9 @@ model Survey {
   id             String   @id
   firstName      String
   lastName       String
-  email          String?
-  requestMatches Boolean?
   input          Json
   result         Json
+  email          String?
+  requestMatches Boolean?
   createdAt      DateTime @default(now())
 }
