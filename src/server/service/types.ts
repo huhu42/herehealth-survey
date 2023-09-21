@@ -4,9 +4,11 @@ import {ModelResult} from "~/server/service/model";
 export type SurveyService = {
     request(input: Request): Promise<Id>
     response(id: Id): Promise<Response>
+    submitFollowUp(input: FollowUp): Promise<void>
 };
 
-export type Id = string;
+const IdSchema = z.string().length(8);
+export type Id = z.infer<typeof IdSchema>;
 
 const PERCENTAGE = z.number().min(0).max(100).multipleOf(1);
 const SurveySchema = z.object({
@@ -26,7 +28,6 @@ export type Survey = z.infer<typeof SurveySchema>;
 export const RequestSchema = z.object({
     firstName: z.string(),
     lastName: z.string(),
-    email: z.string().email(),
     survey: z.object({
         a: PERCENTAGE,
         b: PERCENTAGE,
@@ -47,3 +48,10 @@ export type Response = {
     lastName: string
     result: ModelResult
 };
+
+export const FollowUpSchema = z.object({
+    id: IdSchema,
+    email: z.string().email(),
+    requestMatches: z.boolean(),
+});
+export type FollowUp = z.infer<typeof FollowUpSchema>;

@@ -1,4 +1,4 @@
-import {Id, Request, Response, SurveyService} from "~/server/service/types";
+import {FollowUp, Id, Request, Response, SurveyService} from "~/server/service/types";
 import {PrismaClient} from "@prisma/client";
 import {Model, ModelResult} from "~/server/service/model";
 import {newId} from "~/server/utils";
@@ -16,7 +16,6 @@ export function createSurveyService(
                     id: newId(),
                     firstName: input.firstName,
                     lastName: input.lastName,
-                    email: input.email,
                     input: input.survey,
                     result: modelResult
                 },
@@ -41,8 +40,22 @@ export function createSurveyService(
         };
     }
 
+    async function submitFollowUp(input: FollowUp): Promise<void> {
+        await prisma.survey
+            .update({
+                where: {
+                    id: input.id,
+                },
+                data: {
+                    email: input.email,
+                    requestMatches: input.requestMatches
+                }
+            });
+    }
+
     return {
         request,
-        response
+        response,
+        submitFollowUp
     }
 }

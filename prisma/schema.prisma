@@ -13,11 +13,12 @@ datasource db {
 }
 
 model Survey {
-  id        String   @id
-  firstName String
-  lastName  String
-  email     String
-  input     Json
-  result    Json
-  createdAt DateTime @default(now())
+  id             String   @id
+  firstName      String
+  lastName       String
+  email          String?
+  requestMatches Boolean?
+  input          Json
+  result         Json
+  createdAt      DateTime @default(now())
 }
