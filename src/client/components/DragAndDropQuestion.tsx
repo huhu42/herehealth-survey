@@ -1,6 +1,6 @@
 import {Reorder} from "framer-motion";
 import React, {useState} from "react";
-import {Card, Flex, Text, UnorderedList} from "@chakra-ui/react";
+import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
 
 type DragAndDropQuestion = {
     question: string
@@ -23,12 +23,15 @@ export default function DragAndDropQuestion({question, options}: DragAndDropQues
                     {items.map((item) => (
                         <Reorder.Item key={item} value={item} id={item}>
                             <Card bgGradient='linear(to-tl, purple.400, purple.200)'
-                                  w={{base: 240, md: 300}}
+                                  w={{base: 200, md: 300}}
+                                  h={{base: 12, md: 16}}
                                   p={4}
                                   mt={{base: 2, md: 4}}>
-                                <Text fontSize="xl" color='black'>
-                                    {item}
-                                </Text>
+                                <Center w={"100%"} h={"100%"}>
+                                    <Text fontSize="xl" color='black'>
+                                        {item}
+                                    </Text>
+                                </Center>
                             </Card>
                         </Reorder.Item>))
                     }
