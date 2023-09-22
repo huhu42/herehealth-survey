@@ -7,7 +7,7 @@ export type SurveyService = {
     submitFollowUp(input: FollowUp): Promise<void>
 };
 
-const IdSchema = z.string().length(8);
+export const IdSchema = z.string().length(8);
 export type Id = z.infer<typeof IdSchema>;
 
 const PERCENTAGE = z.number().min(0).max(100).multipleOf(1);

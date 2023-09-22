@@ -1,7 +1,5 @@
-import {z} from "zod";
-
 import {createTRPCRouter, publicProcedure} from "~/server/api/trpc";
-import {RequestSchema} from "~/server/service/types";
+import {FollowUpSchema, IdSchema, RequestSchema} from "~/server/service/types";
 
 export const surveyRouter = createTRPCRouter({
     request: publicProcedure
@@ -10,8 +8,13 @@ export const surveyRouter = createTRPCRouter({
             return ctx.service.request(input);
         }),
     response: publicProcedure
-        .input(z.string().length(8))
+        .input(IdSchema)
         .query(({ctx, input}) => {
             return ctx.service.response(input);
+        }),
+    submitFollowUp: publicProcedure
+        .input(FollowUpSchema)
+        .query(({ctx, input}) => {
+            return ctx.service.submitFollowUp(input);
         })
 });
