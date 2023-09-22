@@ -19,7 +19,8 @@ export default function DragAndDropQuestion({question, options}: DragAndDropQues
 
         return (
             <Reorder.Item value={text} id={text} style={{boxShadow, y}}>
-                <Card bg='white' w={{base: 240, md: 300}} p={4} my={3}>
+                <Card bgGradient='linear(to-tl, purple.400, purple.200)' w={{base: 240, md: 300}} p={4}
+                      mt={{base: 2, md: 4}}>
                     <Text fontSize="xl" color='black'>
                         {text}
                     </Text>
