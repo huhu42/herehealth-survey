@@ -39,13 +39,13 @@ export default function ResultPage() {
     }
 
     const router = useRouter();
-    const surveyId: Id = router.query.surveyId as Id;
+    const maybeSurveyId: Id = router.query.surveyId as Id;
 
-    const response = api.survey.response.useQuery(surveyId);
+    const response = api.survey.response.useQuery(maybeSurveyId);
     QueryError.check({
         result: response,
         fieldName: "response",
-        params: {surveyId}
+        params: {surveyId: maybeSurveyId}
     });
 
     return (
@@ -69,7 +69,7 @@ export default function ResultPage() {
                       color={"white"}>
                     {response.data!.result.description}
                 </Text>
-                <FollowUpSection surveyId={surveyId}/>
+                <FollowUpSection surveyId={response.data!.id}/>
             </Flex>}
         </Center>
     );

@@ -33,12 +33,14 @@ export function createSurveyService(
         let r = await prisma.survey.findUniqueOrThrow({
             where: {id: id},
             select: {
+                id: true,
                 firstName: true,
                 lastName: true,
                 result: true,
             },
         });
         return {
+            id: r.id,
             firstName: r.firstName,
             lastName: r.lastName,
             result: r.result as ModelResult,

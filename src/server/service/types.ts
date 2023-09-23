@@ -29,6 +29,7 @@ export const RequestSchema = z.object({
 export type Request = z.infer<typeof RequestSchema>;
 
 export type Response = {
+    id: Id
     firstName: string;
     lastName: string;
     result: ModelResult;
