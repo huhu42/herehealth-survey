@@ -26,10 +26,8 @@ export default function Survey() {
                 return <Splash onNavigation={() => setStep(Step.NAME_FORM)}/>
             }
             case Step.NAME_FORM: {
-                return <NameForm firstName={firstName}
-                                 onFirstNameChange={debounce((v) => setFirstName(v))}
-                                 lastName={lastName}
-                                 onLastNameChange={debounce((v) => setLastName(v))}
+                return <NameForm setFirstName={(v: string) => setFirstName(v)}
+                                 setLastName={(v: string) => setLastName(v)}
                                  onNavigation={() => setStep(Step.QUESTION_ONE)}
                 />
             }

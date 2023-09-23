@@ -9,20 +9,14 @@ import React, {useState} from "react";
 import {NextButton} from "~/client/components/NextButton";
 
 type NameFormProps = {
-    firstName: string
-    onFirstNameChange: (firstName: string) => void
-    lastName: string
-    onLastNameChange: (lastName: string) => void
+    setFirstName: (firstName: string) => void
+    setLastName: (lastName: string) => void
     onNavigation: () => void
 }
 
-export default function NameForm({
-                                     firstName,
-                                     onFirstNameChange,
-                                     lastName,
-                                     onLastNameChange,
-                                     onNavigation
-                                 }: NameFormProps) {
+export default function NameForm({setFirstName, setLastName, onNavigation}: NameFormProps) {
+    const [firstNameInput, setFirstNameInput] = useState("");
+    const [lastNameInput, setLastNameInput] = useState("");
     return (
         <Flex
             flexDirection={"column"}
@@ -33,31 +27,40 @@ export default function NameForm({
             <Text fontSize={"2xl"} fontWeight={"bold"} my="4" alignSelf={"start"} color={"white"}>
                 About you.
             </Text>
-            <FormControl isInvalid={firstName === ""}>
+            <FormControl isRequired={true}>
                 <FormLabel color={"white"}>First Name</FormLabel>
                 <Input
                     my={2}
-                    value={firstName}
+                    value={firstNameInput}
                     color="white"
                     colorScheme="white"
                     variant="outline"
-                    onChange={(e) => onFirstNameChange(e.target.value)}
+                    onChange={(e) => setFirstNameInput(e.target.value)}
                     placeholder="e.g., John"
                 />
             </FormControl>
-            <FormControl isInvalid={lastName === ""}>
+            <FormControl isRequired={true}>
                 <FormLabel color={"white"}>Last Name</FormLabel>
                 <Input
                     my={2}
-                    value={lastName}
+                    value={lastNameInput}
                     color="white"
                     colorScheme="white"
                     variant="outline"
-                    onChange={(e) => onLastNameChange(e.target.value)}
+                    onChange={(e) => setLastNameInput(e.target.value)}
                     placeholder="e.g., Smith"
                 />
             </FormControl>
-            <NextButton onClick={onNavigation}/>
+            <NextButton
+                aria-label={"back-arrow-button"}
+                isDisabled={
+                    firstNameInput === "" || lastNameInput === ""
+                }
+                onClick={() => {
+                    setFirstName(firstNameInput);
+                    setLastName(lastNameInput);
+                    onNavigation();
+                }}/>
         </Flex>
     );
 }

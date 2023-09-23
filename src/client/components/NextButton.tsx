@@ -4,12 +4,11 @@ import React from "react";
 
 export type NextButtonProps = {
     onClick: () => void
-}
+} & IconButtonProps
 
 export function NextButton({onClick, ...rest}: NextButtonProps) {
     return <IconButton
         icon={<FiArrowRight/>}
-        aria-label={"back-arrow-button"}
         bg="white"
         mt={8}
         {...rest}
