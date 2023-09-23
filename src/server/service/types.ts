@@ -10,16 +10,13 @@ export type SurveyService = {
 export const IdSchema = z.string().length(8);
 export type Id = z.infer<typeof IdSchema>;
 
-const PERCENTAGE = z.number().min(0).max(100).multipleOf(1);
+const RankSchema = z.array(z.number().min(0).max(5)).length(6);
+export type Rank = z.infer<typeof RankSchema>;
+const PercentageSchema = z.number().min(0).max(100).multipleOf(1);
 const SurveySchema = z.object({
-    a: PERCENTAGE,
-    b: PERCENTAGE,
-    c: PERCENTAGE,
-    d: PERCENTAGE,
-    e: PERCENTAGE,
-    f: PERCENTAGE,
-    g: PERCENTAGE,
-    h: PERCENTAGE,
+    0: RankSchema,
+    1: PercentageSchema,
+    2: PercentageSchema,
 });
 export type Survey = z.infer<typeof SurveySchema>;
 

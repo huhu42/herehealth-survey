@@ -4,7 +4,7 @@ import NameForm from "~/client/components/NameForm";
 import DragAndDropQuestion, {DragAndDropItem} from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
-import {Request} from "~/server/service/types";
+import {Rank, Request} from "~/server/service/types";
 
 export default function Survey() {
     enum Step {
@@ -58,10 +58,13 @@ export default function Survey() {
                 return (
                     <SliderQuestion
                         question={"How much do you like the color purple?"}
-                        setValue={setSliderTwoValue}
+                        // there is an unideal bifurcation of the code off this
+                        finalQuestion={true}
+                        setValue={() => {
+                            throw new Error("this should never be called")
+                        }}
                         // we always pass this value on final question
                         onNavigation={(val?: number) => onSubmit(val!)}
-                        finalQuestion={true}
                     />
                 );
             }
@@ -71,13 +74,8 @@ export default function Survey() {
         }
     }
 
-    function toWeightedValues(items: Array<DragAndDropItem>): Record<string, number> {
-        const result: Record<string, number> = {};
-        for (const item of items) {
-            const value = items.length;
-            result[item.key] = value;
-        }
-        return result;
+    function toRank(items: Array<DragAndDropItem>): Rank {
+        return items.map(i => i.key);
     }
 
     function toRequest(firstName: string,
@@ -85,20 +83,13 @@ export default function Survey() {
                        dragAndDropItems: Array<DragAndDropItem>,
                        sliderOneValue: number,
                        sliderTwoValue: number): Request {
-        const dragAndDropValues = toWeightedValues(dragAndDropItems);
         return {
             firstName: firstName,
             lastName: lastName,
             survey: {
-                // hacky coercion here...
-                a: dragAndDropValues["a"]!,
-                b: dragAndDropValues["b"]!,
-                c: dragAndDropValues["c"]!,
-                d: dragAndDropValues["d"]!,
-                e: dragAndDropValues["e"]!,
-                f: dragAndDropValues["f"]!,
-                g: sliderOneValue,
-                h: sliderTwoValue,
+                0: toRank(dragAndDropItems),
+                1: sliderOneValue,
+                2: sliderTwoValue,
             }
         };
     }
@@ -108,16 +99,16 @@ export default function Survey() {
     // survey inputs
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [dragAndDropItems, setDragAndDropItems] = useState([
-        {key: "a", description: "one"},
-        {key: "b", description: "two"},
-        {key: "c", description: "three"},
-        {key: "d", description: "four"},
-        {key: "e", description: "five"},
-        {key: "f", description: "six"},
+    const [dragAndDropItems, setDragAndDropItems] = useState<Array<DragAndDropItem>>([
+        {key: 0, description: "one"},
+        {key: 1, description: "two"},
+        {key: 2, description: "three"},
+        {key: 3, description: "four"},
+        {key: 4, description: "five"},
+        {key: 5, description: "six"},
     ]);
     const [sliderOneValue, setSliderOneValue] = useState(50);
-    const [sliderTwoValue, setSliderTwoValue] = useState(50);
+    // sliderTwoValue is just passed directly to form submission
 
     return (
         <Center

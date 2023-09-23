@@ -3,8 +3,9 @@ import React, {useState} from "react";
 import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
 import {NextButton} from "~/client/components/NextButton";
 
+type ItemKey =  0 | 1 | 2 | 3 | 4 | 5;
 export type DragAndDropItem = {
-    key: string
+    key: ItemKey
     description: string
 }
 
@@ -35,7 +36,7 @@ export default function DragAndDropQuestion({
             <Reorder.Group axis="y" onReorder={setItemsInput} values={items}>
                 <UnorderedList listStyleType={"none"} pl={0} ml={0}>
                     {itemsInput.map((item) => (
-                        <Reorder.Item key={item.key} value={item} id={item.key}>
+                        <Reorder.Item key={item.key} value={item} id={item.key.toString()}>
                             <Card
                                 bgGradient="linear(to-tl, purple.400, purple.200)"
                                 w={{base: 200, md: 300}}
