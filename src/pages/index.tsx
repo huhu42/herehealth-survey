@@ -4,7 +4,6 @@ import NameForm from "~/client/components/NameForm";
 import DragAndDropQuestion from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
-import {debounce} from "~/client/utils";
 
 export default function Survey() {
     enum Step {
