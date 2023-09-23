@@ -6,15 +6,23 @@ import {
     Text
 } from "@chakra-ui/react";
 import React, {useState} from "react";
+import {NextButton} from "~/client/components/NextButton";
 
 type NameFormProps = {
     firstName: string
     onFirstNameChange: (firstName: string) => void
     lastName: string
     onLastNameChange: (lastName: string) => void
+    onNavigation: () => void
 }
 
-export default function NameForm({firstName, onFirstNameChange, lastName, onLastNameChange}: NameFormProps) {
+export default function NameForm({
+                                     firstName,
+                                     onFirstNameChange,
+                                     lastName,
+                                     onLastNameChange,
+                                     onNavigation
+                                 }: NameFormProps) {
     return (
         <Flex
             flexDirection={"column"}
@@ -49,6 +57,7 @@ export default function NameForm({firstName, onFirstNameChange, lastName, onLast
                     placeholder="e.g., Smith"
                 />
             </FormControl>
+            <NextButton onClick={onNavigation}/>
         </Flex>
     );
 }

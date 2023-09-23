@@ -12,7 +12,7 @@ const MyApp: AppType = ({Component, pageProps}) => {
     return <ChakraProvider>
         <Head>
             <title>Uniphye Survey</title>
-            <meta name="description" content="Find your calling."/>
+            <meta name="description" content="Uniphye finds your calling."/>
             <link rel="icon" href="/favicon.ico"/>
         </Head>
         <Component {...pageProps} />

@@ -1,13 +1,15 @@
 import {Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text} from "@chakra-ui/react";
 import React from "react";
+import {NextButton} from "~/client/components/NextButton";
 
 type SliderQuestionProps = {
     question: string,
     value: number,
     onValueChange: (val: number) => void
+    onNavigation: () => void
 }
 
-export default function SliderQuestion({question, value, onValueChange}: SliderQuestionProps) {
+export default function SliderQuestion({question, value, onValueChange, onNavigation}: SliderQuestionProps) {
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
             <Text w={{base: "80", md: "100"}} fontSize={{base: "xl", md: "xxl"}} color={"white"} mb={10}>
@@ -21,6 +23,7 @@ export default function SliderQuestion({question, value, onValueChange}: SliderQ
                 </SliderTrack>
                 <SliderThumb boxSize={6}/>
             </Slider>
+            <NextButton onClick={() => onNavigation()}/>
         </Flex>
     )
 }

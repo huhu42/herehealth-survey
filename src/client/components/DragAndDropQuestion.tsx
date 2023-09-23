@@ -1,14 +1,16 @@
 import {Reorder} from "framer-motion";
 import React from "react";
 import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
+import {NextButton} from "~/client/components/NextButton";
 
 type DragAndDropQuestion = {
     question: string
     items: Array<string>
     onItemsReorder: (items: Array<string>) => void
+    onNavigation: () => void
 }
 
-export default function DragAndDropQuestion({question, items, onItemsReorder}: DragAndDropQuestion) {
+export default function DragAndDropQuestion({question, items, onItemsReorder, onNavigation}: DragAndDropQuestion) {
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
             <Text w={{base: "80", md: "100"}}
@@ -36,6 +38,7 @@ export default function DragAndDropQuestion({question, items, onItemsReorder}: D
                     }
                 </UnorderedList>
             </Reorder.Group>
+            <NextButton onClick={() => onNavigation()}/>
         </Flex>
     )
 }
