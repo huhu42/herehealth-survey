@@ -5,6 +5,7 @@ import DragAndDropQuestion from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import {FiArrowRight} from "react-icons/fi";
 import Splash from "~/client/components/Splash";
+import {debounce} from "~/client/utils";
 
 export default function Survey() {
     enum Step {
@@ -28,28 +29,28 @@ export default function Survey() {
             }
             case Step.NAME_FORM: {
                 return <NameForm firstName={firstName}
-                                 onFirstNameChange={(v) => setFirstName(v)}
+                                 onFirstNameChange={debounce((v) => setFirstName(v))}
                                  lastName={lastName}
-                                 onLastNameChange={(v) => setLastName(v)}/>
+                                 onLastNameChange={debounce((v) => setLastName(v))}/>
             }
             case Step.QUESTION_ONE: {
                 return <DragAndDropQuestion question={"What is your favorite number?"}
                                             items={dragAndDropItems}
-                                            onItemsReorder={(i) => setDragAndDropItems(i)}/>;
+                                            onItemsReorder={debounce((i) => setDragAndDropItems(i))}/>;
             }
             case Step.QUESTION_TWO: {
                 return <SliderQuestion question={"How much do you prefer right over left?"}
                                        value={sliderOneValue}
-                                       onValueChange={(v) => {
+                                       onValueChange={debounce((v) => {
                                            setSliderOneValue(v)
-                                       }}/>;
+                                       })}/>;
             }
             case Step.QUESTION_THREE: {
                 return <SliderQuestion question={"How much do you like the color purple?"}
                                        value={sliderTwoValue}
-                                       onValueChange={(v) => {
+                                       onValueChange={debounce((v) => {
                                            setSliderTwoValue(v)
-                                       }}/>;
+                                       })}/>;
             }
             default: {
                 throw new Error("component not found for step " + step);
