@@ -5,6 +5,8 @@ import DragAndDropQuestion, {DragAndDropItem} from "~/client/components/DragAndD
 import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
 import {Rank, Request} from "~/server/service/types";
+import {api} from "~/utils/api";
+import {router} from "next/client";
 
 export default function Survey() {
     enum Step {
@@ -12,7 +14,8 @@ export default function Survey() {
         NAME_FORM,
         QUESTION_ONE,
         QUESTION_TWO,
-        QUESTION_THREE
+        QUESTION_THREE,
+        LOADING
     }
 
     type ComponentByStepProp = {
@@ -74,26 +77,36 @@ export default function Survey() {
         }
     }
 
-    function toRank(items: Array<DragAndDropItem>): Rank {
+    function rank(items: Array<DragAndDropItem>): Rank {
         return items.map(i => i.key);
     }
 
-    function toRequest(firstName: string,
-                       lastName: string,
-                       dragAndDropItems: Array<DragAndDropItem>,
-                       sliderOneValue: number,
-                       sliderTwoValue: number): Request {
+    function request(firstName: string,
+                     lastName: string,
+                     dragAndDropItems: Array<DragAndDropItem>,
+                     sliderOneValue: number,
+                     sliderTwoValue: number): Request {
         return {
             firstName: firstName,
             lastName: lastName,
             survey: {
-                0: toRank(dragAndDropItems),
+                0: rank(dragAndDropItems),
                 1: sliderOneValue,
                 2: sliderTwoValue,
             }
         };
     }
 
+    const processRequest = api.survey.request.useMutation({
+        onSuccess: async (id) => {
+            await router.push(`/results/${id}`);
+        },
+        onError: (e) => {
+            throw new Error(
+                `failed to process request with exception ${e.message}`,
+            );
+        }
+    });
     const [step, setStep] = useState(Step.SPLASH);
 
     // survey inputs
@@ -119,13 +132,17 @@ export default function Survey() {
             <Flex direction={"column"} alignItems={"center"}>
                 <ComponentByStep step={step}
                                  setStep={setStep}
-                                 onSubmit={(finalValue: number) => alert(
-                                     JSON.stringify(toRequest(firstName,
-                                         lastName,
-                                         dragAndDropItems,
-                                         sliderOneValue,
-                                         finalValue)))
-                                 }/>
+                                 onSubmit={async (finalValue: number) => {
+                                     setStep(Step.LOADING)
+                                     processRequest.mutate({
+                                         ...request(firstName,
+                                             lastName,
+                                             dragAndDropItems,
+                                             sliderOneValue,
+                                             finalValue)
+                                     });
+                                 }}
+                />
             </Flex>
         </Center>
     );
