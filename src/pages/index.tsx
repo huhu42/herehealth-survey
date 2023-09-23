@@ -6,7 +6,7 @@ import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
 import {Rank, Request} from "~/server/service/types";
 import {api} from "~/utils/api";
-import {router} from "next/client";
+import {useRouter} from "next/router";
 import LoadingSpinner from "~/client/components/LoadingSpinner";
 
 export default function Survey() {
@@ -103,9 +103,10 @@ export default function Survey() {
         };
     }
 
+    const router = useRouter();
     const processRequest = api.survey.request.useMutation({
         onSuccess: async (id) => {
-            await router.push(`/results/${id}`);
+            await router.push(`/result/${id}`);
         },
         onError: (e) => {
             throw new Error(
