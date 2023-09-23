@@ -40,19 +40,13 @@ export default function Survey() {
             }
             case Step.QUESTION_TWO: {
                 return <SliderQuestion question={"How much do you prefer right over left?"}
-                                       value={sliderOneValue}
-                                       onValueChange={debounce((v) => {
-                                           setSliderOneValue(v)
-                                       })}
+                                       setValue={setSliderOneValue}
                                        onNavigation={() => setStep(Step.QUESTION_THREE)}
                 />;
             }
             case Step.QUESTION_THREE: {
                 return <SliderQuestion question={"How much do you like the color purple?"}
-                                       value={sliderTwoValue}
-                                       onValueChange={debounce((v) => {
-                                           setSliderTwoValue(v)
-                                       })}
+                                       setValue={setSliderTwoValue}
                                        onNavigation={() => alert("Hi world")}
                                        finalQuestion={true}
                 />;
