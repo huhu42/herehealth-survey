@@ -36,9 +36,9 @@ export default function NameForm({
         <Input
           my={2}
           value={firstNameInput}
-          color="white"
+          color="black"
           colorScheme="white"
-          variant="outline"
+          variant="solid"
           onChange={(e) => setFirstNameInput(e.target.value)}
           placeholder="e.g., John"
         />
@@ -48,9 +48,9 @@ export default function NameForm({
         <Input
           my={2}
           value={lastNameInput}
-          color="white"
+          color="black"
           colorScheme="white"
-          variant="outline"
+          variant="solid"
           onChange={(e) => setLastNameInput(e.target.value)}
           placeholder="e.g., Smith"
         />
