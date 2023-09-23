@@ -52,7 +52,7 @@ export default function NameForm({setFirstName, setLastName, onNavigation}: Name
                 />
             </FormControl>
             <NextButton
-                aria-label={"back-arrow-button"}
+                aria-label={"forward-arrow-button"}
                 isDisabled={
                     firstNameInput === "" || lastNameInput === ""
                 }

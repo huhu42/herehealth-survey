@@ -34,7 +34,7 @@ export default function Survey() {
             case Step.QUESTION_ONE: {
                 return <DragAndDropQuestion question={"What is your favorite number?"}
                                             items={dragAndDropItems}
-                                            onItemsReorder={debounce((i) => setDragAndDropItems(i))}
+                                            setItemsOrder={(i) => setDragAndDropItems(i)}
                                             onNavigation={() => setStep(Step.QUESTION_TWO)}
                 />;
             }

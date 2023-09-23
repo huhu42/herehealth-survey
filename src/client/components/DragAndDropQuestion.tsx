@@ -1,16 +1,17 @@
 import {Reorder} from "framer-motion";
-import React from "react";
+import React, {useState} from "react";
 import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
 import {NextButton} from "~/client/components/NextButton";
 
 type DragAndDropQuestion = {
     question: string
     items: Array<string>
-    onItemsReorder: (items: Array<string>) => void
+    setItemsOrder: (items: Array<string>) => void
     onNavigation: () => void
 }
 
-export default function DragAndDropQuestion({question, items, onItemsReorder, onNavigation}: DragAndDropQuestion) {
+export default function DragAndDropQuestion({question, items, setItemsOrder, onNavigation}: DragAndDropQuestion) {
+    const [itemsInput, setItemsInput] = useState(items);
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
             <Text w={{base: "80", md: "100"}}
@@ -19,9 +20,9 @@ export default function DragAndDropQuestion({question, items, onItemsReorder, on
                   mb={2}>
                 {question}
             </Text>
-            <Reorder.Group axis="y" onReorder={onItemsReorder} values={items}>
+            <Reorder.Group axis="y" onReorder={setItemsInput} values={items}>
                 <UnorderedList listStyleType={"none"} pl={0} ml={0}>
-                    {items.map((item) => (
+                    {itemsInput.map((item) => (
                         <Reorder.Item key={item} value={item} id={item}>
                             <Card bgGradient='linear(to-tl, purple.400, purple.200)'
                                   w={{base: 200, md: 300}}
@@ -38,7 +39,13 @@ export default function DragAndDropQuestion({question, items, onItemsReorder, on
                     }
                 </UnorderedList>
             </Reorder.Group>
-            <NextButton onClick={() => onNavigation()}/>
+            <NextButton
+                aria-label={"forward-arrow-button"}
+                onClick={() => {
+                    setItemsOrder(itemsInput)
+                    onNavigation()
+                }}
+            />
         </Flex>
     )
 }
