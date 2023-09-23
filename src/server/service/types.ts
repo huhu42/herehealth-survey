@@ -4,7 +4,8 @@ import {ModelResult} from "~/server/service/model";
 export type SurveyService = {
     request(input: Request): Promise<Id>;
     response(id: Id): Promise<Response>;
-    submitFollowUp(input: FollowUp): Promise<void>;
+    followUp(input: FollowUp): Promise<void>;
+    didFollowUp(id: Id): Promise<boolean>;
 };
 
 export const IdSchema = z.string().length(8);
