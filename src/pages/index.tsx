@@ -1,21 +1,12 @@
 import React, {useState} from "react";
-import {Center, Flex, IconButton, Spacer, Text} from "@chakra-ui/react";
-import Logo from "~/client/components/Logo";
+import {Center, Flex, IconButton, Text} from "@chakra-ui/react";
 import NameForm from "~/client/components/NameForm";
 import DragAndDropQuestion from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import {FiArrowLeft, FiArrowRight} from "react-icons/fi";
+import Splash from "~/client/components/Splash";
 
 export default function Survey() {
-    function Splash() {
-        return <Flex direction={"column"} alignItems={"center"} textAlign="center">
-            <Logo w={{base: "60", md: "80"}}/>
-            <Text w={{base: "80", md: "100"}} fontSize={{base: "md", md: "lg"}} color={"white"} mt={4}>
-                Find your calling with state-of-the-art psychometrics and AI.
-            </Text>
-        </Flex>
-    }
-
     enum Step {
         SPLASH,
         NAME_FORM,
@@ -36,16 +27,29 @@ export default function Survey() {
                 return <Splash/>
             }
             case Step.NAME_FORM: {
-                return <NameForm/>
+                return <NameForm firstName={firstName}
+                                 onFirstNameChange={(v) => setFirstName(v)}
+                                 lastName={lastName}
+                                 onLastNameChange={(v) => setLastName(v)}/>
             }
             case Step.QUESTION_ONE: {
-                return <DragAndDropQuestion question={"What is your favorite number?"} options={dragAndDropValue}/>;
+                return <DragAndDropQuestion question={"What is your favorite number?"}
+                                            items={dragAndDropItems}
+                                            onItemsReorder={(i) => setDragAndDropItems(i)}/>;
             }
             case Step.QUESTION_TWO: {
-                return <SliderQuestion question={"How much do you prefer right over left?"}/>;
+                return <SliderQuestion question={"How much do you prefer right over left?"}
+                                       value={sliderOneValue}
+                                       onValueChange={(v) => {
+                                           setSliderOneValue(v)
+                                       }}/>;
             }
             case Step.QUESTION_THREE: {
-                return <SliderQuestion question={"How much do you like the color purple?"}/>;
+                return <SliderQuestion question={"How much do you like the color purple?"}
+                                       value={sliderTwoValue}
+                                       onValueChange={(v) => {
+                                           setSliderTwoValue(v)
+                                       }}/>;
             }
             default: {
                 throw new Error("component not found for step " + step);
@@ -85,10 +89,10 @@ export default function Survey() {
 
     const [step, setStep] = useState(Step.SPLASH);
 
-    const [firstName, setFirstName] = useState(null);
-    const [lastName, setLastName] = useState(null);
-
-    const [dragAndDropValue, setDragAndDropValue] = useState(["one", "two", "three", "four", "five", "six"]);
+    // survey inputs
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [dragAndDropItems, setDragAndDropItems] = useState(["one", "two", "three", "four", "five", "six"]);
     const [sliderOneValue, setSliderOneValue] = useState(50);
     const [sliderTwoValue, setSliderTwoValue] = useState(50);
 
