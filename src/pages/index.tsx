@@ -7,6 +7,7 @@ import Splash from "~/client/components/Splash";
 import {Rank, Request} from "~/server/service/types";
 import {api} from "~/utils/api";
 import {router} from "next/client";
+import LoadingSpinner from "~/client/components/LoadingSpinner";
 
 export default function Survey() {
     enum Step {
@@ -69,6 +70,11 @@ export default function Survey() {
                         // we always pass this value on final question
                         onNavigation={(val?: number) => onSubmit(val!)}
                     />
+                );
+            }
+            case Step.LOADING: {
+                return (
+                    <LoadingSpinner/>
                 );
             }
             default: {
