@@ -56,6 +56,7 @@ export default function Survey() {
                                            setSliderTwoValue(v)
                                        })}
                                        onNavigation={() => alert("Hi world")}
+                                       finalQuestion={true}
                 />;
             }
             default: {

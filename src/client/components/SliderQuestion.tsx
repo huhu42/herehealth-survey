@@ -1,4 +1,4 @@
-import {Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text} from "@chakra-ui/react";
+import {Box, Button, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Text} from "@chakra-ui/react";
 import React from "react";
 import {NextButton} from "~/client/components/NextButton";
 
@@ -7,9 +7,16 @@ type SliderQuestionProps = {
     value: number,
     onValueChange: (val: number) => void
     onNavigation: () => void
+    finalQuestion?: boolean
 }
 
-export default function SliderQuestion({question, value, onValueChange, onNavigation}: SliderQuestionProps) {
+export default function SliderQuestion({
+                                           question,
+                                           value,
+                                           onValueChange,
+                                           onNavigation,
+                                           finalQuestion
+                                       }: SliderQuestionProps) {
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
             <Text w={{base: "80", md: "100"}} fontSize={{base: "xl", md: "xxl"}} color={"white"} mb={10}>
@@ -23,7 +30,18 @@ export default function SliderQuestion({question, value, onValueChange, onNaviga
                 </SliderTrack>
                 <SliderThumb boxSize={6}/>
             </Slider>
-            <NextButton onClick={() => onNavigation()}/>
+            {!!finalQuestion ?
+                <Button
+                    aria-label={"start-button"}
+                    bg="white"
+                    mt={8}
+                    variant={"solid"}
+                    onClick={() => {
+                        onNavigation()
+                    }}
+                >Find my calling!</Button>
+                : <NextButton onClick={() => onNavigation()}/>
+            }
         </Flex>
     )
 }
