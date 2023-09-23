@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {Center, Flex, IconButton, Text} from "@chakra-ui/react";
+import {Button, Center, Flex, IconButton, Text} from "@chakra-ui/react";
 import NameForm from "~/client/components/NameForm";
 import DragAndDropQuestion from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
-import {FiArrowLeft, FiArrowRight} from "react-icons/fi";
+import {FiArrowRight} from "react-icons/fi";
 import Splash from "~/client/components/Splash";
 
 export default function Survey() {
@@ -63,28 +63,43 @@ export default function Survey() {
     }
 
     function NavigationButtons({step, setStep}: NavigationButtonsProps) {
-        return (<Flex my={8}>
-            {step !== 0 && <IconButton
-                icon={<FiArrowLeft/>}
-                aria-label={"back-arrow-button"}
+        const next = (step: Step) => setStep(step + 1);
+
+        if (step === 0) {
+            return <Button
+                aria-label={"start-button"}
                 bg="white"
-                mx={6}
-                variant={"outline"}
+                mt={8}
+                variant={"solid"}
                 onClick={() => {
-                    setStep(step - 1)
+                    next(step)
                 }}
-            />}
-            {step < Step.END_SENTINEL - 1 && <IconButton
+            >Let's go!</Button>
+        }
+        if (step > 0 && step < Step.END_SENTINEL - 1) {
+            return <IconButton
                 icon={<FiArrowRight/>}
                 aria-label={"back-arrow-button"}
                 bg="white"
-                mx={6}
-                variant={"outline"}
+                mt={8}
+                variant={"solid"}
                 onClick={() => {
-                    setStep(step + 1)
+                    next(step)
                 }}
-            />}
-        </Flex>);
+            />
+        }
+        if (step === Step.END_SENTINEL - 1) {
+            return <Button
+                aria-label={"start-button"}
+                bg="white"
+                mt={8}
+                variant={"solid"}
+                onClick={() => {
+                    alert("Hi world");
+                }}
+            >Find my calling!</Button>
+        }
+        throw new Error("navigation not found for step " + step)
     }
 
     const [step, setStep] = useState(Step.SPLASH);
