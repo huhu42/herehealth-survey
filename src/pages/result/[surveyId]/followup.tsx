@@ -31,16 +31,15 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
         }
     });
 
-    return (isLoaded(didFollowUp) &&
-        <Center
+    return (<Center
             w={"100vw"}
             h={"100vh"}
             bgGradient={"linear(to-b, purple.900, purple.600)"}
         >
-            {
-                didFollowUp.data! ?
+            {isLoaded(didFollowUp)
+                && (didFollowUp.data! ?
                     <FollowUpForm surveyId={surveyId}/> :
-                    <FollowUpAcknowledgementMessage/>
+                    <FollowUpAcknowledgementMessage/>)
             }
         </Center>
     );
