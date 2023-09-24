@@ -1,10 +1,11 @@
-import {Box, Center, Flex, HStack, Image, Text} from "@chakra-ui/react";
+import {Box, Center, Flex, HStack, IconButton, Image, Text} from "@chakra-ui/react";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
 import {isLoaded} from "~/client/utils";
 import {Id} from "~/server/service/types";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
+import {FiRepeat, FiShare} from "react-icons/fi";
 
 export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     type FollowUpSectionProps = {
@@ -12,7 +13,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
     }
 
     function FollowUpSection({surveyId}: FollowUpSectionProps) {
-        const didFollowUp = api.survey.didFollowUp.useQuery(surveyId);
+        const didFollowUp = api.survey.didFollowUp.useQuery(surveyId, {refetchOnWindowFocus: false});
         // there is an edge-case where this returns null on
         // first query ¯\_(ツ)_/¯
         QueryError.checkNullable({
@@ -33,14 +34,19 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
     }
 
     function FollowUpForm({surveyId}: FollowUpFormProps) {
+        // TODO
         return <Box></Box>;
     }
 
     function FollowUpAcknowledgementMessage() {
+        // TODO
         return <Box></Box>;
     }
 
-    const response = api.survey.response.useQuery(surveyId);
+    const response = api.survey.response.useQuery(surveyId,
+        // the response is static after generation
+        {refetchOnWindowFocus: false}
+    );
     QueryError.check({
         result: response,
         fieldName: "response",
@@ -76,6 +82,28 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                       color={"white"}>
                     {response.data!.result.description}
                 </Text>
+                <Flex w={200} direction={"row"} justifyContent={"space-around"}>
+                    <IconButton
+                        icon={<FiShare/>}
+                        aria-label={"share-button"}
+                        bg="white"
+                        size={"lg"}
+                        mt={8}
+                        variant={"solid"}
+                        onClick={() => {
+                        }}
+                    />
+                    <IconButton
+                        icon={<FiRepeat/>}
+                        aria-label={"redo-button"}
+                        size={"lg"}
+                        bg="white"
+                        mt={8}
+                        variant={"solid"}
+                        onClick={() => {
+                        }}
+                    />
+                </Flex>
                 <FollowUpSection surveyId={surveyId}/>
             </Flex>}
         </Center>
