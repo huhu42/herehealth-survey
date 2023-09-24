@@ -44,6 +44,20 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
         return <Box></Box>;
     }
 
+    async function shareSurveyResults(firstName: string, lastName: string): Promise<void> {
+        if (navigator.share) {
+            await navigator.share({
+                title: `${firstName} ${lastName}'s Dream Role`,
+                text: 'Take a look at my Uniphye AI psychometric results!',
+                url: window.location.href,
+            }).catch(e => {
+                alert('Hit error while sharing. Please copy and the URL directly to share!');
+            });
+        } else {
+            alert('Share not supported on this browser. Please copy and share the URL directly to share!');
+        }
+    }
+
     const router = useRouter();
     const response = api.survey.response.useQuery(surveyId,
         // the response is static after generation
@@ -92,7 +106,8 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                         size={"lg"}
                         mt={8}
                         variant={"solid"}
-                        onClick={() => {
+                        onClick={async () => {
+                            await shareSurveyResults(response.data!.firstName, response.data!.lastName);
                         }}
                     />
                     <IconButton
