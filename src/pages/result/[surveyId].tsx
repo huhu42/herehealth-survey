@@ -1,19 +1,21 @@
 import {Box, Center, Flex, Image, Text} from "@chakra-ui/react";
-import {useRouter} from "next/router";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
 import {isLoaded} from "~/client/utils";
 import {Id} from "~/server/service/types";
+import {GetServerSideProps, InferGetServerSidePropsType} from "next";
 
-export default function ResultPage() {
+export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     type FollowUpSectionProps = {
         surveyId: Id
     }
 
     function FollowUpSection({surveyId}: FollowUpSectionProps) {
         const didFollowUp = api.survey.didFollowUp.useQuery(surveyId);
-        QueryError.check({
+        // there is an edge-case where this returns null on
+        // first query ¯\_(ツ)_/¯
+        QueryError.checkNullable({
             result: didFollowUp,
             fieldName: "didFollowUp",
             params: {
@@ -38,14 +40,11 @@ export default function ResultPage() {
         return <Box></Box>;
     }
 
-    const router = useRouter();
-    const maybeSurveyId: Id = router.query.surveyId as Id;
-
-    const response = api.survey.response.useQuery(maybeSurveyId);
+    const response = api.survey.response.useQuery(surveyId);
     QueryError.check({
         result: response,
         fieldName: "response",
-        params: {surveyId: maybeSurveyId}
+        params: {surveyId: surveyId}
     });
 
     return (
@@ -74,3 +73,17 @@ export default function ResultPage() {
         </Center>
     );
 }
+
+export const getServerSideProps = (async (ctx) => {
+    const {surveyId} = ctx.query;
+    if (typeof surveyId !== "string") {
+        throw new Error("expected surveyId of type string but was " + surveyId);
+    }
+    return {
+        props: {
+            surveyId,
+        },
+    };
+}) satisfies GetServerSideProps<{
+    surveyId: Id
+}>
