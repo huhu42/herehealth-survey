@@ -51,7 +51,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 text: 'Take a look at my Uniphye AI psychometric results!',
                 url: window.location.href,
             }).catch(e => {
-                alert('Hit error while sharing. Please copy and the URL directly to share!');
+                console.error('error while sharing: ' + e);
             });
         } else {
             alert('Share not supported on this browser. Please copy and share the URL directly to share!');
