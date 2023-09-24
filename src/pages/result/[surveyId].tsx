@@ -1,4 +1,4 @@
-import {Box, Center, Flex, HStack, IconButton, Image, Text} from "@chakra-ui/react";
+import {Box, Button, Center, Flex, HStack, IconButton, Image, Text} from "@chakra-ui/react";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
@@ -44,7 +44,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
         return <Box></Box>;
     }
 
-    async function shareSurveyResults(firstName: string, lastName: string): Promise<void> {
+    async function share(firstName: string, lastName: string): Promise<void> {
         if (navigator.share) {
             await navigator.share({
                 title: `${firstName} ${lastName}'s Dream Role`,
@@ -56,6 +56,40 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
         } else {
             alert('Share not supported on this browser. Please copy and share the URL directly to share!');
         }
+    }
+
+    function NextActionButtons() {
+        return <Flex w={{base: 240, md: 300}} direction={"column"} alignItems={"center"}>
+            <Flex w={200} direction={"row"} justifyContent={"space-around"}>
+                <IconButton
+                    icon={<FiShare/>}
+                    aria-label={"share-button"}
+                    bg="white"
+                    size={"lg"}
+                    mt={8}
+                    variant={"solid"}
+                    onClick={async () => {
+                        await share(response.data!.firstName, response.data!.lastName);
+                    }}
+                />
+                <IconButton
+                    icon={<FiRepeat/>}
+                    aria-label={"redo-button"}
+                    size={"lg"}
+                    bg="white"
+                    mt={8}
+                    variant={"solid"}
+                    onClick={async () => {
+                        await router.push("/");
+                    }}
+                />
+            </Flex>
+            <Text mt={{base: 6, md: 8}} color={"white"} fontSize={"sm"}>
+                Don't stop here. Let Uniphye help you <b>actually </b>
+                find your dream job.
+            </Text>
+            <Button mt={4} bgColor={"goldenrod"} colorScheme={"yellow"} color={"white"} variant={"solid"} size={"sm"}>Learn More</Button>
+        </Flex>
     }
 
     const router = useRouter();
@@ -98,31 +132,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                       color={"white"}>
                     {response.data!.result.description}
                 </Text>
-                <Flex w={200} direction={"row"} justifyContent={"space-around"}>
-                    <IconButton
-                        icon={<FiShare/>}
-                        aria-label={"share-button"}
-                        bg="white"
-                        size={"lg"}
-                        mt={8}
-                        variant={"solid"}
-                        onClick={async () => {
-                            await shareSurveyResults(response.data!.firstName, response.data!.lastName);
-                        }}
-                    />
-                    <IconButton
-                        icon={<FiRepeat/>}
-                        aria-label={"redo-button"}
-                        size={"lg"}
-                        bg="white"
-                        mt={8}
-                        variant={"solid"}
-                        onClick={async () => {
-                            await router.push("/");
-                        }}
-                    />
-                </Flex>
-                <FollowUpSection surveyId={surveyId}/>
+                <NextActionButtons/>
             </Flex>}
         </Center>
     );
