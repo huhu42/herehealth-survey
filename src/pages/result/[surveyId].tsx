@@ -6,6 +6,7 @@ import {isLoaded} from "~/client/utils";
 import {Id} from "~/server/service/types";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
 import {FiRepeat, FiShare} from "react-icons/fi";
+import {useRouter} from "next/router";
 
 export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     type FollowUpSectionProps = {
@@ -43,6 +44,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
         return <Box></Box>;
     }
 
+    const router = useRouter();
     const response = api.survey.response.useQuery(surveyId,
         // the response is static after generation
         {refetchOnWindowFocus: false}
@@ -100,7 +102,8 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                         bg="white"
                         mt={8}
                         variant={"solid"}
-                        onClick={() => {
+                        onClick={async () => {
+                            await router.push("/");
                         }}
                     />
                 </Flex>
