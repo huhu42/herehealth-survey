@@ -1,4 +1,4 @@
-import {Box, Button, Center, Flex, HStack, IconButton, Image, Text} from "@chakra-ui/react";
+import {Button, Center, Flex, HStack, IconButton, Image, Text} from "@chakra-ui/react";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
@@ -9,41 +9,6 @@ import {FiRepeat, FiShare} from "react-icons/fi";
 import {useRouter} from "next/router";
 
 export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    type FollowUpSectionProps = {
-        surveyId: Id
-    }
-
-    function FollowUpSection({surveyId}: FollowUpSectionProps) {
-        const didFollowUp = api.survey.didFollowUp.useQuery(surveyId, {refetchOnWindowFocus: false});
-        // there is an edge-case where this returns null on
-        // first query ¯\_(ツ)_/¯
-        QueryError.checkNullable({
-            result: didFollowUp,
-            fieldName: "didFollowUp",
-            params: {
-                surveyId
-            }
-        });
-        return isLoaded(didFollowUp)
-            && (didFollowUp.data! ?
-                <FollowUpForm surveyId={surveyId}/> :
-                <FollowUpAcknowledgementMessage/>);
-    }
-
-    type FollowUpFormProps = {
-        surveyId: Id
-    }
-
-    function FollowUpForm({surveyId}: FollowUpFormProps) {
-        // TODO
-        return <Box></Box>;
-    }
-
-    function FollowUpAcknowledgementMessage() {
-        // TODO
-        return <Box></Box>;
-    }
-
     async function share(firstName: string, lastName: string): Promise<void> {
         if (navigator.share) {
             await navigator.share({
@@ -88,7 +53,15 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 Don't stop here. Let Uniphye help you <b>actually </b>
                 find your dream job.
             </Text>
-            <Button mt={4} bgColor={"goldenrod"} colorScheme={"yellow"} color={"white"} variant={"solid"} size={"sm"}>Learn More</Button>
+            <Button mt={4}
+                    colorScheme={"orange"}
+                    color={"white"}
+                    variant={"solid"}
+                    size={"sm"}
+                    onClick={async () => {
+                        await router.push(`${router.asPath}/followup`)
+                    }}>
+                Learn More</Button>
         </Flex>
     }
 
