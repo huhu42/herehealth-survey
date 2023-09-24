@@ -1,4 +1,4 @@
-import {Box, Center, Flex, Image, Text} from "@chakra-ui/react";
+import {Box, Center, Flex, HStack, Image, Text} from "@chakra-ui/react";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
@@ -54,13 +54,21 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
             bgGradient={"linear(to-b, purple.900, purple.600)"}
         >
             {isLoaded(response) && <Flex direction={"column"} alignItems={"center"} textAlign={"center"}>
-                <Image w={{base: 150, md: 200}} src={"../placeholder.jpg"} borderRadius={"10"}/>
-                <Text fontWeight={"semibold"}
-                      mt={6}
-                      fontSize={{base: "xl", md: "2xl"}}
-                      color={"white"}>
-                    {`${response.data!.firstName + " " + response.data!.lastName}'s ideal role`}
-                </Text>
+                <Image w={{base: 150, md: 200}} src={"../wizard.jpg"} borderRadius={"10"}/>
+                <HStack spacing={0}>
+                    <Text fontWeight={"extrabold"}
+                          mt={6}
+                          fontSize={{base: "xl", md: "2xl"}}
+                          color={"pink.300"}>
+                        {`${response.data!.firstName} ${response.data!.lastName}`}
+                    </Text>
+                    <Text fontWeight={"semibold"}
+                          mt={6}
+                          fontSize={{base: "xl", md: "2xl"}}
+                          color={"white"}>
+                        {"'s Dream Role"}
+                    </Text>
+                </HStack>
                 <Text w={{base: 200, md: 400}}
                       fontWeight={"normal"}
                       fontSize={{base: "md", md: "xl"}}
@@ -74,6 +82,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
     );
 }
 
+// https://stackoverflow.com/questions/57486380/why-would-a-query-param-be-undefined-in-nextjs
 export const getServerSideProps = (async (ctx) => {
     const {surveyId} = ctx.query;
     if (typeof surveyId !== "string") {
