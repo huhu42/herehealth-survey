@@ -68,7 +68,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                       color={"white"}>
                     {response.data!.result.description}
                 </Text>
-                <FollowUpSection surveyId={response.data!.id}/>
+                <FollowUpSection surveyId={surveyId}/>
             </Flex>}
         </Center>
     );
