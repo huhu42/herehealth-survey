@@ -8,7 +8,7 @@ import {
     Center,
     Checkbox,
     Flex,
-    FormControl,
+    FormControl, FormErrorMessage,
     FormHelperText,
     FormLabel,
     IconButton,
@@ -49,7 +49,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 >
                     Uniphye connects you with your ideal team.
                 </Text>
-                <FormControl isRequired={true}>
+                <FormControl isRequired={true} isInvalid={!emailInput.match(isValidEmail)}>
                     <FormLabel color={"white"}>Email</FormLabel>
                     <FormHelperText color={"white"}>
                         Sign up for the beta waitlist of our psychometric AI team building platform
@@ -64,6 +64,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                         onChange={(e) => setEmailInput(e.target.value)}
                         placeholder="e.g., jsmith42@gmail.com"
                     />
+                    <FormErrorMessage>Must be valid email address.</FormErrorMessage>
                 </FormControl>
                 <FormControl>
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
@@ -117,7 +118,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 mt={8}
                 variant={"solid"}
                 onClick={async () => {
-                    await router.push(`/results/${surveyId}`);
+                    await router.push(`/result/${surveyId}`);
                 }}
             />
         </Flex>;
