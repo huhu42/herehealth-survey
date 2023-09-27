@@ -49,7 +49,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 >
                     Uniphye connects you with your ideal team.
                 </Text>
-                <FormControl isRequired={true} isInvalid={!emailInput.match(isValidEmail)}>
+                <FormControl isRequired={true}>
                     <FormLabel color={"white"}>Email</FormLabel>
                     <FormHelperText color={"white"}>
                         Sign up for the beta waitlist of our psychometric AI team building platform
