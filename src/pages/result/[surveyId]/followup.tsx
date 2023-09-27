@@ -117,7 +117,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 mt={8}
                 variant={"solid"}
                 onClick={async () => {
-                    await router.push(`/results/${surveyId}`);
+                    await router.push(`/result/${surveyId}`);
                 }}
             />
         </Flex>;
