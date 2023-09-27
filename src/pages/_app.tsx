@@ -6,6 +6,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
 
+import "./globals.css";
+
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <ChakraProvider>
