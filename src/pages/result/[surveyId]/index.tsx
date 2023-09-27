@@ -55,7 +55,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 find your dream job.
             </Text>
             <Button mt={4}
-                    colorScheme={"orange"}
+                    colorScheme={"purple"}
                     color={"white"}
                     variant={"solid"}
                     size={"sm"}
@@ -82,7 +82,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
             w={"100vw"}
             h={{md: "100vh"}}
             py={{base: 12, md: 0}}
-            bgGradient={"linear(to-b, purple.900, purple.600)"}
+            bgGradient={"linear(to-b, pink.700, pink.400)"}
         >
             {isLoaded(response) && <Flex direction={"column"} alignItems={"center"} textAlign={"center"}>
                 <Image w={{base: 150, md: 200}} src={"../wizard.jpg"} borderRadius={"10"}/>
@@ -90,7 +90,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     <Text fontWeight={"extrabold"}
                           mt={6}
                           fontSize={{base: "xl", md: "2xl"}}
-                          color={"pink.300"}>
+                          color={"purple.900"}>
                         {`${response.data!.firstName} ${response.data!.lastName}`}
                     </Text>
                     <Text fontWeight={"semibold"}
