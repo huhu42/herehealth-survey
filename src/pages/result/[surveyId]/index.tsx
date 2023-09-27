@@ -62,7 +62,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     onClick={async () => {
                         await router.push(`${router.asPath}/followup`)
                     }}>
-                Learn More</Button>
+                Yes, I'm interested</Button>
         </Flex>
     }
 
@@ -80,7 +80,8 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
     return (
         <Center
             w={"100vw"}
-            h={"100vh"}
+            h={{md: "100vh"}}
+            py={{base: 12, md: 0}}
             bgGradient={"linear(to-b, purple.900, purple.600)"}
         >
             {isLoaded(response) && <Flex direction={"column"} alignItems={"center"} textAlign={"center"}>
