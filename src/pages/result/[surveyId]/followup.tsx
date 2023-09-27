@@ -3,8 +3,21 @@ import {Id} from "~/server/service/types";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
 import {isLoaded} from "~/client/utils";
-import {Box, Button, Center, Checkbox, Flex, FormControl, FormLabel, Input, Text} from "@chakra-ui/react";
+import {
+    Button,
+    Center,
+    Checkbox,
+    Flex,
+    FormControl,
+    FormHelperText,
+    FormLabel,
+    IconButton,
+    Input,
+    Text
+} from "@chakra-ui/react";
 import React, {useState} from "react";
+import {FiArrowLeft} from "react-icons/fi";
+import {useRouter} from "next/router";
 
 export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     type FollowUpFormProps = {
@@ -12,12 +25,18 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
     }
 
     function FollowUpForm({surveyId}: FollowUpFormProps) {
+        const context = api.useContext();
+        const followUp = api.survey.followUp.useMutation({
+            onSuccess: async () => {
+                await context.survey.didFollowUp.invalidate(surveyId);
+            }
+        });
         const [emailInput, setEmailInput] = useState("");
         const [requestMatchesInput, setRequestMatchesInput] = useState(false);
         return (
             <Flex
                 flexDirection={"column"}
-                w={{sm: 250, md: 400}}
+                w={{base: 300, md: 400}}
                 justifyContent={"center"}
                 alignItems={"center"}
             >
@@ -28,43 +47,80 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                     alignSelf={"start"}
                     color={"white"}
                 >
-                    Sign Up
+                    Uniphye connects you with your ideal team.
                 </Text>
                 <FormControl isRequired={true}>
                     <FormLabel color={"white"}>Email</FormLabel>
+                    <FormHelperText color={"white"}>
+                        Sign up for the beta waitlist of our psychometric AI team building platform
+                    </FormHelperText>
                     <Input
-                        my={2}
+                        my={4}
                         value={emailInput}
                         color="black"
                         colorScheme="white"
                         variant="solid"
+                        type={"email"}
                         onChange={(e) => setEmailInput(e.target.value)}
                         placeholder="e.g., jsmith42@gmail.com"
                     />
                 </FormControl>
                 <FormControl>
+                    <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
+                    <FormHelperText color={"white"}>For the first <b>100 people</b>, the Uniphye team is providing a
+                        paid service to match you with Silicon Valley start-ups and give you 1 warm introduction
+                    </FormHelperText>
                     <Checkbox my={4} size='lg'
                               colorScheme='white'
+                              checked={requestMatchesInput}
                               onChange={(c) => setRequestMatchesInput(c.target.checked)}>
                         <Text color={"white"} fontWeight={"semibold"} fontSize={"sm"}>
-                            Match me with roles
+                            Yes, I am interested
                         </Text>
                     </Checkbox>
                 </FormControl>
                 <Button
                     aria-label={"submit-button"}
-                    mt={8}
+                    mt={4}
                     isDisabled={emailInput === ""}
                     onClick={() => {
-                        // TODO
+                        followUp.mutate({
+                            id: surveyId,
+                            email: emailInput,
+                            requestMatches: requestMatchesInput
+                        })
                     }}
-                />
+                >Submit
+                </Button>
             </Flex>)
     }
 
     function FollowUpAcknowledgementMessage() {
-        // TODO
-        return <Box></Box>;
+        const router = useRouter();
+        return <Flex direction={"column"} w={400} textAlign={"center"} alignItems={"center"}>
+            <Text fontSize={"xl"}
+                  fontWeight={"semibold"}
+                  color={"white"}
+            >
+                Thank-you for your interest in Uniphye!
+            </Text>
+            <Text fontSize={"md"}
+                  color={"white"}
+                  mt={"4"}
+            >
+                We will reach out to you soon.
+            </Text>
+            <IconButton
+                icon={<FiArrowLeft/>}
+                aria-label={"back-arrow-button"}
+                bg="white"
+                mt={8}
+                variant={"solid"}
+                onClick={async () => {
+                    await router.push(`/results/${surveyId}`);
+                }}
+            />
+        </Flex>;
     }
 
     const didFollowUp = api.survey.didFollowUp.useQuery(surveyId, {refetchOnWindowFocus: false});
