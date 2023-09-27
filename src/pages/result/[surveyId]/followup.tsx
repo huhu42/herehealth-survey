@@ -68,7 +68,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 <FormControl>
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
                     <FormHelperText color={"white"}>For the first <b>100 people</b>, the Uniphye team is providing a
-                        paid service to match you with Silicon Valley start-ups and give you 1 warm introduction
+                        service to match you with Silicon Valley start-ups and give you <b>1</b> warm introduction for <b>$195</b>
                     </FormHelperText>
                     <Checkbox my={4} size='lg'
                               colorScheme='white'
