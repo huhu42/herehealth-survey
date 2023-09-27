@@ -80,7 +80,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
     return (
         <Center
             w={"100vw"}
-            h={{md: "100vh"}}
+            minH={"100vh"}
             py={{base: 12, md: 0}}
             bgGradient={"linear(to-b, pink.700, pink.400)"}
         >
