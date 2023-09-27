@@ -7,6 +7,7 @@ import {Id} from "~/server/service/types";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
 import {FiRepeat, FiShare} from "react-icons/fi";
 import {useRouter} from "next/router";
+import Logo from "~/client/components/Logo";
 
 export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     async function share(firstName: string, lastName: string): Promise<void> {
@@ -106,6 +107,9 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     {response.data!.result.description}
                 </Text>
                 <NextActionButtons/>
+                <Logo w={20} mt={8} onClick={async () => {
+                    await router.push("https://www.uniphye.com/")
+                }}/>
             </Flex>}
         </Center>
     );
