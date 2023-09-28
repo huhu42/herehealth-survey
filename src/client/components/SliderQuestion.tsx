@@ -1,7 +1,7 @@
 import {
     Box,
     Button,
-    Flex,
+    Flex, HStack,
     Slider,
     SliderFilledTrack,
     SliderThumb,
@@ -12,14 +12,18 @@ import React, {useState} from "react";
 import {NextButton} from "~/client/components/NextButton";
 
 type SliderQuestionProps = {
-    question: string;
+    title: string;
+    leftDescription: string;
+    rightDescription: string;
     setValue: (val: number) => void;
     onNavigation: (val?: number) => void;
     finalQuestion?: boolean;
 };
 
 export default function SliderQuestion({
-                                           question,
+                                           title,
+                                           leftDescription,
+                                           rightDescription,
                                            setValue,
                                            onNavigation,
                                            finalQuestion,
@@ -28,19 +32,41 @@ export default function SliderQuestion({
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
             <Text
-                w={{base: "80", md: "100"}}
-                fontSize={{base: "xl", md: "xxl"}}
+                w={{base: 80, md: 400}}
+                fontWeight={"bold"}
+                fontSize={{base: "2xl", md: "3xl"}}
                 color={"white"}
-                mb={10}
+                mb={6}
             >
-                {question}
+                {title}
             </Text>
+            <Flex direction={"row"} w={{base: 320, md: 480}}
+                  justifyContent={"space-between"}
+                  alignItems={"flex-end"}>
+                <Text
+                    w={{base: 40, md: 160}}
+                    fontSize={{base: "sm", md: "lg"}}
+                    color={"white"}
+                    mb={2}
+                >
+                    {leftDescription}
+                </Text>
+                <Text
+                    w={{base: 40, md: 160}}
+                    fontSize={{base: "sm", md: "lg"}}
+                    color={"white"}
+                    mb={2}
+                >
+                    {rightDescription}
+                </Text>
+            </Flex>
             <Slider
                 defaultValue={sliderValue}
                 min={0}
                 max={100}
                 step={1}
-                w={{base: 240, md: 300}}
+                mb={8}
+                w={{base: 240, md: 400}}
                 onChange={(v) => setSliderValue(v)}
             >
                 <SliderTrack bg="pink.100">

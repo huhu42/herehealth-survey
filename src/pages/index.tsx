@@ -56,7 +56,9 @@ export default function Survey() {
             case Step.QUESTION_TWO: {
                 return (
                     <SliderQuestion
-                        question={"How much do you prefer right over left?"}
+                        title={"Attentiveness"}
+                        leftDescription={"I pay careful attention to detail"}
+                        rightDescription={"I act spontaneously following my instincts"}
                         setValue={setSliderOneValue}
                         onNavigation={() => setStep(Step.QUESTION_THREE)}
                     />
@@ -65,7 +67,9 @@ export default function Survey() {
             case Step.QUESTION_THREE: {
                 return (
                     <SliderQuestion
-                        question={"How much do you like west over east?"}
+                        title={"Receptiveness"}
+                        leftDescription={"I like to try new or unconventional activities"}
+                        rightDescription={"I like to stick with things I know"}
                         setValue={setSliderTwoValue}
                         onNavigation={() => setStep(Step.QUESTION_FOUR)}
                     />
@@ -74,7 +78,9 @@ export default function Survey() {
             case Step.QUESTION_FOUR: {
                 return (
                     <SliderQuestion
-                        question={"How much do you like sliders?"}
+                        title={"Extraversion"}
+                        leftDescription={"I gain energy from activities and people"}
+                        rightDescription={"I gain energy from ideas and internal thoughts"}
                         setValue={setSliderThreeValue}
                         onNavigation={() => setStep(Step.QUESTION_FIVE)}
                     />
@@ -83,7 +89,9 @@ export default function Survey() {
             case Step.QUESTION_FIVE: {
                 return (
                     <SliderQuestion
-                        question={"How much do you like polls?"}
+                        title={"Turbulence"}
+                        leftDescription={"My moods and feelings fluctuate quickly with events of the day"}
+                        rightDescription={"My mood remains consistent despite unexpected turns of events"}
                         setValue={setSliderFourValue}
                         onNavigation={() => setStep(Step.QUESTION_SIX)}
                     />
@@ -92,7 +100,9 @@ export default function Survey() {
             case Step.QUESTION_SIX: {
                 return (
                     <SliderQuestion
-                        question={"How much do you like the color purple?"}
+                        title={"Agreeableness"}
+                        leftDescription={"I normally prioritize the feelings of others when making decisions"}
+                        rightDescription={"I prefer to stand by my own perspectives if I think I'm right"}
                         // there is an unideal bifurcation of the code off this
                         finalQuestion={true}
                         setValue={() => {
