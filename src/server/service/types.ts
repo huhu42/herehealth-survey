@@ -18,6 +18,9 @@ const SurveySchema = z.object({
     0: RankSchema,
     1: PercentageSchema,
     2: PercentageSchema,
+    3: PercentageSchema,
+    4: PercentageSchema,
+    5: PercentageSchema
 });
 export type Survey = z.infer<typeof SurveySchema>;
 

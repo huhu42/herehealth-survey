@@ -16,6 +16,9 @@ export default function Survey() {
         QUESTION_ONE,
         QUESTION_TWO,
         QUESTION_THREE,
+        QUESTION_FOUR,
+        QUESTION_FIVE,
+        QUESTION_SIX,
         LOADING
     }
 
@@ -61,6 +64,33 @@ export default function Survey() {
             case Step.QUESTION_THREE: {
                 return (
                     <SliderQuestion
+                        question={"How much do you like west over east?"}
+                        setValue={setSliderTwoValue}
+                        onNavigation={() => setStep(Step.QUESTION_FOUR)}
+                    />
+                );
+            }
+            case Step.QUESTION_FOUR: {
+                return (
+                    <SliderQuestion
+                        question={"How much do you like sliders?"}
+                        setValue={setSliderThreeValue}
+                        onNavigation={() => setStep(Step.QUESTION_FIVE)}
+                    />
+                );
+            }
+            case Step.QUESTION_FIVE: {
+                return (
+                    <SliderQuestion
+                        question={"How much do you like polls?"}
+                        setValue={setSliderFourValue}
+                        onNavigation={() => setStep(Step.QUESTION_SIX)}
+                    />
+                );
+            }
+            case Step.QUESTION_SIX: {
+                return (
+                    <SliderQuestion
                         question={"How much do you like the color purple?"}
                         // there is an unideal bifurcation of the code off this
                         finalQuestion={true}
@@ -91,7 +121,10 @@ export default function Survey() {
                      lastName: string,
                      dragAndDropItems: Array<DragAndDropItem>,
                      sliderOneValue: number,
-                     sliderTwoValue: number): Request {
+                     sliderTwoValue: number,
+                     sliderThreeValue: number,
+                     sliderFourValue: number,
+                     sliderFiveValue: number): Request {
         return {
             firstName: firstName,
             lastName: lastName,
@@ -99,6 +132,9 @@ export default function Survey() {
                 0: rank(dragAndDropItems),
                 1: sliderOneValue,
                 2: sliderTwoValue,
+                3: sliderThreeValue,
+                4: sliderFourValue,
+                5: sliderFiveValue,
             }
         };
     }
@@ -128,7 +164,10 @@ export default function Survey() {
         {key: 5, description: "six"},
     ]);
     const [sliderOneValue, setSliderOneValue] = useState(50);
-    // sliderTwoValue is just passed directly to form submission
+    const [sliderTwoValue, setSliderTwoValue] = useState(50);
+    const [sliderThreeValue, setSliderThreeValue] = useState(50);
+    const [sliderFourValue, setSliderFourValue] = useState(50);
+    // sliderFiveValue is just passed directly to form submission
 
     return (
         <Center
@@ -146,6 +185,9 @@ export default function Survey() {
                                              lastName,
                                              dragAndDropItems,
                                              sliderOneValue,
+                                             sliderTwoValue,
+                                             sliderThreeValue,
+                                             sliderFourValue,
                                              finalValue)
                                      });
                                  }}
