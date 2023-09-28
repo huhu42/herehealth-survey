@@ -20,6 +20,8 @@ import {FiArrowLeft} from "react-icons/fi";
 import {useRouter} from "next/router";
 
 export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    const isEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
     type FollowUpFormProps = {
         surveyId: Id
     }
@@ -31,6 +33,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 await context.survey.didFollowUp.invalidate(surveyId);
             }
         });
+        const [emailTouched, setEmailTouched] = useState(false)
         const [emailInput, setEmailInput] = useState("");
         const [requestMatchesInput, setRequestMatchesInput] = useState(false);
         return (
@@ -49,19 +52,22 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 >
                     Uniphye connects you with your ideal team.
                 </Text>
-                <FormControl isRequired={true}>
+                <FormControl isRequired={true} isInvalid={emailTouched && !isEmail.test(emailInput)}>
                     <FormLabel color={"white"}>Email</FormLabel>
                     <FormHelperText color={"white"}>
                         Sign up for the beta waitlist of our psychometric AI team building platform
                     </FormHelperText>
                     <Input
-                        my={4}
+                        mt={4}
                         value={emailInput}
                         color="black"
                         colorScheme="white"
                         variant="solid"
                         type={"email"}
-                        onChange={(e) => setEmailInput(e.target.value)}
+                        onChange={(e) => {
+                            setEmailTouched(true);
+                            setEmailInput(e.target.value)
+                        }}
                         placeholder="e.g., jsmith42@gmail.com"
                     />
                     <FormErrorMessage>Must be valid email address.</FormErrorMessage>
@@ -69,7 +75,8 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 <FormControl>
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
                     <FormHelperText color={"white"}>For the first <b>100 people</b>, the Uniphye team is providing a
-                        service to match you with Silicon Valley start-ups and give you <b>1</b> warm introduction for <b>$195</b>
+                        service to match you with Silicon Valley start-ups and give you <b>1</b> warm introduction
+                        for <b>$195</b>
                     </FormHelperText>
                     <Checkbox my={4} size='lg'
                               colorScheme='white'
@@ -138,7 +145,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
             w={"100vw"}
             h={"100vh"}
             p={8}
-            bgGradient={"linear(to-b, pink.700, pink.400)"}
+            bgGradient={"linear(to-b, purple.600, purple.300)"}
         >
             {isLoaded(didFollowUp)
                 && (didFollowUp.data! ?
