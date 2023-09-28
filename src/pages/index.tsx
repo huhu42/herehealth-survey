@@ -182,8 +182,9 @@ export default function Survey() {
 
     return (
         <Center
-            w={"100vw"}
-            h={"100vh"}
+            minW={"100vw"}
+            minH={"100vh"}
+            p={4}
             bgGradient={"linear(to-b, purple.900, purple.600)"}
         >
             <Flex direction={"column"} alignItems={"center"}>

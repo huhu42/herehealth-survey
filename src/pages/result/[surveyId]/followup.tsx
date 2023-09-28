@@ -142,9 +142,9 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
     });
 
     return (<Center
-            w={"100vw"}
-            h={"100vh"}
-            p={8}
+            minW={"100vw"}
+            minH={"100vh"}
+            p={4}
             bgGradient={"linear(to-b, purple.600, purple.300)"}
         >
             {isLoaded(didFollowUp)

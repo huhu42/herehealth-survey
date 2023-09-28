@@ -1,7 +1,7 @@
 import {
     Box,
     Button,
-    Flex, HStack,
+    Flex,
     Slider,
     SliderFilledTrack,
     SliderThumb,

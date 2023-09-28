@@ -79,9 +79,9 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
 
     return (
         <Center
-            w={"100vw"}
+            minW={"100vw"}
             minH={"100vh"}
-            py={{base: 12, md: 0}}
+            py={4}
             bgGradient={"linear(to-b, purple.600, purple.300)"}
         >
             {isLoaded(response) && <Flex direction={"column"} alignItems={"center"} textAlign={"center"}>
