@@ -3,13 +3,14 @@ import React, {useState} from "react";
 import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
 import {NextButton} from "~/client/components/NextButton";
 
-type ItemKey =  0 | 1 | 2 | 3 | 4 | 5;
+type ItemKey = 0 | 1 | 2 | 3 | 4 | 5;
 export type DragAndDropItem = {
     key: ItemKey
     description: string
 }
 
 type DragAndDropQuestionProp = {
+    title: string
     question: string;
     items: Array<DragAndDropItem>;
     setItemsOrder: (items: Array<DragAndDropItem>) => void;
@@ -17,6 +18,7 @@ type DragAndDropQuestionProp = {
 };
 
 export default function DragAndDropQuestion({
+                                                title,
                                                 question,
                                                 items,
                                                 setItemsOrder,
@@ -26,8 +28,17 @@ export default function DragAndDropQuestion({
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
             <Text
-                w={{base: "80", md: "100"}}
-                fontSize={{base: "xl", md: "xxl"}}
+                w={{base: 80, md: 400}}
+                fontWeight={"bold"}
+                fontSize={{base: "2xl", md: "3xl"}}
+                color={"white"}
+                mb={2}
+            >
+                {title}
+            </Text>
+            <Text
+                w={{base: 80, md: 400}}
+                fontSize={{base: "sm", md: "lg"}}
                 color={"white"}
                 mb={2}
             >
@@ -39,13 +50,13 @@ export default function DragAndDropQuestion({
                         <Reorder.Item key={item.key} value={item} id={item.key.toString()}>
                             <Card
                                 bgGradient="linear(to-tl, purple.400, purple.200)"
-                                w={{base: 200, md: 300}}
-                                h={{base: 12, md: 16}}
-                                p={4}
+                                w={{base: 300, md: 400}}
+                                h={{base: 12, md: 20}}
+                                px={2}
                                 mt={{base: 2, md: 4}}
                             >
                                 <Center w={"100%"} h={"100%"}>
-                                    <Text fontSize="xl" color="black">
+                                    <Text fontSize={{base: "sm", md: "lg"}} color="white">
                                         {item.description}
                                     </Text>
                                 </Center>

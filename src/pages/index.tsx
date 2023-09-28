@@ -45,7 +45,8 @@ export default function Survey() {
             case Step.QUESTION_ONE: {
                 return (
                     <DragAndDropQuestion
-                        question={"What is your favorite number?"}
+                        title={"Work Energizers"}
+                        question={"Please drag to rank what kind of work energizes you from top (relatively more energizing) to bottom (relatively least energizing)"}
                         items={dragAndDropItems}
                         setItemsOrder={(i) => setDragAndDropItems(i)}
                         onNavigation={() => setStep(Step.QUESTION_TWO)}
@@ -156,12 +157,12 @@ export default function Survey() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [dragAndDropItems, setDragAndDropItems] = useState<Array<DragAndDropItem>>([
-        {key: 0, description: "one"},
-        {key: 1, description: "two"},
-        {key: 2, description: "three"},
-        {key: 3, description: "four"},
-        {key: 4, description: "five"},
-        {key: 5, description: "six"},
+        {key: 0, description: "Assessing ideas and situations"},
+        {key: 1, description: "Supporting those in need with an idea or project"},
+        {key: 2, description: "Challenging norms and pondering possibilities for potential and opportunity"},
+        {key: 3, description: "Encouraging and inspiring others to take action"},
+        {key: 4, description: "Novelizing new ideas and solutions in response to problems"},
+        {key: 5, description: "Delivering projects and pushing tasks to completion"},
     ]);
     const [sliderOneValue, setSliderOneValue] = useState(50);
     const [sliderTwoValue, setSliderTwoValue] = useState(50);
