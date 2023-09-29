@@ -159,6 +159,7 @@ export default function Survey() {
             console.error(`failed to process request with exception ${e.message}`);
             // retry
             setStep(Step.QUESTION_SIX);
+            alert("Failed to generate survey result. Please try again.");
         }
     });
     const [step, setStep] = useState(Step.SPLASH);
