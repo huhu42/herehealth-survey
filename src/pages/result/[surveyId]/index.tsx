@@ -100,9 +100,9 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                         {"'s Dream Role"}
                     </Text>
                 </HStack>
-                <Text w={{base: 200, md: 400}}
+                <Text w={{base: 240, md: 600}}
                       fontWeight={"normal"}
-                      fontSize={{base: "md", md: "xl"}}
+                      fontSize={{base: "sm", md: "lg"}}
                       mt={4}
                       color={"white"}>
                     {response.data!.result.description}
