@@ -81,7 +81,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
         <Center
             minW={"100vw"}
             minH={"100vh"}
-            p={12}
+            py={12}
             bgGradient={"linear(to-b, purple.600, purple.300)"}
         >
             {isLoaded(response) && <Flex direction={"column"} alignItems={"center"} textAlign={"center"}>
@@ -100,7 +100,8 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                         {"'s Dream Role"}
                     </Text>
                 </HStack>
-                <Text w={{base: 240, md: 600}}
+                <Text w={{base: "100vw", md: 600}}
+                      px={{base: 6, md: 0}}
                       fontWeight={"normal"}
                       fontSize={{base: "sm", md: "lg"}}
                       mt={4}
