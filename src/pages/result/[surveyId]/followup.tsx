@@ -144,7 +144,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
     return (<Center
             minW={"100vw"}
             minH={"100vh"}
-            p={4}
+            p={12}
             bgGradient={"linear(to-b, purple.600, purple.300)"}
         >
             {isLoaded(didFollowUp)
