@@ -40,7 +40,7 @@ export default function SliderQuestion({
             >
                 {title}
             </Text>
-            <Flex direction={"row"} w={{base: 320, md: 480}}
+            <Flex direction={"row"} w={{base: 300, md: 480}}
                   justifyContent={"space-between"}
                   alignItems={"flex-end"}>
                 <Text
