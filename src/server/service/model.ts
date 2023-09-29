@@ -1,25 +1,27 @@
-import { Survey } from "~/server/service/types";
+import {Survey} from "~/server/service/types";
+import {openAIClient} from "~/server/service/openai";
 
 export type ModelResult = {
-  description: string;
+    description: string;
 };
 
 type ModelInput = Survey;
 
 export type Model = {
-  apply(input: ModelInput): Promise<ModelResult>;
+    apply(input: ModelInput): Promise<ModelResult>;
 };
 
 export function createModel(): Model {
-  function apply(input: ModelInput): Promise<ModelResult> {
-    return Promise.resolve({
-      description:
-        "You are an amazing person and would do well in many jobs! We just don't " +
-        "have a result for you yet! Please stay tuned!",
-    });
-  }
+    function inputToPrompt(input: ModelInput): string {
+        return "Hype me up and give me some job recommendations. Keep it short and sweet.";
+    }
 
-  return {
-    apply,
-  };
+    async function apply(input: ModelInput): Promise<ModelResult> {
+        const description = await openAIClient.complete(inputToPrompt(input))
+        return {description: description}
+    }
+
+    return {
+        apply,
+    };
 }
