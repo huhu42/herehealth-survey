@@ -60,7 +60,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     variant={"solid"}
                     size={"sm"}
                     onClick={async () => {
-                        await router.push(`${router.asPath}/followup`)
+                        await router.push(`/result/${surveyId}/followup`)
                     }}>
                 Yes, I'm interested</Button>
         </Flex>
