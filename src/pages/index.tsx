@@ -156,9 +156,9 @@ export default function Survey() {
             await router.push(`/result/${id}`);
         },
         onError: (e) => {
-            throw new Error(
-                `failed to process request with exception ${e.message}`,
-            );
+            console.error(`failed to process request with exception ${e.message}`);
+            // retry
+            setStep(Step.QUESTION_SIX);
         }
     });
     const [step, setStep] = useState(Step.SPLASH);
