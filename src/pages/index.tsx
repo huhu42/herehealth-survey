@@ -57,8 +57,8 @@ export default function Survey() {
                 return (
                     <SliderQuestion
                         title={"Attentiveness"}
-                        leftDescription={"I pay careful attention to detail"}
-                        rightDescription={"I act spontaneously following my instincts"}
+                        leftDescription={"I act spontaneously following my instincts"}
+                        rightDescription={"I pay careful attention to detail"}
                         setValue={setSliderOneValue}
                         onNavigation={() => setStep(Step.QUESTION_THREE)}
                     />
@@ -68,8 +68,8 @@ export default function Survey() {
                 return (
                     <SliderQuestion
                         title={"Receptiveness"}
-                        leftDescription={"I like to try new or unconventional activities"}
-                        rightDescription={"I like to stick with things I know"}
+                        leftDescription={"I like to stick with things I know"}
+                        rightDescription={"I like to try new or unconventional activities"}
                         setValue={setSliderTwoValue}
                         onNavigation={() => setStep(Step.QUESTION_FOUR)}
                     />
@@ -79,8 +79,8 @@ export default function Survey() {
                 return (
                     <SliderQuestion
                         title={"Extraversion"}
-                        leftDescription={"I gain energy from activities and people"}
-                        rightDescription={"I gain energy from ideas and internal thoughts"}
+                        leftDescription={"I gain energy from ideas and internal thoughts"}
+                        rightDescription={"I gain energy from activities and people"}
                         setValue={setSliderThreeValue}
                         onNavigation={() => setStep(Step.QUESTION_FIVE)}
                     />
@@ -90,8 +90,8 @@ export default function Survey() {
                 return (
                     <SliderQuestion
                         title={"Turbulence"}
-                        leftDescription={"My moods and feelings fluctuate quickly with events of the day"}
-                        rightDescription={"My mood remains consistent despite unexpected turns of events"}
+                        leftDescription={"My mood remains consistent despite unexpected turns of events"}
+                        rightDescription={"My moods and feelings fluctuate quickly with events of the day"}
                         setValue={setSliderFourValue}
                         onNavigation={() => setStep(Step.QUESTION_SIX)}
                     />
@@ -101,8 +101,8 @@ export default function Survey() {
                 return (
                     <SliderQuestion
                         title={"Agreeableness"}
-                        leftDescription={"I normally prioritize the feelings of others when making decisions"}
-                        rightDescription={"I prefer to stand by my own perspectives if I think I'm right"}
+                        leftDescription={"I prefer to stand by my own perspectives if I think I'm right"}
+                        rightDescription={"I normally prioritize the feelings of others when making decisions"}
                         // there is an unideal bifurcation of the code off this
                         finalQuestion={true}
                         setValue={() => {
