@@ -16,11 +16,27 @@ import {
     Text
 } from "@chakra-ui/react";
 import React, {useState} from "react";
-import {FiArrowLeft} from "react-icons/fi";
+import {FiArrowLeft, FiShare} from "react-icons/fi";
 import {useRouter} from "next/router";
 
 export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const isEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    async function share(): Promise<void> {
+        // hacky, take away /followup to get back to survey results
+        const url = window.location.href.slice(0, -8);
+        if (navigator.share) {
+            await navigator.share({
+                title: `Uniphye Survey Results`,
+                text: 'Take a look at my Uniphye AI psychometric results!',
+                url: url,
+            }).catch(e => {
+                console.error('error while sharing: ' + e);
+            });
+        } else {
+            alert(`Share not supported on this browser. Please copy and share the URL ${url} directly to share!`);
+        }
+    }
 
     type FollowUpFormProps = {
         surveyId: Id
@@ -55,7 +71,8 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 <FormControl isRequired={true} isInvalid={emailTouched && !isEmail.test(emailInput)}>
                     <FormLabel color={"white"}>Email</FormLabel>
                     <FormHelperText color={"white"}>
-                        You are more than your resume.  Sign up for the beta waitlist of our psychometric AI team building platform.
+                        You are more than your resume. Sign up for the beta waitlist of our psychometric AI team
+                        building platform.
                     </FormHelperText>
                     <Input
                         mt={4}
@@ -130,6 +147,24 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 variant={"solid"}
                 onClick={async () => {
                     await router.push(`/result/${surveyId}`);
+                }}
+            />
+            <Text fontSize={"sm"}
+                  color={"white"}
+                  mt={"12"}
+            >
+                There is currently <b>1000s</b> users on the beta waitlist. <b>Share</b> the results of your survey to get
+                priority access.
+            </Text>
+            <IconButton
+                icon={<FiShare/>}
+                aria-label={"share-button"}
+                bg="white"
+                size={"lg"}
+                mt={4}
+                variant={"solid"}
+                onClick={async () => {
+                    await share();
                 }}
             />
         </Flex>;
