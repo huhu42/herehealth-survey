@@ -119,7 +119,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                             requestMatches: requestMatchesInput
                         })
                     }}
-                >Submit
+                >Join the movement!
                 </Button>
             </Flex>)
     }
