@@ -50,12 +50,12 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                     alignSelf={"start"}
                     color={"white"}
                 >
-                    Uniphye connects you with your ideal team.
+                    Uniphye connects you with your ideal team
                 </Text>
                 <FormControl isRequired={true} isInvalid={emailTouched && !isEmail.test(emailInput)}>
                     <FormLabel color={"white"}>Email</FormLabel>
                     <FormHelperText color={"white"}>
-                        Sign up for the beta waitlist of our psychometric AI team building platform
+                        You are more than your resume.  Sign up for the beta waitlist of our psychometric AI team building platform.
                     </FormHelperText>
                     <Input
                         mt={4}
@@ -74,9 +74,13 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 </FormControl>
                 <FormControl>
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
-                    <FormHelperText color={"white"}>For the first <b>100 people</b>, the Uniphye team is providing a
-                        service to match you with Silicon Valley start-ups and give you <b>1</b> warm introduction
-                        for <b>$195</b>
+                    <FormHelperText color={"white"}>
+                        For the first <b>100 people</b>, the Uniphye team is offering a white-glove service to match
+                        you with Silicon Valley startups and give <b>1</b> warm introduction to the startup of your
+                        choice for <b>$195</b>.
+                    </FormHelperText>
+                    <FormHelperText color={"white"} mt={3}>
+                        No payment required at this time.
                     </FormHelperText>
                     <Checkbox my={4} size='lg'
                               colorScheme='white'
