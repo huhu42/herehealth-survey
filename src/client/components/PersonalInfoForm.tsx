@@ -82,7 +82,6 @@ export default function PersonalInfoForm({
             <FormControl isRequired={true}>
                 <FormLabel color={"white"}>Experience</FormLabel>
                 <Select
-                    w={FORM_WIDTH}
                     mt={3}
                     mb={4}
                     color="black"
@@ -91,8 +90,8 @@ export default function PersonalInfoForm({
                     onChange={(e) => setTenureInput(toTenure(e.target.value))}
                     placeholder="What best describes you?"
                 >
-                    <option value={Tenure.NEW_GRAD.toString()}>A new graduate looking to start my career</option>
-                    <option value={Tenure.MID_CAREER.toString()}>An experienced employee looking for a change</option>
+                    <option value={Tenure.NEW_GRAD}>New graduate</option>
+                    <option value={Tenure.MID_CAREER}>Experienced employee</option>
                 </Select>
             </FormControl>
             <NextButton
