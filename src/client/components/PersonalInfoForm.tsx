@@ -36,10 +36,11 @@ export default function PersonalInfoForm({
     const [firstNameInput, setFirstNameInput] = useState("");
     const [lastNameInput, setLastNameInput] = useState("");
     const [tenureInput, setTenureInput] = useState<Tenure | null>(null);
+    const FORM_WIDTH = {base: 250, md: 400}
     return (
         <Flex
             flexDirection={"column"}
-            w={{base: 250, md: 400}}
+            w={FORM_WIDTH}
             justifyContent={"center"}
             alignItems={"center"}
         >
@@ -55,7 +56,8 @@ export default function PersonalInfoForm({
             <FormControl isRequired={true}>
                 <FormLabel color={"white"}>First Name</FormLabel>
                 <Input
-                    my={2}
+                    mt={2}
+                    mb={4}
                     value={firstNameInput}
                     color="black"
                     colorScheme="white"
@@ -67,7 +69,8 @@ export default function PersonalInfoForm({
             <FormControl isRequired={true}>
                 <FormLabel color={"white"}>Last Name</FormLabel>
                 <Input
-                    my={2}
+                    mt={2}
+                    mb={4}
                     value={lastNameInput}
                     color="black"
                     colorScheme="white"
@@ -79,7 +82,9 @@ export default function PersonalInfoForm({
             <FormControl isRequired={true}>
                 <FormLabel color={"white"}>Experience</FormLabel>
                 <Select
-                    my={3}
+                    w={FORM_WIDTH}
+                    mt={3}
+                    mb={4}
                     color="black"
                     colorScheme="white"
                     variant="solid"
