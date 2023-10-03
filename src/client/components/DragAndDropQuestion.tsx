@@ -1,5 +1,5 @@
 import {Reorder} from "framer-motion";
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
 import {NextButton} from "~/client/components/NextButton";
 
@@ -17,13 +17,13 @@ type DragAndDropQuestionProp = {
     onNavigation: () => void;
 };
 
-export default function DragAndDropQuestion({
-                                                title,
-                                                question,
-                                                items,
-                                                setItemsOrder,
-                                                onNavigation,
-                                            }: DragAndDropQuestionProp) {
+function DragAndDropQuestionBase({
+                                     title,
+                                     question,
+                                     items,
+                                     setItemsOrder,
+                                     onNavigation,
+                                 }: DragAndDropQuestionProp) {
     const [itemsInput, setItemsInput] = useState(items);
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
@@ -75,3 +75,6 @@ export default function DragAndDropQuestion({
         </Flex>
     );
 }
+
+export const DragAndDropQuestion = React.memo(DragAndDropQuestionBase);
+

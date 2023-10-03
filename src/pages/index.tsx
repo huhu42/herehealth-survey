@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Center, Flex} from "@chakra-ui/react";
 import PersonalInfoForm from "~/client/components/PersonalInfoForm";
-import DragAndDropQuestion, {DragAndDropItem} from "~/client/components/DragAndDropQuestion";
+import {DragAndDropQuestion, DragAndDropItem} from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
 import {Rank, Request, Tenure} from "~/server/service/types";
