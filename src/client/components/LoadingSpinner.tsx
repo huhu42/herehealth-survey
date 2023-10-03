@@ -15,7 +15,7 @@ export default function LoadingSpinner() {
                 fontSize={"sm"}
                 color={"gray.200"}
                 mt={8}
-            >This may take up to 20 seconds.</Text>
+            >Processing! This may take up to 20 seconds.</Text>
         </VStack>
     );
 }

@@ -11,7 +11,7 @@ import {
     FormControl, FormErrorMessage,
     FormHelperText,
     FormLabel,
-    IconButton,
+    IconButton, Image,
     Input,
     Text
 } from "@chakra-ui/react";
@@ -153,20 +153,26 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                   color={"white"}
                   mt={"12"}
             >
-                There is currently <b>1000s</b> users on the beta waitlist. <b>Share</b> the results of your survey to get
+                There are currently <b>1000s</b> users on the beta waitlist. <b>Share</b> the results of your survey to get
                 priority access.
             </Text>
-            <IconButton
-                icon={<FiShare/>}
+            <Button
                 aria-label={"share-button"}
-                bg="white"
-                size={"lg"}
+                colorScheme={"orange"}
+                color={"white"}
+                size={"md"}
                 mt={4}
                 variant={"solid"}
                 onClick={async () => {
                     await share();
                 }}
-            />
+            >
+                Share
+            </Button>
+            <Image mt={4} w={120} src={"/social-logos.png"}
+                   onClick={async () => {
+                       await share();
+                   }}/>
         </Flex>;
     }
 
