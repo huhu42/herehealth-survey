@@ -1,4 +1,4 @@
-import {Survey} from "~/server/service/types";
+import {Survey, Tenure} from "~/server/service/types";
 import {openAIClient} from "~/server/service/openai";
 import {inputToPrompt} from "~/server/service/prompt";
 
@@ -6,7 +6,7 @@ export type ModelResult = {
     description: string;
 };
 
-export type ModelInput = Survey;
+export type ModelInput = Survey & { tenure: Tenure };
 
 export type Model = {
     apply(input: ModelInput): Promise<ModelResult>;

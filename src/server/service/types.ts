@@ -24,9 +24,15 @@ const SurveySchema = z.object({
 });
 export type Survey = z.infer<typeof SurveySchema>;
 
+export enum Tenure {
+    NEW_GRAD,
+    MID_CAREER
+}
+
 export const RequestSchema = z.object({
     firstName: z.string(),
     lastName: z.string(),
+    tenure: z.nativeEnum(Tenure),
     survey: SurveySchema,
 });
 export type Request = z.infer<typeof RequestSchema>;

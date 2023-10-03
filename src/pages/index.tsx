@@ -4,7 +4,7 @@ import NameForm from "~/client/components/NameForm";
 import DragAndDropQuestion, {DragAndDropItem} from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
-import {Rank, Request} from "~/server/service/types";
+import {Rank, Request, Tenure} from "~/server/service/types";
 import {api} from "~/utils/api";
 import {useRouter} from "next/router";
 import LoadingSpinner from "~/client/components/LoadingSpinner";
@@ -139,6 +139,8 @@ export default function Survey() {
         return {
             firstName: firstName,
             lastName: lastName,
+            // TODO
+            tenure: Tenure.NEW_GRAD,
             survey: {
                 0: rank(dragAndDropItems),
                 1: sliderOneValue,

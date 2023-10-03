@@ -1,26 +1,47 @@
 import {
+    Tenure,
     FollowUp,
     Id,
     Request,
     Response,
     SurveyService,
 } from "~/server/service/types";
-import {PrismaClient} from "@prisma/client";
+import {$Enums, PrismaClient} from "@prisma/client";
 import {Model, ModelResult} from "~/server/service/model";
 import {newId} from "~/server/utils";
+import DbTenure = $Enums.Tenure;
 
 export function createSurveyService(
     prisma: PrismaClient,
     model: Model,
 ): SurveyService {
+
+    function toDatabaseEnum(tenure: Tenure): DbTenure {
+        switch (tenure) {
+            case Tenure.NEW_GRAD: {
+                return DbTenure.NEW_GRAD;
+            }
+            case Tenure.MID_CAREER: {
+                return DbTenure.MID_CAREER;
+            }
+            default: {
+                throw new Error(`unrecognized enum ${tenure}`);
+            }
+        }
+    }
+
     async function request(input: Request): Promise<Id> {
-        const modelResult = await model.apply(input.survey);
+        const modelResult = await model.apply({
+            ...input.survey,
+            tenure: input.tenure
+        });
         return prisma.survey
             .create({
                 data: {
                     id: newId(),
                     firstName: input.firstName,
                     lastName: input.lastName,
+                    tenure: toDatabaseEnum(input.tenure),
                     input: input.survey,
                     result: modelResult,
                 },

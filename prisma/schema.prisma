@@ -16,9 +16,15 @@ model Survey {
   id             String   @id
   firstName      String
   lastName       String
+  tenure         Tenure   @default(NEW_GRAD)
   input          Json
   result         Json
   email          String?
   requestMatches Boolean?
   createdAt      DateTime @default(now())
+}
+
+enum Tenure {
+  NEW_GRAD
+  MID_CAREER
 }
