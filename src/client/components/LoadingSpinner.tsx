@@ -1,8 +1,8 @@
-import {Text, HStack, Spinner, VStack} from "@chakra-ui/react";
+import {Text, Spinner,  Flex} from "@chakra-ui/react";
 
 export default function LoadingSpinner() {
     return (
-        <VStack>
+        <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
             <Spinner
                 thickness="4px"
                 speed="1s"
@@ -16,6 +16,6 @@ export default function LoadingSpinner() {
                 color={"gray.200"}
                 mt={8}
             >Processing! This may take up to 20 seconds.</Text>
-        </VStack>
+        </Flex>
     );
 }
