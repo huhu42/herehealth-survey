@@ -16,7 +16,7 @@ import {
     Text
 } from "@chakra-ui/react";
 import React, {useState} from "react";
-import {FiArrowLeft, FiShare} from "react-icons/fi";
+import {FiArrowLeft} from "react-icons/fi";
 import {useRouter} from "next/router";
 
 export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -34,7 +34,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 console.error('error while sharing: ' + e);
             });
         } else {
-            alert(`Share not supported on this browser. Please copy and share the URL ${url} directly to share!`);
+            alert(`Try sharing on your mobile browser or copy and share the link ${url}!`);
         }
     }
 

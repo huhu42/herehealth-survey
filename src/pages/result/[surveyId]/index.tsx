@@ -20,7 +20,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 console.error('error while sharing: ' + e);
             });
         } else {
-            alert('Share not supported on this browser. Please copy and share the URL directly to share!');
+            alert(`Try sharing on your mobile browser or copy and share the link ${window.location.href}!`);
         }
     }
 
