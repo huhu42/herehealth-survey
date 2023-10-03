@@ -1,11 +1,10 @@
-import {Button, Center, Flex, HStack, IconButton, Image, Text} from "@chakra-ui/react";
+import {Button, Center, Flex, HStack, Image, Text} from "@chakra-ui/react";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
 import {isLoaded} from "~/client/utils";
 import {Id} from "~/server/service/types";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
-import {FiRepeat, FiShare} from "react-icons/fi";
 import {useRouter} from "next/router";
 import Logo from "~/client/components/Logo";
 
@@ -20,35 +19,39 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 console.error('error while sharing: ' + e);
             });
         } else {
-            alert(`Try sharing on your mobile browser or copy and share the link ${window.location.href}!`);
+            alert(`Try sharing on your mobile browser or copy and share the link ${window.location.href}`);
         }
     }
 
     function NextActionButtons() {
         return <Flex w={{base: 240, md: 300}} direction={"column"} alignItems={"center"}>
             <Flex w={200} direction={"row"} justifyContent={"space-around"}>
-                <IconButton
-                    icon={<FiShare/>}
+                <Button
                     aria-label={"share-button"}
+                    color={"gray.800"}
                     bg="white"
-                    size={"lg"}
+                    size={"md"}
                     mt={8}
                     variant={"solid"}
                     onClick={async () => {
                         await share(response.data!.firstName, response.data!.lastName);
                     }}
-                />
-                <IconButton
-                    icon={<FiRepeat/>}
+                >
+                    Share
+                </Button>
+                <Button
                     aria-label={"redo-button"}
-                    size={"lg"}
+                    size={"md"}
+                    color={"gray.800"}
                     bg="white"
                     mt={8}
                     variant={"solid"}
                     onClick={async () => {
                         await router.push("/");
                     }}
-                />
+                >
+                    Retake
+                </Button>
             </Flex>
             <Text mt={{base: 6, md: 8}} color={"white"} fontSize={"sm"}>
                 Don't stop here. Let Uniphye help you <b>actually </b>

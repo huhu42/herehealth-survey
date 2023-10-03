@@ -34,7 +34,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 console.error('error while sharing: ' + e);
             });
         } else {
-            alert(`Try sharing on your mobile browser or copy and share the link ${url}!`);
+            alert(`Try sharing on your mobile browser or copy and share the link ${url}`);
         }
     }
 
