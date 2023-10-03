@@ -1,5 +1,5 @@
 import {ModelInput} from "~/server/service/model";
-import {Rank} from "~/server/service/types";
+import {Rank, Tenure} from "~/server/service/types";
 
 // TODO set this up as prior context so we do not need to pass this every time
 const PROMPT_CONTEXT: string = `
@@ -65,7 +65,8 @@ export function inputToPrompt(input: ModelInput): string {
     return PROMPT_CONTEXT + "\n" +
         workingMotivators(input["0"]) + "\n" +
         personalityComponents(input) + "\n" +
-        "Make it short and focus on what startups they'd be interested in rather than their inputted traits.";
+        "Make it short and focus on what startups they'd be interested in rather than their inputted traits." + "\n" +
+        tenureContext(input.tenure);
 }
 
 function workingMotivators(workingMotivatorsRank: Rank) {
@@ -82,5 +83,20 @@ function personalityComponents(input: ModelInput) {
     Extraversion: ${input["3"].toString()}/100
     Turbulence: ${input["4"].toString()}/100
     Agreeableness: ${input["5"].toString()}/100`
+}
+
+function tenureContext(tenure: Tenure): string {
+    switch (tenure) {
+        case Tenure.NEW_GRAD: {
+            return "Please consider that this person is a new graduate from college and cater the response accordingly. Make sure recommendations are entry level.";
+        }
+        case Tenure.MID_CAREER: {
+            return "Please consider that this person is an experienced worker looking for a change. Make sure recommendations are for senior-level positions.";
+        }
+        default: {
+            throw new Error(`unrecognized enum ${tenure}`);
+        }
+    }
+
 }
 
