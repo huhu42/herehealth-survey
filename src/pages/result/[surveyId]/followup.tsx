@@ -92,9 +92,9 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 <FormControl>
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
                     <FormHelperText color={"white"}>
-                        For the first <b>100 people</b>, the Uniphye team is offering a white-glove service to match
-                        you with Silicon Valley startups and give <b>1</b> warm introduction to the startup of your
-                        choice for <b>$195</b>.
+                        The Uniphye Team is offering a white glove service to match <b>500 new signups</b> with
+                        Silicon Valley startups, and give <b>1 warm introduction</b> to the startup of your choice for
+                        $195.
                     </FormHelperText>
                     <FormHelperText color={"white"} mt={3}>
                         No payment required at this time.
@@ -153,7 +153,8 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                   color={"white"}
                   mt={"12"}
             >
-                There are currently <b>1000s</b> users on the beta waitlist. <b>Share</b> the results of your survey to get
+                There are currently <b>1000s</b> users on the beta waitlist. <b>Share</b> the results of your survey to
+                get
                 priority access.
             </Text>
             <Button
