@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Center, Flex} from "@chakra-ui/react";
-import NameForm from "~/client/components/NameForm";
+import PersonalInfoForm from "~/client/components/PersonalInfoForm";
 import DragAndDropQuestion, {DragAndDropItem} from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
@@ -35,9 +35,10 @@ export default function Survey() {
             }
             case Step.NAME_FORM: {
                 return (
-                    <NameForm
+                    <PersonalInfoForm
                         setFirstName={(v: string) => setFirstName(v)}
                         setLastName={(v: string) => setLastName(v)}
+                        setTenure={(v: Tenure) => setTenure(v)}
                         onNavigation={() => setStep(Step.QUESTION_ONE)}
                     />
                 );
@@ -139,8 +140,7 @@ export default function Survey() {
         return {
             firstName: firstName,
             lastName: lastName,
-            // TODO
-            tenure: Tenure.NEW_GRAD,
+            tenure: tenure!,
             survey: {
                 0: rank(dragAndDropItems),
                 1: sliderOneValue,
@@ -169,6 +169,7 @@ export default function Survey() {
     // survey inputs
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [tenure, setTenure] = useState<Tenure | null>(null);
     const [dragAndDropItems, setDragAndDropItems] = useState<Array<DragAndDropItem>>([
         {key: 0, description: "Assessing ideas and situations"},
         {key: 1, description: "Supporting those in need with an idea or project"},
