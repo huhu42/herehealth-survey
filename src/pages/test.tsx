@@ -16,19 +16,7 @@ export default function Test() {
                 <Reorder.Group axis="y" onReorder={setItemsInput} values={itemsInput}>
                     {itemsInput.map((item) => (
                         <Reorder.Item key={item} value={item} id={item}>
-                            <Card
-                                bgGradient="linear(to-tl, purple.400, purple.200)"
-                                w={{base: 300, md: 300}}
-                                h={{base: 12, md: 12}}
-                                px={2}
-                                mt={{base: 2, md: 2}}
-                            >
-                                <Center w={"100%"} h={"100%"}>
-                                    <Text fontSize={{base: "sm", md: "lg"}} color="white">
-                                        {item}
-                                    </Text>
-                                </Center>
-                            </Card>
+                            {item}
                         </Reorder.Item>
                     ))}
                 </Reorder.Group>
