@@ -153,8 +153,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                   color={"white"}
                   mt={"12"}
             >
-                There are currently <b>1000s</b> users on the beta waitlist. <b>Share</b> the results of your survey to
-                get
+                There are currently thousands of users on the beta waitlist. <b>Share</b> your survey results to get
                 priority access.
             </Text>
             <Button
