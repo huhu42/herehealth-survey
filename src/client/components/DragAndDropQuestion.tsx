@@ -1,5 +1,5 @@
 import {Reorder} from "framer-motion";
-import React, {useMemo, useState} from "react";
+import React, {useState} from "react";
 import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
 import {NextButton} from "~/client/components/NextButton";
 
