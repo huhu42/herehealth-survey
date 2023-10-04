@@ -15,7 +15,7 @@ export default function Test() {
             <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
                 <Reorder.Group axis="y" onReorder={setItemsInput} values={itemsInput}>
                     {itemsInput.map((item) => (
-                        <Reorder.Item key={item} value={item} id={item}>
+                        <Reorder.Item key={item} value={item}>
                             {item}
                         </Reorder.Item>
                     ))}
