@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
 import {Reorder} from "framer-motion";
-import {DragAndDropItem} from "~/client/components/DragAndDropQuestion";
 
 export default function Test() {
     type ItemKey = 0 | 1 | 2 | 3 | 4 | 5;
@@ -14,10 +13,14 @@ export default function Test() {
         items: Array<DragAndDropItem>;
     };
 
-    function DragAndDropQuestion({
-                                     items,
-                                 }: DragAndDropQuestionProp) {
-        const [itemsInput, setItemsInput] = useState(items);
+    function DragAndDropQuestion() {
+        const [itemsInput, setItemsInput] = useState([{key: 0, description: "Assessing ideas and situations"},
+            {key: 1, description: "Supporting those in need with an idea or project"},
+            {key: 2, description: "Challenging norms and pondering possibilities for potential and opportunity"},
+            {key: 3, description: "Encouraging and inspiring others to take action"},
+            {key: 4, description: "Novelizing new ideas and solutions in response to problems"},
+            {key: 5, description: "Delivering projects and pushing tasks to completion"}]
+        );
         return (
             <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
                 <Reorder.Group axis="y" onReorder={setItemsInput} values={itemsInput}>
@@ -45,15 +48,6 @@ export default function Test() {
         );
     }
 
-    const [dragAndDropItems, setDragAndDropItems] = useState<Array<DragAndDropItem>>([
-        {key: 0, description: "Assessing ideas and situations"},
-        {key: 1, description: "Supporting those in need with an idea or project"},
-        {key: 2, description: "Challenging norms and pondering possibilities for potential and opportunity"},
-        {key: 3, description: "Encouraging and inspiring others to take action"},
-        {key: 4, description: "Novelizing new ideas and solutions in response to problems"},
-        {key: 5, description: "Delivering projects and pushing tasks to completion"},
-    ]);
-
     return (
         <Center
             minW={"100vw"}
@@ -62,7 +56,7 @@ export default function Test() {
             bgGradient={"linear(to-b, purple.900, purple.600)"}
         >
             <Flex direction={"column"} alignItems={"center"}>
-                <DragAndDropQuestion items={dragAndDropItems}/>
+                <DragAndDropQuestion/>
             </Flex>
         </Center>
     );
