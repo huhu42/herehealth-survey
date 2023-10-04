@@ -14,25 +14,23 @@ export default function Test() {
         return (
             <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
                 <Reorder.Group axis="y" onReorder={setItemsInput} values={itemsInput}>
-                    <UnorderedList listStyleType={"none"} pl={0} ml={0}>
-                        {itemsInput.map((item) => (
-                            <Reorder.Item key={item} value={item} id={item}>
-                                <Card
-                                    bgGradient="linear(to-tl, purple.400, purple.200)"
-                                    w={{base: 300, md: 400}}
-                                    h={{base: 12, md: 20}}
-                                    px={2}
-                                    mt={{base: 2, md: 4}}
-                                >
-                                    <Center w={"100%"} h={"100%"}>
-                                        <Text fontSize={{base: "sm", md: "lg"}} color="white">
-                                            {item}
-                                        </Text>
-                                    </Center>
-                                </Card>
-                            </Reorder.Item>
-                        ))}
-                    </UnorderedList>
+                    {itemsInput.map((item) => (
+                        <Reorder.Item key={item} value={item} id={item}>
+                            <Card
+                                bgGradient="linear(to-tl, purple.400, purple.200)"
+                                w={{base: 300, md: 400}}
+                                h={{base: 12, md: 20}}
+                                px={2}
+                                mt={{base: 2, md: 4}}
+                            >
+                                <Center w={"100%"} h={"100%"}>
+                                    <Text fontSize={{base: "sm", md: "lg"}} color="white">
+                                        {item}
+                                    </Text>
+                                </Center>
+                            </Card>
+                        </Reorder.Item>
+                    ))}
                 </Reorder.Group>
             </Flex>
         );
