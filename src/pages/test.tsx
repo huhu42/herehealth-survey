@@ -20,7 +20,7 @@ export default function Test() {
         const [itemsInput, setItemsInput] = useState(items);
         return (
             <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
-                <Reorder.Group axis="y" onReorder={setItemsInput} values={items}>
+                <Reorder.Group axis="y" onReorder={setItemsInput} values={itemsInput}>
                     <UnorderedList listStyleType={"none"} pl={0} ml={0}>
                         {itemsInput.map((item) => (
                             <Reorder.Item key={item.key} value={item} id={item.key.toString()}>
