@@ -19,7 +19,7 @@ export default function Test() {
                             <Card
                                 bgGradient="linear(to-tl, purple.400, purple.200)"
                                 w={{base: 300, md: 400}}
-                                h={{base: 12, md: 20}}
+                                h={{base: 12, md: 12}}
                                 px={2}
                                 mt={{base: 2, md: 4}}
                             >
