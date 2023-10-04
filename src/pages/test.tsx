@@ -12,7 +12,6 @@ export default function Test() {
             "Delivering projects and pushing tasks to completion"]
         );
         return (
-            <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
                 <Reorder.Group axis="y" onReorder={setItemsInput} values={itemsInput}>
                     {itemsInput.map((item) => (
                         <Reorder.Item key={item} value={item}>
@@ -20,7 +19,6 @@ export default function Test() {
                         </Reorder.Item>
                     ))}
                 </Reorder.Group>
-            </Flex>
         );
     }
 
