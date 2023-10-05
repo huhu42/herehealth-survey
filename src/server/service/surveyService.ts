@@ -10,10 +10,12 @@ import {$Enums, PrismaClient} from "@prisma/client";
 import {Model, ModelResult} from "~/server/service/model";
 import {newId} from "~/server/utils";
 import DbTenure = $Enums.Tenure;
+import {StorageClient} from "~/server/storage/storageClient";
 
 export function createSurveyService(
     prisma: PrismaClient,
     model: Model,
+    storage: StorageClient,
 ): SurveyService {
 
     function toDatabaseEnum(tenure: Tenure): DbTenure {
@@ -94,10 +96,15 @@ export function createSurveyService(
         return !!followUp.email;
     }
 
+    async function resultImage(label: string) {
+        return storage.getImageUrlFromLabel(label);
+    }
+
     return {
         request,
         response,
         followUp,
         didFollowUp,
+        resultImage
     };
 }

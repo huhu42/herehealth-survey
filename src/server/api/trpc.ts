@@ -6,12 +6,15 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-import { initTRPC } from "@trpc/server";
+import {initTRPC} from "@trpc/server";
 import superjson from "superjson";
-import { ZodError } from "zod";
-import { prisma } from "~/server/prisma";
-import { createSurveyService } from "~/server/service/surveyService";
-import { createModel } from "~/server/service/model";
+import {ZodError} from "zod";
+import {prisma} from "~/server/prisma";
+import {createSurveyService} from "~/server/service/surveyService";
+import {createModel} from "~/server/service/model";
+import createStorageClient from "~/server/storage/storageClient";
+import {createPagesServerClient} from "@supabase/auth-helpers-nextjs";
+import {CreateNextContextOptions} from "@trpc/server/src/adapters/next";
 
 /**
  * This is the actual context you will use in your router. It will be used to process every request
@@ -19,11 +22,16 @@ import { createModel } from "~/server/service/model";
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async () => {
-  const model = createModel();
-  return {
-    service: createSurveyService(prisma, model),
-  };
+export const createTRPCContext = async ({
+                                            req,
+                                            res,
+                                        }: CreateNextContextOptions) => {
+    const model = createModel();
+    const supabaseClient = createPagesServerClient({req, res});
+    const storageClient = createStorageClient(supabaseClient);
+    return {
+        service: createSurveyService(prisma, model, storageClient),
+    };
 };
 
 /**
@@ -35,17 +43,17 @@ export const createTRPCContext = async () => {
  */
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
-  transformer: superjson,
-  errorFormatter({ shape, error }) {
-    return {
-      ...shape,
-      data: {
-        ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
-      },
-    };
-  },
+    transformer: superjson,
+    errorFormatter({shape, error}) {
+        return {
+            ...shape,
+            data: {
+                ...shape.data,
+                zodError:
+                    error.cause instanceof ZodError ? error.cause.flatten() : null,
+            },
+        };
+    },
 });
 
 /**

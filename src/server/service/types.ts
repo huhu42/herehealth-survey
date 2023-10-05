@@ -6,6 +6,7 @@ export type SurveyService = {
     response(id: Id): Promise<Response>;
     followUp(input: FollowUp): Promise<void>;
     didFollowUp(id: Id): Promise<boolean>;
+    resultImage(label: string): Promise<string>;
 };
 
 export const IdSchema = z.string().length(8);

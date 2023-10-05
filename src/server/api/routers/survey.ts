@@ -4,6 +4,7 @@ import {
     IdSchema,
     RequestSchema,
 } from "~/server/service/types";
+import {z} from "zod";
 
 export const surveyRouter = createTRPCRouter({
         request: publicProcedure.input(RequestSchema)
@@ -22,6 +23,10 @@ export const surveyRouter = createTRPCRouter({
         didFollowUp: publicProcedure.input(IdSchema)
             .query(({ctx, input}) => {
                 return ctx.service.didFollowUp(input);
+            }),
+        resultImage: publicProcedure.input(z.string())
+            .query(({ctx, input}) => {
+                return ctx.service.resultImage(input);
             }),
     })
 ;
