@@ -59,6 +59,7 @@ export function createSurveyService(
                 result: true,
             },
         });
+
         return {
             firstName: r.firstName,
             lastName: r.lastName,
