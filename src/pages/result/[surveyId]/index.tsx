@@ -1,4 +1,4 @@
-import {Button, Center, Flex, HStack, Image, Text} from "@chakra-ui/react";
+import {Button, Center, Flex, HStack, Icon, Image, Text} from "@chakra-ui/react";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
@@ -7,6 +7,7 @@ import {Id} from "~/server/service/types";
 import {GetServerSideProps, InferGetServerSidePropsType} from "next";
 import {useRouter} from "next/router";
 import Logo from "~/client/components/Logo";
+import {FiInstagram} from "react-icons/fi";
 
 export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeof getServerSideProps>) {
     async function share(firstName: string, lastName: string): Promise<void> {
@@ -112,9 +113,19 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     {response.data!.result.description}
                 </Text>
                 <NextActionButtons/>
-                <Logo w={20} mt={8} onClick={async () => {
+                <Logo w={20} mt={8}
+                      cursor={"pointer"}
+                      onClick={async () => {
                     await router.push("https://www.uniphye.com/")
                 }}/>
+                <Flex direction={"column"} alignItems={"center"}
+                      cursor={"pointer"}
+                      onClick={async () => {
+                          await router.push("https://www.instagram.com/uniphye/")
+                      }}>
+                    <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>
+                    <FiInstagram color={"white"}/>
+                </Flex>
             </Flex>}
         </Center>
     );

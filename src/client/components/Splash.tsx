@@ -12,6 +12,7 @@ export default function Splash({onNavigation}: SplashProps) {
     return (
         <Flex direction={"column"} alignItems={"center"} textAlign="center">
             <Logo w={{base: "60", md: "80"}}
+                  cursor={"pointer"}
                   onClick={async () => {
                       await router.push("https://www.uniphye.com/")
                   }}/>
