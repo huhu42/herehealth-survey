@@ -24,6 +24,46 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
         }
     }
 
+    type ImageAndLabelHeaderProp = {
+        firstName: string,
+        lastName: string,
+        label?: string
+    }
+
+    function ImageAndLabelHeader({firstName, lastName, label}: ImageAndLabelHeaderProp) {
+        const resultImage = api.survey.resultImage.useQuery(
+            label ?? "default",
+            // the response is static after generation
+            {
+                refetchOnWindowFocus: false
+            }
+        );
+        QueryError.check({
+            result: resultImage,
+            fieldName: "resultImage",
+            params: {label: label}
+        });
+
+        return (
+            <>
+                <Image w={{base: 150, md: 200}} src={resultImage.data} borderRadius={"10"}/>
+                <HStack spacing={0}>
+                    <Text fontWeight={"extrabold"}
+                          mt={6}
+                          fontSize={{base: "xl", md: "2xl"}}
+                          color={"purple.900"}>
+                        {`${firstName} ${lastName}`}
+                    </Text>
+                    <Text fontWeight={"semibold"}
+                          mt={6}
+                          fontSize={{base: "xl", md: "2xl"}}
+                          color={"white"}>
+                        {!label ? `the ${label}` : "'s Dream Role"}
+                    </Text>
+                </HStack>
+            </>);
+    }
+
     function NextActionButtons() {
         return <Flex w={{base: 240, md: 300}} direction={"column"} alignItems={"center"}>
             <Flex w={200} direction={"row"} justifyContent={"space-around"}>
@@ -73,12 +113,18 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
     const router = useRouter();
     const response = api.survey.response.useQuery(surveyId,
         // the response is static after generation
-        {refetchOnWindowFocus: false}
+        {
+            refetchOnWindowFocus: false
+        }
     );
     QueryError.check({
         result: response,
-        fieldName: "response",
-        params: {surveyId: surveyId}
+        fieldName:
+            "response",
+        params:
+            {
+                surveyId: surveyId
+            }
     });
 
     return (
@@ -89,21 +135,9 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
             bgGradient={"linear(to-b, purple.600, purple.300)"}
         >
             {isLoaded(response) && <Flex direction={"column"} alignItems={"center"} textAlign={"center"}>
-                <Image w={{base: 150, md: 200}} src={"../wizard.jpg"} borderRadius={"10"}/>
-                <HStack spacing={0}>
-                    <Text fontWeight={"extrabold"}
-                          mt={6}
-                          fontSize={{base: "xl", md: "2xl"}}
-                          color={"purple.900"}>
-                        {`${response.data!.firstName} ${response.data!.lastName}`}
-                    </Text>
-                    <Text fontWeight={"semibold"}
-                          mt={6}
-                          fontSize={{base: "xl", md: "2xl"}}
-                          color={"white"}>
-                        {"'s Dream Role"}
-                    </Text>
-                </HStack>
+                <ImageAndLabelHeader firstName={response.data!.firstName}
+                                     lastName={response.data!.lastName}
+                                     label={response.data!.result!.label}/>
                 <Text w={{base: "100vw", md: 600}}
                       px={{base: 6, md: 0}}
                       fontWeight={"normal"}
@@ -116,8 +150,8 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 <Logo w={20} mt={8}
                       cursor={"pointer"}
                       onClick={async () => {
-                    await router.push("https://www.uniphye.com/")
-                }}/>
+                          await router.push("https://www.uniphye.com/")
+                      }}/>
                 <Flex direction={"column"} alignItems={"center"}
                       cursor={"pointer"}
                       onClick={async () => {
@@ -126,9 +160,11 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>
                     <FiInstagram color={"white"}/>
                 </Flex>
-            </Flex>}
+            </Flex>
+            }
         </Center>
-    );
+    )
+        ;
 }
 
 // https://stackoverflow.com/questions/57486380/why-would-a-query-param-be-undefined-in-nextjs
