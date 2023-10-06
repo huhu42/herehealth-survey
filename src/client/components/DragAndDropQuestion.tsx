@@ -17,13 +17,13 @@ type DragAndDropQuestionProp = {
     onNavigation: () => void;
 };
 
-function DragAndDropQuestionBase({
-                                     title,
-                                     question,
-                                     items,
-                                     setItemsOrder,
-                                     onNavigation,
-                                 }: DragAndDropQuestionProp) {
+export default function DragAndDropQuestion({
+                                                title,
+                                                question,
+                                                items,
+                                                setItemsOrder,
+                                                onNavigation,
+                                            }: DragAndDropQuestionProp) {
     const [itemsInput, setItemsInput] = useState(items);
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
@@ -56,9 +56,8 @@ function DragAndDropQuestionBase({
                                 mt={{base: 2, md: 4}}
                             >
                                 <Center w={"100%"} h={"100%"}>
-                                    <Text fontSize={{base: "sm", md: "lg"}} color="white">
-                                        {item.description}
-                                    </Text>
+                                    <Text fontSize={{base: "sm", md: "lg"}} color="white"
+                                          dangerouslySetInnerHTML={{__html: item.description}}/>
                                 </Center>
                             </Card>
                         </Reorder.Item>
@@ -75,6 +74,3 @@ function DragAndDropQuestionBase({
         </Flex>
     );
 }
-
-export const DragAndDropQuestion = React.memo(DragAndDropQuestionBase);
-

@@ -1,4 +1,4 @@
-import {Button, Center, Flex, HStack, Icon, Image, Text} from "@chakra-ui/react";
+import {Button, Center, Flex, HStack, Image, Text} from "@chakra-ui/react";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";

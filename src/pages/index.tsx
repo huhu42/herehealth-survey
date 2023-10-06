@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Center, Flex} from "@chakra-ui/react";
 import PersonalInfoForm from "~/client/components/PersonalInfoForm";
-import {DragAndDropQuestion, DragAndDropItem} from "~/client/components/DragAndDropQuestion";
+import DragAndDropQuestion, {DragAndDropItem} from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
 import {Rank, Request, Tenure} from "~/server/service/types";
@@ -171,12 +171,12 @@ export default function Survey() {
     const [lastName, setLastName] = useState("");
     const [tenure, setTenure] = useState<Tenure | null>(null);
     const [dragAndDropItems, setDragAndDropItems] = useState<Array<DragAndDropItem>>([
-        {key: 0, description: "Assessing ideas and situations"},
-        {key: 1, description: "Supporting those in need with an idea or project"},
-        {key: 2, description: "Challenging norms and pondering possibilities for potential and opportunity"},
-        {key: 3, description: "Encouraging and inspiring others to take action"},
-        {key: 4, description: "Novelizing new ideas and solutions in response to problems"},
-        {key: 5, description: "Delivering projects and pushing tasks to completion"},
+        {key: 0, description: "<b>Assessing</b> ideas and situations"},
+        {key: 1, description: "<b>Supporting</b> those in need with an idea or project"},
+        {key: 2, description: "<b>Challenging</b> norms and pondering possibilities for potential and opportunity"},
+        {key: 3, description: "<b>Encouraging</b> and inspiring others to take action"},
+        {key: 4, description: "<b>Novelizing</b> new ideas and solutions in response to problems"},
+        {key: 5, description: "<b>Delivering</b> projects and pushing tasks to completion"},
     ]);
     const [sliderOneValue, setSliderOneValue] = useState(50);
     const [sliderTwoValue, setSliderTwoValue] = useState(50);
