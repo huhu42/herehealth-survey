@@ -137,7 +137,8 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                   color={"white"}
                   mt={"4"}
             >
-                Visit us at <b><a href="https://www.uniphye.com">uniphye.com</a></b>. We will reach out to you soon.
+                Visit us at <b><u><a href="https://www.uniphye.com">uniphye.com</a></u></b>. We will
+                reach out to you soon.
             </Text>
             <IconButton
                 icon={<FiArrowLeft/>}
