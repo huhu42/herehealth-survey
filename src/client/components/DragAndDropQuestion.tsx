@@ -2,6 +2,7 @@ import {Reorder} from "framer-motion";
 import React, {useState} from "react";
 import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
 import {NextButton} from "~/client/components/NextButton";
+import {BackButton} from "~/client/components/BackButton";
 
 type ItemKey = 0 | 1 | 2 | 3 | 4 | 5;
 export type DragAndDropItem = {
@@ -14,7 +15,8 @@ type DragAndDropQuestionProp = {
     question: string;
     items: Array<DragAndDropItem>;
     setItemsOrder: (items: Array<DragAndDropItem>) => void;
-    onNavigation: () => void;
+    onBack: () => void;
+    onNext: () => void;
 };
 
 export default function DragAndDropQuestion({
@@ -22,7 +24,8 @@ export default function DragAndDropQuestion({
                                                 question,
                                                 items,
                                                 setItemsOrder,
-                                                onNavigation,
+                                                onNext,
+                                                onBack,
                                             }: DragAndDropQuestionProp) {
     const [itemsInput, setItemsInput] = useState(items);
     return (
@@ -64,13 +67,21 @@ export default function DragAndDropQuestion({
                     ))}
                 </UnorderedList>
             </Reorder.Group>
-            <NextButton
-                aria-label={"forward-arrow-button"}
-                onClick={() => {
-                    setItemsOrder(itemsInput);
-                    onNavigation();
-                }}
-            />
+            <Flex direction={"row"}>
+                <BackButton
+                    aria-label={"back-arrow-button"}
+                    onClick={() => {
+                        onBack();
+                    }}
+                />
+                <NextButton
+                    aria-label={"forward-arrow-button"}
+                    onClick={() => {
+                        setItemsOrder(itemsInput);
+                        onNext();
+                    }}
+                />
+            </Flex>
         </Flex>
     );
 }

@@ -50,7 +50,8 @@ export default function Survey() {
                         question={"Please drag to rank what kind of work energizes you from top (relatively more energizing) to bottom (relatively least energizing)"}
                         items={dragAndDropItems}
                         setItemsOrder={(i) => setDragAndDropItems(i)}
-                        onNavigation={() => setStep(Step.QUESTION_TWO)}
+                        onNext={() => setStep(Step.QUESTION_TWO)}
+                        onBack={() => setStep(Step.NAME_FORM)}
                     />
                 );
             }
@@ -60,8 +61,10 @@ export default function Survey() {
                         title={"Attentiveness"}
                         leftDescription={"I act spontaneously following my instincts"}
                         rightDescription={"I pay careful attention to detail"}
+                        initialValue={sliderOneValue}
                         setValue={setSliderOneValue}
-                        onNavigation={() => setStep(Step.QUESTION_THREE)}
+                        onNext={() => setStep(Step.QUESTION_THREE)}
+                        onBack={() => setStep(Step.QUESTION_ONE)}
                     />
                 );
             }
@@ -71,8 +74,10 @@ export default function Survey() {
                         title={"Receptiveness"}
                         leftDescription={"I like to stick with things I know"}
                         rightDescription={"I like to try new or unconventional activities"}
+                        initialValue={sliderTwoValue}
                         setValue={setSliderTwoValue}
-                        onNavigation={() => setStep(Step.QUESTION_FOUR)}
+                        onNext={() => setStep(Step.QUESTION_FOUR)}
+                        onBack={() => setStep(Step.QUESTION_TWO)}
                     />
                 );
             }
@@ -82,8 +87,10 @@ export default function Survey() {
                         title={"Extraversion"}
                         leftDescription={"I gain energy from ideas and internal thoughts"}
                         rightDescription={"I gain energy from activities and people"}
+                        initialValue={sliderThreeValue}
                         setValue={setSliderThreeValue}
-                        onNavigation={() => setStep(Step.QUESTION_FIVE)}
+                        onNext={() => setStep(Step.QUESTION_FIVE)}
+                        onBack={() => setStep(Step.QUESTION_THREE)}
                     />
                 );
             }
@@ -93,8 +100,10 @@ export default function Survey() {
                         title={"Turbulence"}
                         leftDescription={"My mood remains consistent despite unexpected turns of events"}
                         rightDescription={"My moods and feelings fluctuate quickly with events of the day"}
+                        initialValue={sliderFourValue}
                         setValue={setSliderFourValue}
-                        onNavigation={() => setStep(Step.QUESTION_SIX)}
+                        onNext={() => setStep(Step.QUESTION_SIX)}
+                        onBack={() => setStep(Step.QUESTION_FOUR)}
                     />
                 );
             }
@@ -106,11 +115,11 @@ export default function Survey() {
                         rightDescription={"I normally prioritize the feelings of others when making decisions"}
                         // there is an unideal bifurcation of the code off this
                         finalQuestion={true}
-                        setValue={() => {
-                            throw new Error("this should never be called")
-                        }}
+                        initialValue={sliderFiveValue}
+                        setValue={setSliderFiveValue}
                         // we always pass this value on final question
-                        onNavigation={(val?: number) => onSubmit(val!)}
+                        onNext={(val?: number) => onSubmit(val!)}
+                        onBack={() => setStep(Step.QUESTION_FIVE)}
                     />
                 );
             }
@@ -182,7 +191,7 @@ export default function Survey() {
     const [sliderTwoValue, setSliderTwoValue] = useState(50);
     const [sliderThreeValue, setSliderThreeValue] = useState(50);
     const [sliderFourValue, setSliderFourValue] = useState(50);
-    // sliderFiveValue is just passed directly to form submission
+    const [sliderFiveValue, setSliderFiveValue] = useState(50);
 
     return (
         <Center
