@@ -4,17 +4,23 @@ import {NextButton} from "~/client/components/NextButton";
 import {Tenure} from "~/server/service/types";
 
 type NameFormProps = {
+    initialFirstName: string;
     setFirstName: (firstName: string) => void;
+    initialLastName: string;
     setLastName: (lastName: string) => void;
+    initialTenure: Tenure | null;
     setTenure: (tenure: Tenure) => void;
-    onNavigation: () => void;
+    onNext: () => void;
 };
 
 export default function PersonalInfoForm({
+                                             initialFirstName,
                                              setFirstName,
+                                             initialLastName,
                                              setLastName,
                                              setTenure,
-                                             onNavigation,
+                                             initialTenure,
+                                             onNext,
                                          }: NameFormProps) {
     function toTenure(value: string): Tenure | null {
         switch (value) {
@@ -32,10 +38,26 @@ export default function PersonalInfoForm({
             }
         }
     }
+    function toValue(tenure: Tenure | null) {
+        switch (tenure) {
+            case Tenure.NEW_GRAD: {
+                return "0";
+            }
+            case Tenure.MID_CAREER: {
+                return "1";
+            }
+            case null: {
+                return "";
+            }
+            default: {
+                throw new Error(`unrecognized value ${tenure}`);
+            }
+        }
+    }
 
-    const [firstNameInput, setFirstNameInput] = useState("");
-    const [lastNameInput, setLastNameInput] = useState("");
-    const [tenureInput, setTenureInput] = useState<Tenure | null>(null);
+    const [firstNameInput, setFirstNameInput] = useState(initialFirstName);
+    const [lastNameInput, setLastNameInput] = useState(initialLastName);
+    const [tenureInput, setTenureInput] = useState<Tenure | null>(initialTenure);
     const FORM_WIDTH = {base: 250, md: 400}
     return (
         <Flex
@@ -87,6 +109,7 @@ export default function PersonalInfoForm({
                     color="black"
                     colorScheme="white"
                     variant="solid"
+                    value={toValue(tenureInput)}
                     onChange={(e) => setTenureInput(toTenure(e.target.value))}
                     placeholder="What best describes you?"
                 >
@@ -101,7 +124,7 @@ export default function PersonalInfoForm({
                     setFirstName(firstNameInput);
                     setLastName(lastNameInput);
                     setTenure(tenureInput!)
-                    onNavigation();
+                    onNext();
                 }}
             />
         </Flex>

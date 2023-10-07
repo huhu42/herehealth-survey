@@ -36,10 +36,13 @@ export default function Survey() {
             case Step.NAME_FORM: {
                 return (
                     <PersonalInfoForm
+                        initialFirstName={firstName}
                         setFirstName={(v: string) => setFirstName(v)}
+                        initialLastName={lastName}
                         setLastName={(v: string) => setLastName(v)}
+                        initialTenure={tenure}
                         setTenure={(v: Tenure) => setTenure(v)}
-                        onNavigation={() => setStep(Step.QUESTION_ONE)}
+                        onNext={() => setStep(Step.QUESTION_ONE)}
                     />
                 );
             }
