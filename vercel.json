@@ -1,6 +1,6 @@
 {
   "functions": {
-    "pages/api/**/*": {
+    "/api/trpc/survey.request": {
       "maxDuration": 60
     }
   }
