@@ -12,18 +12,17 @@ export default function LoadingSpinner() {
                 size="xl"
             />
             <Text
-                fontSize={"sm"}
-                fontWeight={"semibold"}
-                color={"gray.200"}
-                mt={8}
-            >Processing! This may take up to 20 seconds.</Text>
-            <Text
-                fontSize={"sm"}
+                fontSize={"lg"}
                 color={"gray.200"}
                 maxW={400}
                 mt={8}
             >Unlocking your potential, one match at a time 🚀 Uniphye uses AI to align mission-driven talent with
                 groundbreaking startups. Let's build the future, together.</Text>
+            <Text
+                fontSize={"sm"}
+                color={"gray.200"}
+                mt={8}
+            >Processing... may take up to 20 seconds.</Text>
         </Flex>
     );
 }
