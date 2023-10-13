@@ -4,7 +4,7 @@ import { env } from "~/env.mjs";
 import { appRouter } from "~/server/api/root";
 import { createTRPCContext } from "~/server/api/trpc";
 
-export const maxDuration = 40;
+export const maxDuration = 60;
 
 // export API handler
 export default createNextApiHandler({
