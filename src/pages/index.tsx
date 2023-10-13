@@ -173,7 +173,7 @@ export default function Survey() {
             console.error(`failed to process request with exception ${e.message}`);
             // retry
             setStep(Step.QUESTION_SIX);
-            alert("Failed to generate survey result. Please try again.");
+            alert("Sorry :( There was a timeout in generating survey result. This can often be due to network issues. Please wait and try again.");
         }
     });
     const [step, setStep] = useState(Step.SPLASH);
