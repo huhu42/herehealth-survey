@@ -22,7 +22,7 @@ export default function Splash({onNavigation}: SplashProps) {
                 color={"white"}
                 mt={4}
             >
-                Find your calling with state-of-the-art psychometrics and AI for exciting startup role suggestions!
+                Find your calling at exciting startups with state-of-the-art psychometrics and AI!
             </Text>
             <Button
                 aria-label={"start-button"}
