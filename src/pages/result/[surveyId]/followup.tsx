@@ -93,8 +93,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
                     <FormHelperText color={"white"}>
                         The Uniphye Team is offering a white glove service to match <b>500 new signups</b> with
-                        Silicon Valley startups, and give <b>1 warm introduction</b> to the startup of your choice for
-                        $195.
+                        a hand-curated list of Silicon Valley startups based on your psychometric results for $10.
                     </FormHelperText>
                     <FormHelperText color={"white"} mt={3}>
                         No payment required at this time.
