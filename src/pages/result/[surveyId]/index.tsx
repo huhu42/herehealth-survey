@@ -54,7 +54,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     Retake
                 </Button>
             </Flex>
-            <Text mt={{base: 6, md: 8}} color={"white"} fontSize={"sm"}>
+            <Text mt={{base: 6, md: 8}} color={"white"} fontSize={{base: "sm", md: "md"}}>
                 Don't stop here. Let Uniphye help you <b>actually </b>
                 find your dream job.
             </Text>
@@ -62,7 +62,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     colorScheme={"orange"}
                     color={"white"}
                     variant={"solid"}
-                    size={"sm"}
+                    size={{base: "md", md: "lg"}}
                     onClick={async () => {
                         await router.push(`/result/${surveyId}/followup`)
                     }}>
