@@ -22,7 +22,7 @@ export default function Splash({onNavigation}: SplashProps) {
                 color={"white"}
                 mt={4}
             >
-                Find your calling at exciting startups with state-of-the-art psychometrics and AI!
+                Find your calling at startups with state-of-the-art psychometrics and AI!
             </Text>
             <Button
                 aria-label={"start-button"}
@@ -35,6 +35,15 @@ export default function Splash({onNavigation}: SplashProps) {
             >
                 Let's go!
             </Button>
+            <Text
+                w={{base: "80", md: "100"}}
+                fontSize={{base: "xs", md: "sm"}}
+                fontStyle={"italic"}
+                color={"white"}
+                mt={8}
+            >
+                This 3 minute assessment is a teaser for how Uniphye can help you find your dream startup team.
+            </Text>
         </Flex>
     );
 }
