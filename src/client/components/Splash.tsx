@@ -42,7 +42,7 @@ export default function Splash({onNavigation}: SplashProps) {
                 color={"white"}
                 mt={8}
             >
-                This 3 minute assessment is a teaser for how Uniphye can help you find your dream startup team.
+                This 3 minute teaser to the Uniphye platform helps you learn what kinds of startup roles would fit you.
             </Text>
         </Flex>
     );
