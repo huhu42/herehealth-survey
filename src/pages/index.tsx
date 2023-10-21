@@ -50,7 +50,8 @@ export default function Survey() {
                 return (
                     <DragAndDropQuestion
                         title={"Work Energizers"}
-                        question={"Please drag to rank what kind of work energizes you from top (relatively more energizing) to bottom (relatively least energizing)"}
+                        question={"What workplace activities energize you most? Drag to rank energizers from most energizing (top) to least energizing (bottom)."}
+                        prompt={"I am energized and motivated by..."}
                         items={dragAndDropItems}
                         setItemsOrder={(i) => setDragAndDropItems(i)}
                         onNext={() => setStep(Step.QUESTION_TWO)}
@@ -183,12 +184,12 @@ export default function Survey() {
     const [lastName, setLastName] = useState("");
     const [tenure, setTenure] = useState<Tenure | null>(null);
     const [dragAndDropItems, setDragAndDropItems] = useState<Array<DragAndDropItem>>([
-        {key: 0, description: "<b>Assessing</b> ideas and situations"},
-        {key: 1, description: "<b>Supporting</b> those in need with an idea or project"},
-        {key: 2, description: "<b>Challenging</b> norms and pondering possibilities for potential and opportunity"},
-        {key: 3, description: "<b>Encouraging</b> and inspiring others to take action"},
-        {key: 4, description: "<b>Novelizing</b> new ideas and solutions in response to problems"},
-        {key: 5, description: "<b>Delivering</b> projects and pushing tasks to completion"},
+        {key: 0, description: "<b>Assessing</b> pros, cons, and viability of ideas and situations"},
+        {key: 1, description: "<b>Helping</b> others in need with ideas or projects"},
+        {key: 2, description: "<b>Challenging</b> the status quo and pondering possibilities for potential and opportunity"},
+        {key: 3, description: "<b>Encouraging</b> and inspiring others to come together and take action"},
+        {key: 4, description: "<b>Creating</b> new ideas, inventions, and solutions in response to problems"},
+        {key: 5, description: "<b>Completing</b> tasks and delivering projects to check them off as done"},
     ]);
     const [sliderOneValue, setSliderOneValue] = useState(50);
     const [sliderTwoValue, setSliderTwoValue] = useState(50);

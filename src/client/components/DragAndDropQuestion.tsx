@@ -13,6 +13,7 @@ export type DragAndDropItem = {
 type DragAndDropQuestionProp = {
     title: string
     question: string;
+    prompt: string;
     items: Array<DragAndDropItem>;
     setItemsOrder: (items: Array<DragAndDropItem>) => void;
     onBack: () => void;
@@ -22,6 +23,7 @@ type DragAndDropQuestionProp = {
 export default function DragAndDropQuestion({
                                                 title,
                                                 question,
+                                                prompt,
                                                 items,
                                                 setItemsOrder,
                                                 onNext,
@@ -33,7 +35,7 @@ export default function DragAndDropQuestion({
             <Text
                 w={{base: 80, md: 400}}
                 fontWeight={"bold"}
-                fontSize={{base: "2xl", md: "3xl"}}
+                fontSize={{base: "xl", md: "2xl"}}
                 color={"white"}
                 mb={2}
             >
@@ -41,11 +43,20 @@ export default function DragAndDropQuestion({
             </Text>
             <Text
                 w={{base: 80, md: 400}}
-                fontSize={{base: "sm", md: "lg"}}
+                fontSize={{base: "sm", md: "md"}}
                 color={"white"}
                 mb={2}
             >
                 {question}
+            </Text>
+            <Text
+                w={{base: 80, md: 400}}
+                fontSize={{base: "md", md: "lg"}}
+                fontWeight={"semibold"}
+                color={"white"}
+                my={2}
+            >
+                {prompt}
             </Text>
             <Reorder.Group axis="y" onReorder={setItemsInput} values={items}>
                 <UnorderedList listStyleType={"none"} pl={0} ml={0}>
