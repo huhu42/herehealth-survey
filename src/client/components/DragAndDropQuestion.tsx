@@ -14,6 +14,7 @@ type DragAndDropQuestionProp = {
     title: string
     question: string;
     prompt: string;
+    progressLabel: string;
     items: Array<DragAndDropItem>;
     setItemsOrder: (items: Array<DragAndDropItem>) => void;
     onBack: () => void;
@@ -24,6 +25,7 @@ export default function DragAndDropQuestion({
                                                 title,
                                                 question,
                                                 prompt,
+                                                progressLabel,
                                                 items,
                                                 setItemsOrder,
                                                 onNext,
@@ -78,13 +80,20 @@ export default function DragAndDropQuestion({
                     ))}
                 </UnorderedList>
             </Reorder.Group>
-            <Flex direction={"row"}>
+            <Flex direction={"row"} alignItems={"center"}>
                 <BackButton
                     aria-label={"back-arrow-button"}
                     onClick={() => {
                         onBack();
                     }}
                 />
+                <Text
+                    fontSize={"sm"}
+                    color={"white"}
+                    mt={8}
+                >
+                    {progressLabel}
+                </Text>
                 <NextButton
                     aria-label={"forward-arrow-button"}
                     onClick={() => {

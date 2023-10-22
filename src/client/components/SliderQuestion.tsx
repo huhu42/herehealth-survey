@@ -16,6 +16,7 @@ type SliderQuestionProps = {
     title: string;
     leftDescription: string;
     rightDescription: string;
+    progressLabel: string;
     initialValue: number,
     setValue: (val: number) => void;
     onNext: (val?: number) => void;
@@ -27,6 +28,7 @@ export default function SliderQuestion({
                                            title,
                                            leftDescription,
                                            rightDescription,
+                                           progressLabel,
                                            initialValue,
                                            setValue,
                                            onNext,
@@ -100,9 +102,16 @@ export default function SliderQuestion({
                             onBack();
                         }}
                     />
+                    <Text
+                        fontSize={"sm"}
+                        color={"white"}
+                        mt={6}
+                    >
+                        {progressLabel}
+                    </Text>
                 </>
             ) : (
-                <Flex direction={"row"}>
+                <Flex direction={"row"} alignItems={"center"}>
                     <BackButton
                         aria-label={"back-arrow-button"}
                         onClick={() => {
@@ -110,6 +119,13 @@ export default function SliderQuestion({
                             onBack();
                         }}
                     />
+                    <Text
+                        fontSize={"sm"}
+                        color={"white"}
+                        mt={8}
+                    >
+                        {progressLabel}
+                    </Text>
                     <NextButton
                         aria-label={"forward-arrow-button"}
                         onClick={() => {

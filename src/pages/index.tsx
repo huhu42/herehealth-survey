@@ -52,6 +52,7 @@ export default function Survey() {
                         title={"Work Energizers"}
                         question={"What workplace activities energize you most? Drag to rank energizers from most energizing (top) to least energizing (bottom)."}
                         prompt={"I am energized and motivated by..."}
+                        progressLabel={"1/6"}
                         items={dragAndDropItems}
                         setItemsOrder={(i) => setDragAndDropItems(i)}
                         onNext={() => setStep(Step.QUESTION_TWO)}
@@ -65,6 +66,7 @@ export default function Survey() {
                         title={"Attentiveness"}
                         leftDescription={"I act spontaneously following my instincts"}
                         rightDescription={"I pay careful attention to detail"}
+                        progressLabel={"2/6"}
                         initialValue={sliderOneValue}
                         setValue={setSliderOneValue}
                         onNext={() => setStep(Step.QUESTION_THREE)}
@@ -78,6 +80,7 @@ export default function Survey() {
                         title={"Receptiveness"}
                         leftDescription={"I like to stick with things I know"}
                         rightDescription={"I like to try new or unconventional activities"}
+                        progressLabel={"3/6"}
                         initialValue={sliderTwoValue}
                         setValue={setSliderTwoValue}
                         onNext={() => setStep(Step.QUESTION_FOUR)}
@@ -91,6 +94,7 @@ export default function Survey() {
                         title={"Extraversion"}
                         leftDescription={"I gain energy from ideas and internal thoughts"}
                         rightDescription={"I gain energy from activities and people"}
+                        progressLabel={"4/6"}
                         initialValue={sliderThreeValue}
                         setValue={setSliderThreeValue}
                         onNext={() => setStep(Step.QUESTION_FIVE)}
@@ -104,6 +108,7 @@ export default function Survey() {
                         title={"Turbulence"}
                         leftDescription={"My mood remains consistent despite unexpected turns of events"}
                         rightDescription={"My moods and feelings fluctuate quickly with events of the day"}
+                        progressLabel={"5/6"}
                         initialValue={sliderFourValue}
                         setValue={setSliderFourValue}
                         onNext={() => setStep(Step.QUESTION_SIX)}
@@ -117,6 +122,7 @@ export default function Survey() {
                         title={"Agreeableness"}
                         leftDescription={"I prefer to stand by my own perspectives if I think I'm right"}
                         rightDescription={"I normally prioritize the feelings of others when making decisions"}
+                        progressLabel={"6/6"}
                         // there is an unideal bifurcation of the code off this
                         finalQuestion={true}
                         initialValue={sliderFiveValue}
