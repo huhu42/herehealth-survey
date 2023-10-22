@@ -1,7 +1,6 @@
 import {Button, Flex, Text} from "@chakra-ui/react";
 import Logo from "~/client/components/Logo";
 import React from "react";
-import {useRouter} from "next/router";
 
 type SplashProps = {
     onNavigation: () => void;
