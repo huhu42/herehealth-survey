@@ -8,14 +8,11 @@ type SplashProps = {
 };
 
 export default function Splash({onNavigation}: SplashProps) {
-    const router = useRouter();
     return (
         <Flex direction={"column"} alignItems={"center"} textAlign="center">
-            <Logo w={{base: "60", md: "80"}}
-                  cursor={"pointer"}
-                  onClick={async () => {
-                      await router.push("https://www.uniphye.com/")
-                  }}/>
+            <a href={"https://www.uniphye.com/"} target="_blank">
+                <Logo w={{base: "60", md: "80"}}/>
+            </a>
             <Text
                 w={{base: "80", md: "100"}}
                 fontSize={{base: "md", md: "lg"}}
@@ -42,7 +39,8 @@ export default function Splash({onNavigation}: SplashProps) {
                 color={"white"}
                 mt={8}
             >
-                This 3 minute teaser to the <u><a href={"https://www.uniphye.com/"} target="_blank">Uniphye platform</a></u> helps you learn what kinds of startup roles
+                This 3 minute teaser to the <u><a href={"https://www.uniphye.com/"} target="_blank">Uniphye platform</a></u> helps
+                you learn what kinds of startup roles
                 would fit you.
             </Text>
         </Flex>

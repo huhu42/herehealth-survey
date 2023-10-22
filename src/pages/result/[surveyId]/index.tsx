@@ -113,19 +113,16 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     {response.data!.result.description}
                 </Text>
                 <NextActionButtons/>
-                <Logo w={20} mt={8}
-                      cursor={"pointer"}
-                      onClick={async () => {
-                    await router.push("https://www.uniphye.com/")
-                }}/>
-                <Flex direction={"column"} alignItems={"center"}
-                      cursor={"pointer"}
-                      onClick={async () => {
-                          await router.push("https://www.instagram.com/uniphye/")
-                      }}>
-                    <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>
-                    <FiInstagram color={"white"}/>
-                </Flex>
+                <a href={"https://www.uniphye.com/"} target="_blank">
+                    <Logo w={20} mt={8}/>
+                </a>
+                <a href={"https://www.instagram.com/uniphye/"} target="_blank">
+                    <Flex direction={"column"}
+                          alignItems={"center"}>
+                        <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>
+                        <FiInstagram color={"white"}/>
+                    </Flex>
+                </a>
             </Flex>}
         </Center>
     );
