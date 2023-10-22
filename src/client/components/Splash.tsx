@@ -42,7 +42,7 @@ export default function Splash({onNavigation}: SplashProps) {
                 color={"white"}
                 mt={8}
             >
-                This 3 minute teaser to the <u><a href={"https://www.uniphye.com/"}>Uniphye platform</a></u> helps you learn what kinds of startup roles
+                This 3 minute teaser to the <u><a href={"https://www.uniphye.com/"} target="_blank">Uniphye platform</a></u> helps you learn what kinds of startup roles
                 would fit you.
             </Text>
         </Flex>
