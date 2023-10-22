@@ -72,7 +72,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                     <FormLabel color={"white"}>Email</FormLabel>
                     <FormHelperText color={"white"}>
                         You are more than your resume. Sign up for the beta waitlist of our psychometric AI team
-                        building platform.
+                        building platform. We will not share your email or data with other companies.
                     </FormHelperText>
                     <Input
                         mt={4}
