@@ -93,7 +93,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
                     <FormHelperText color={"white"}>
                         The Uniphye Team of technologists and psychology experts is offering a white glove service
-                        to match <b>500 new signups</b> with Silicon Valley startups for $10.
+                        to help <b>500 new signups</b> find matches with Silicon Valley startup teams for $10.
                     </FormHelperText>
                     <FormHelperText color={"white"} mt={3}>
                         No payment required at this time.
