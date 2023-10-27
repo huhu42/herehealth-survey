@@ -67,7 +67,7 @@ export default function DragAndDropQuestion({
                         <Reorder.Item key={item.key} value={item} id={item.key.toString()}>
                             <Card
                                 bgGradient="linear(to-tl, purple.400, purple.200)"
-                                w={{base: 320, md: 480}}
+                                w={{base: 300, md: 480}}
                                 h={{base: 12, md: 20}}
                                 px={2}
                                 mt={{base: 2, md: 4}}
