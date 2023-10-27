@@ -78,7 +78,7 @@ export default function DragAndDropQuestion({
                                       justifyContent={"flex-start"}
                                       mx={{base: 3, md: 2}}
                                 >
-                                    <Box pr={5}>
+                                    <Box pr={{base: 2, md: 5}}>
                                         <FiAlignJustify color={"white"}/>
                                     </Box>
                                     <Text fontSize={{base: "sm", md: "lg"}} color="white"
