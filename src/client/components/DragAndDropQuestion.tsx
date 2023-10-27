@@ -1,9 +1,9 @@
 import {Reorder} from "framer-motion";
 import React, {useState} from "react";
-import {Box, Card, Center, Flex, Icon, Text, UnorderedList} from "@chakra-ui/react";
+import {Box, Card, Flex, Text, UnorderedList} from "@chakra-ui/react";
 import {NextButton} from "~/client/components/NextButton";
 import {BackButton} from "~/client/components/BackButton";
-import {FiAlignJustify, FiArrowLeft} from "react-icons/fi";
+import {FiAlignJustify } from "react-icons/fi";
 
 type ItemKey = 0 | 1 | 2 | 3 | 4 | 5;
 export type DragAndDropItem = {
