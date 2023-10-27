@@ -1,8 +1,9 @@
 import {Reorder} from "framer-motion";
 import React, {useState} from "react";
-import {Card, Center, Flex, Text, UnorderedList} from "@chakra-ui/react";
+import {Box, Card, Center, Flex, Icon, Text, UnorderedList} from "@chakra-ui/react";
 import {NextButton} from "~/client/components/NextButton";
 import {BackButton} from "~/client/components/BackButton";
+import {FiAlignJustify, FiArrowLeft} from "react-icons/fi";
 
 type ItemKey = 0 | 1 | 2 | 3 | 4 | 5;
 export type DragAndDropItem = {
@@ -66,15 +67,23 @@ export default function DragAndDropQuestion({
                         <Reorder.Item key={item.key} value={item} id={item.key.toString()}>
                             <Card
                                 bgGradient="linear(to-tl, purple.400, purple.200)"
-                                w={{base: 300, md: 400}}
+                                w={{base: 320, md: 480}}
                                 h={{base: 12, md: 20}}
                                 px={2}
                                 mt={{base: 2, md: 4}}
                             >
-                                <Center w={"100%"} h={"100%"}>
+                                <Flex w={"100%"} h={"100%"}
+                                      textAlign={"left"}
+                                      alignItems={"center"}
+                                      justifyContent={"flex-start"}
+                                      mx={{base: 3, md: 2}}
+                                >
+                                    <Box pr={5}>
+                                        <FiAlignJustify color={"white"}/>
+                                    </Box>
                                     <Text fontSize={{base: "sm", md: "lg"}} color="white"
                                           dangerouslySetInnerHTML={{__html: item.description}}/>
-                                </Center>
+                                </Flex>
                             </Card>
                         </Reorder.Item>
                     ))}
