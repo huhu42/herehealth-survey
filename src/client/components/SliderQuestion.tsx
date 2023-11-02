@@ -10,13 +10,17 @@ import {
 } from "@chakra-ui/react";
 import React, {useState} from "react";
 import {NextButton} from "~/client/components/NextButton";
+import {BackButton} from "~/client/components/BackButton";
 
 type SliderQuestionProps = {
     title: string;
     leftDescription: string;
     rightDescription: string;
+    progressLabel: string;
+    initialValue: number,
     setValue: (val: number) => void;
-    onNavigation: (val?: number) => void;
+    onNext: (val?: number) => void;
+    onBack: () => void;
     finalQuestion?: boolean;
 };
 
@@ -24,11 +28,14 @@ export default function SliderQuestion({
                                            title,
                                            leftDescription,
                                            rightDescription,
+                                           progressLabel,
+                                           initialValue,
                                            setValue,
-                                           onNavigation,
+                                           onNext,
+                                           onBack,
                                            finalQuestion,
                                        }: SliderQuestionProps) {
-    const [sliderValue, setSliderValue] = useState(50);
+    const [sliderValue, setSliderValue] = useState(initialValue);
     return (
         <Flex direction={"column"} textAlign={"center"} alignItems={"center"}>
             <Text
@@ -76,25 +83,57 @@ export default function SliderQuestion({
                 <SliderThumb boxSize={6}/>
             </Slider>
             {!!finalQuestion ? (
-                <Button
-                    aria-label={"submit-button"}
-                    bg="white"
-                    mt={8}
-                    variant={"solid"}
-                    onClick={() => {
-                        onNavigation(sliderValue);
-                    }}
-                >
-                    Find my calling!
-                </Button>
+                <>
+                    <Button
+                        aria-label={"submit-button"}
+                        bg="white"
+                        mt={8}
+                        variant={"solid"}
+                        onClick={() => {
+                            onNext(sliderValue);
+                        }}
+                    >
+                        Find my calling!
+                    </Button>
+                    <BackButton
+                        aria-label={"back-arrow-button"}
+                        onClick={() => {
+                            setValue(sliderValue);
+                            onBack();
+                        }}
+                    />
+                    <Text
+                        fontSize={"sm"}
+                        color={"white"}
+                        mt={6}
+                    >
+                        {progressLabel}
+                    </Text>
+                </>
             ) : (
-                <NextButton
-                    aria-label={"forward-arrow-button"}
-                    onClick={() => {
-                        setValue(sliderValue);
-                        onNavigation();
-                    }}
-                />
+                <Flex direction={"row"} alignItems={"center"}>
+                    <BackButton
+                        aria-label={"back-arrow-button"}
+                        onClick={() => {
+                            setValue(sliderValue);
+                            onBack();
+                        }}
+                    />
+                    <Text
+                        fontSize={"sm"}
+                        color={"white"}
+                        mt={8}
+                    >
+                        {progressLabel}
+                    </Text>
+                    <NextButton
+                        aria-label={"forward-arrow-button"}
+                        onClick={() => {
+                            setValue(sliderValue);
+                            onNext();
+                        }}
+                    />
+                </Flex>
             )}
         </Flex>
     );

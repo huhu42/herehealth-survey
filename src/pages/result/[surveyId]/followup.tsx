@@ -72,7 +72,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                     <FormLabel color={"white"}>Email</FormLabel>
                     <FormHelperText color={"white"}>
                         You are more than your resume. Sign up for the beta waitlist of our psychometric AI team
-                        building platform.
+                        building platform. We will not share your email or data with other companies.
                     </FormHelperText>
                     <Input
                         mt={4}
@@ -92,9 +92,8 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                 <FormControl>
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
                     <FormHelperText color={"white"}>
-                        The Uniphye Team is offering a white glove service to match <b>500 new signups</b> with
-                        Silicon Valley startups, and give <b>1 warm introduction</b> to the startup of your choice for
-                        $195.
+                        The Uniphye Team of technologists and psychology experts is offering a white glove service
+                        to help <b>500 new signups</b> find matches with Silicon Valley startup teams for $10.
                     </FormHelperText>
                     <FormHelperText color={"white"} mt={3}>
                         No payment required at this time.
@@ -137,7 +136,8 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                   color={"white"}
                   mt={"4"}
             >
-                We will reach out to you soon.
+                Visit us at <b><u><a href="https://www.uniphye.com/" target="_blank">uniphye.com</a></u></b>. We will
+                reach out to you soon.
             </Text>
             <IconButton
                 icon={<FiArrowLeft/>}

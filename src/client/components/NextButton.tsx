@@ -12,6 +12,7 @@ export function NextButton({ onClick, ...rest }: NextButtonProps) {
       icon={<FiArrowRight />}
       bg="white"
       mt={8}
+      mx={4}
       {...rest}
       variant={"solid"}
       onClick={() => onClick()}

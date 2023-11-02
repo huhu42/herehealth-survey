@@ -1,4 +1,4 @@
-import {Button, Center, Flex, HStack, Icon, Image, Text} from "@chakra-ui/react";
+import {Button, Center, Flex, HStack, Image, Text} from "@chakra-ui/react";
 import React from "react";
 import {api} from "~/utils/api";
 import {QueryError} from "~/client/QueryError";
@@ -94,7 +94,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     Retake
                 </Button>
             </Flex>
-            <Text mt={{base: 6, md: 8}} color={"white"} fontSize={"sm"}>
+            <Text mt={{base: 6, md: 8}} color={"white"} fontSize={{base: "sm", md: "md"}}>
                 Don't stop here. Let Uniphye help you <b>actually </b>
                 find your dream job.
             </Text>
@@ -102,7 +102,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     colorScheme={"orange"}
                     color={"white"}
                     variant={"solid"}
-                    size={"sm"}
+                    size={{base: "md", md: "lg"}}
                     onClick={async () => {
                         await router.push(`/result/${surveyId}/followup`)
                     }}>
@@ -147,21 +147,17 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     {response.data!.result.description}
                 </Text>
                 <NextActionButtons/>
-                <Logo w={20} mt={8}
-                      cursor={"pointer"}
-                      onClick={async () => {
-                          await router.push("https://www.uniphye.com/")
-                      }}/>
-                <Flex direction={"column"} alignItems={"center"}
-                      cursor={"pointer"}
-                      onClick={async () => {
-                          await router.push("https://www.instagram.com/uniphye/")
-                      }}>
-                    <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>
-                    <FiInstagram color={"white"}/>
-                </Flex>
-            </Flex>
-            }
+                <a href={"https://www.uniphye.com/"} target="_blank">
+                    <Logo w={20} mt={8}/>
+                </a>
+                <a href={"https://www.instagram.com/uniphye/"} target="_blank">
+                    <Flex direction={"column"}
+                          alignItems={"center"}>
+                        <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>
+                        <FiInstagram color={"white"}/>
+                    </Flex>
+                </a>
+            </Flex>}
         </Center>
     )
         ;

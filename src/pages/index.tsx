@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Center, Flex} from "@chakra-ui/react";
 import PersonalInfoForm from "~/client/components/PersonalInfoForm";
-import {DragAndDropQuestion, DragAndDropItem} from "~/client/components/DragAndDropQuestion";
+import DragAndDropQuestion, {DragAndDropItem} from "~/client/components/DragAndDropQuestion";
 import SliderQuestion from "~/client/components/SliderQuestion";
 import Splash from "~/client/components/Splash";
 import {Rank, Request, Tenure} from "~/server/service/types";
@@ -36,10 +36,13 @@ export default function Survey() {
             case Step.NAME_FORM: {
                 return (
                     <PersonalInfoForm
+                        initialFirstName={firstName}
                         setFirstName={(v: string) => setFirstName(v)}
+                        initialLastName={lastName}
                         setLastName={(v: string) => setLastName(v)}
+                        initialTenure={tenure}
                         setTenure={(v: Tenure) => setTenure(v)}
-                        onNavigation={() => setStep(Step.QUESTION_ONE)}
+                        onNext={() => setStep(Step.QUESTION_ONE)}
                     />
                 );
             }
@@ -47,10 +50,13 @@ export default function Survey() {
                 return (
                     <DragAndDropQuestion
                         title={"Work Energizers"}
-                        question={"Please drag to rank what kind of work energizes you from top (relatively more energizing) to bottom (relatively least energizing)"}
+                        question={"What workplace activities energize you most? Drag to rank energizers from most energizing (top) to least energizing (bottom)."}
+                        prompt={"I am energized and motivated by..."}
+                        progressLabel={"1/6"}
                         items={dragAndDropItems}
                         setItemsOrder={(i) => setDragAndDropItems(i)}
-                        onNavigation={() => setStep(Step.QUESTION_TWO)}
+                        onNext={() => setStep(Step.QUESTION_TWO)}
+                        onBack={() => setStep(Step.NAME_FORM)}
                     />
                 );
             }
@@ -60,8 +66,11 @@ export default function Survey() {
                         title={"Attentiveness"}
                         leftDescription={"I act spontaneously following my instincts"}
                         rightDescription={"I pay careful attention to detail"}
+                        progressLabel={"2/6"}
+                        initialValue={sliderOneValue}
                         setValue={setSliderOneValue}
-                        onNavigation={() => setStep(Step.QUESTION_THREE)}
+                        onNext={() => setStep(Step.QUESTION_THREE)}
+                        onBack={() => setStep(Step.QUESTION_ONE)}
                     />
                 );
             }
@@ -71,8 +80,11 @@ export default function Survey() {
                         title={"Receptiveness"}
                         leftDescription={"I like to stick with things I know"}
                         rightDescription={"I like to try new or unconventional activities"}
+                        progressLabel={"3/6"}
+                        initialValue={sliderTwoValue}
                         setValue={setSliderTwoValue}
-                        onNavigation={() => setStep(Step.QUESTION_FOUR)}
+                        onNext={() => setStep(Step.QUESTION_FOUR)}
+                        onBack={() => setStep(Step.QUESTION_TWO)}
                     />
                 );
             }
@@ -82,8 +94,11 @@ export default function Survey() {
                         title={"Extraversion"}
                         leftDescription={"I gain energy from ideas and internal thoughts"}
                         rightDescription={"I gain energy from activities and people"}
+                        progressLabel={"4/6"}
+                        initialValue={sliderThreeValue}
                         setValue={setSliderThreeValue}
-                        onNavigation={() => setStep(Step.QUESTION_FIVE)}
+                        onNext={() => setStep(Step.QUESTION_FIVE)}
+                        onBack={() => setStep(Step.QUESTION_THREE)}
                     />
                 );
             }
@@ -93,8 +108,11 @@ export default function Survey() {
                         title={"Turbulence"}
                         leftDescription={"My mood remains consistent despite unexpected turns of events"}
                         rightDescription={"My moods and feelings fluctuate quickly with events of the day"}
+                        progressLabel={"5/6"}
+                        initialValue={sliderFourValue}
                         setValue={setSliderFourValue}
-                        onNavigation={() => setStep(Step.QUESTION_SIX)}
+                        onNext={() => setStep(Step.QUESTION_SIX)}
+                        onBack={() => setStep(Step.QUESTION_FOUR)}
                     />
                 );
             }
@@ -104,13 +122,14 @@ export default function Survey() {
                         title={"Agreeableness"}
                         leftDescription={"I prefer to stand by my own perspectives if I think I'm right"}
                         rightDescription={"I normally prioritize the feelings of others when making decisions"}
+                        progressLabel={"6/6"}
                         // there is an unideal bifurcation of the code off this
                         finalQuestion={true}
-                        setValue={() => {
-                            throw new Error("this should never be called")
-                        }}
+                        initialValue={sliderFiveValue}
+                        setValue={setSliderFiveValue}
                         // we always pass this value on final question
-                        onNavigation={(val?: number) => onSubmit(val!)}
+                        onNext={(val?: number) => onSubmit(val!)}
+                        onBack={() => setStep(Step.QUESTION_FIVE)}
                     />
                 );
             }
@@ -161,7 +180,7 @@ export default function Survey() {
             console.error(`failed to process request with exception ${e.message}`);
             // retry
             setStep(Step.QUESTION_SIX);
-            alert("Failed to generate survey result. Please try again.");
+            alert("Sorry :( There was a timeout in generating survey result. This can often be due to network issues. Please wait and try again.");
         }
     });
     const [step, setStep] = useState(Step.SPLASH);
@@ -171,18 +190,18 @@ export default function Survey() {
     const [lastName, setLastName] = useState("");
     const [tenure, setTenure] = useState<Tenure | null>(null);
     const [dragAndDropItems, setDragAndDropItems] = useState<Array<DragAndDropItem>>([
-        {key: 0, description: "Assessing ideas and situations"},
-        {key: 1, description: "Supporting those in need with an idea or project"},
-        {key: 2, description: "Challenging norms and pondering possibilities for potential and opportunity"},
-        {key: 3, description: "Encouraging and inspiring others to take action"},
-        {key: 4, description: "Novelizing new ideas and solutions in response to problems"},
-        {key: 5, description: "Delivering projects and pushing tasks to completion"},
+        {key: 0, description: "<b>Assessing</b> pros, cons, and viability of ideas and situations"},
+        {key: 1, description: "<b>Helping</b> others in need with ideas or projects"},
+        {key: 2, description: "<b>Challenging</b> the status quo and pondering possibilities"},
+        {key: 3, description: "<b>Encouraging</b> and inspiring others to come together and take action"},
+        {key: 4, description: "<b>Creating</b> new ideas, inventions, and solutions in response to problems"},
+        {key: 5, description: "<b>Completing</b> tasks and delivering projects to check them off as done"},
     ]);
     const [sliderOneValue, setSliderOneValue] = useState(50);
     const [sliderTwoValue, setSliderTwoValue] = useState(50);
     const [sliderThreeValue, setSliderThreeValue] = useState(50);
     const [sliderFourValue, setSliderFourValue] = useState(50);
-    // sliderFiveValue is just passed directly to form submission
+    const [sliderFiveValue, setSliderFiveValue] = useState(50);
 
     return (
         <Center
