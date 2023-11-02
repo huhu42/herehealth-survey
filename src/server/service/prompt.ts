@@ -2,7 +2,26 @@ import {ModelInput} from "~/server/service/model";
 import {Rank, Tenure} from "~/server/service/types";
 
 const WorkingEnergizerList = ["Assessing", "Supporting", "Challenging", "Encouraging", "Novelizing", "Delivering"]
-const labels = ["Amazing", "Great", "Fantastic"]
+const labels = [
+    "Team Closer",
+    "Solo Finisher",
+    "Meticulous Completer",
+    "Spontaneous Dreamer",
+    "Focused Creator",
+    "Deep Innovator",
+    "Group Energizer",
+    "Attentive Coach",
+    "Inspirational Guide",
+    "Bold Instigator",
+    "Solo Critic",
+    "Strategic Challenger",
+    "Casual Aide",
+    "Focused Helper",
+    "Emotional Supporter",
+    "Social Evaluator",
+    "Reserved Analyst",
+    "Mindful Accessor"
+]
 
 // TODO set this up as prior context so we do not need to pass this every time
 const WORKING_ENERGIZERS_AND_PERSONALITY_COMPONENT_CONTEXT = `

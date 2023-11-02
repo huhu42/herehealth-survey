@@ -10,7 +10,7 @@ export default function createStorageClient(
     function getImageUrlFromLabel(label: string): string {
         const {data} = supabaseClient.storage
             .from("images")
-            .getPublicUrl(`result/${label}.jpg`);
+            .getPublicUrl(`result/${label}.png`);
         return data.publicUrl;
     }
 

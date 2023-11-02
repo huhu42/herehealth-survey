@@ -159,8 +159,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 </a>
             </Flex>}
         </Center>
-    )
-        ;
+    );
 }
 
 // https://stackoverflow.com/questions/57486380/why-would-a-query-param-be-undefined-in-nextjs
