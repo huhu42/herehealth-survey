@@ -1,7 +1,7 @@
 import {ModelInput} from "~/server/service/model";
 import {Rank, Tenure} from "~/server/service/types";
 
-const WorkingEnergizerList = ["Assessing", "Supporting", "Challenging", "Encouraging", "Novelizing", "Delivering"]
+export const WorkingEnergizerList = ["Assessing", "Supporting", "Challenging", "Encouraging", "Novelizing", "Delivering"]
 const labels = [
     "Team Closer",
     "Solo Finisher",
@@ -84,22 +84,6 @@ description with 3 specific types of startup roles the person would enjoy, and e
 startups someone would enjoy rather than explicitly talking about their personality and working motivators.
 Give me an example for how this would work.
 `;
-
-const LABEL_PROMPT_CONTEXT: string = `Given the following definitions of someone's motivators/energizers and personality " +
-    components.
-    
-    ${WORKING_ENERGIZERS_AND_PERSONALITY_COMPONENT_CONTEXT}
-    
-    And their results (which will be listed below), please bucket them into one of the following label (${labels.join(",")}) 
-    based on what matches them most. Include only the label in the response.
-    `
-;
-
-export function inputToLabelPrompt(input: ModelInput): string {
-    return LABEL_PROMPT_CONTEXT +
-        workingMotivators(input["0"]) + "\n" +
-        personalityComponents(input) + "\n";
-}
 
 export function inputToDescriptionPrompt(input: ModelInput): string {
     return DESCRIPTION_PROMPT_CONTEXT + "\n" +

@@ -10,8 +10,12 @@ export default function createStorageClient(
     function getImageUrlFromLabel(label: string): string {
         const {data} = supabaseClient.storage
             .from("images")
-            .getPublicUrl(`result/${label}.png`);
+            .getPublicUrl(`result/${spacesToDashes(label)}.png`);
         return data.publicUrl;
+    }
+
+    function spacesToDashes(label: string): string {
+        return label.replace(/ /g,"-");
     }
 
     return {

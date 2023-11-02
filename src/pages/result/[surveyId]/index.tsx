@@ -31,6 +31,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
     }
 
     function ImageAndLabelHeader({firstName, lastName, label}: ImageAndLabelHeaderProp) {
+        console.log(label);
         const resultImage = api.survey.resultImage.useQuery(
             label ?? "default",
             // the response is static after generation
@@ -54,12 +55,30 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                           color={"purple.900"}>
                         {`${firstName} ${lastName}`}
                     </Text>
-                    <Text fontWeight={"semibold"}
-                          mt={6}
-                          fontSize={{base: "xl", md: "2xl"}}
-                          color={"white"}>
-                        {!label ? `the ${label}` : "'s Dream Role"}
-                    </Text>
+                    {!!label ?
+                        <>
+                            <Text fontWeight={"semibold"}
+                                  mt={6}
+                                  ml={1}
+                                  fontSize={{base: "xl", md: "2xl"}}
+                                  color={"white"}>
+                                {`the`}
+                            </Text>
+                            <Text fontWeight={"semibold"}
+                                  mt={6}
+                                  ml={1}
+                                  fontSize={{base: "xl", md: "2xl"}}
+                                  color={"goldenrod"}>
+                                {`${label}`}
+                            </Text>
+                        </> :
+                        <Text fontWeight={"semibold"}
+                              mt={6}
+                              fontSize={{base: "xl", md: "2xl"}}
+                              color={"white"}>
+                            {"'s Dream Role"}
+                        </Text>
+                    }
                 </HStack>
             </>);
     }
