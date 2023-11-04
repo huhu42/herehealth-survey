@@ -20,7 +20,7 @@ export function createModel(): Model {
                                 labelTwo: string,
                                 labelThree: string,
                                 workingEnergizer: string,
-                                personality: string): string {
+                                personality: string): string | null {
         if (containedIn(personality, ["HHHHH", "HHHHL", "LHHHH", "LHHHL"])) {
             return labelOne;
         }
@@ -30,10 +30,11 @@ export function createModel(): Model {
         if (containedIn(personality, ["HHLLH", "HLLLL", "LHLLH", "LLLLL"])) {
             return labelThree;
         }
-        throw new Error("unexpected " + workingEnergizer + " + " + personality);
+        console.warn("unexpected " + workingEnergizer + " + " + personality);
+        return null;
     }
 
-    function inputToLabel(input: ModelInput): string {
+    function inputToLabel(input: ModelInput): string | null {
         const workingEnergizer = topWorkingEnergizer(input);
         const personality = encodedPersonalityComponents(input);
         if ("Assessing" === workingEnergizer) {
@@ -78,7 +79,8 @@ export function createModel(): Model {
                 workingEnergizer,
                 personality);
         }
-        throw new Error("unexpected " + workingEnergizer + " + " + personality);
+        console.warn("unexpected " + workingEnergizer + " + " + personality);
+        return null;
     }
 
     function topWorkingEnergizer(input: ModelInput): string {
