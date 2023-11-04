@@ -1,14 +1,30 @@
 import {ModelInput} from "~/server/service/model";
 import {Rank, Tenure} from "~/server/service/types";
 
-// TODO set this up as prior context so we do not need to pass this every time
-const PROMPT_CONTEXT: string = `
-I need to create short, fun, encouraging, automated descriptions for what a person's working motivators/energizers and 
-personality psychometric results suggest about what kinds of jobs and work environments and startups they would enjoy.
-The following defines generally what someone’s motivators/energizers and personality psychometric results might be. 
-When providing the short paragraph description of what startup roles someone would enjoy, please start with a short list 
-of specific types of startups the person would enjoy. 
+export const WorkingEnergizerList = ["Assessing", "Supporting", "Challenging", "Encouraging", "Novelizing", "Delivering"]
+const labels = [
+    "Team Closer",
+    "Solo Finisher",
+    "Meticulous Completer",
+    "Spontaneous Dreamer",
+    "Focused Creator",
+    "Deep Innovator",
+    "Group Energizer",
+    "Attentive Coach",
+    "Inspirational Guide",
+    "Bold Instigator",
+    "Solo Critic",
+    "Strategic Challenger",
+    "Casual Aide",
+    "Focused Helper",
+    "Emotional Supporter",
+    "Social Evaluator",
+    "Reserved Analyst",
+    "Mindful Accessor"
+]
 
+// TODO set this up as prior context so we do not need to pass this every time
+const WORKING_ENERGIZERS_AND_PERSONALITY_COMPONENT_CONTEXT = `
 The "Working Motivators/Energizers category will involve the following labels:
 1. Assessing - People with a natural ability to evaluate the workability and feasibility of ideas. They are good 
 curators of what’s going on around them and can recognize patterns. They know how to connect the dots and give people 
@@ -50,6 +66,16 @@ High: Suited for roles involving cooperation and team coordination, might enjoy 
 collaborative efforts.
 Low: May excel in competitive environments or roles requiring critical negotiation skills, often preferring tasks where 
 they can work autonomously.
+`
+
+const DESCRIPTION_PROMPT_CONTEXT: string = `
+I need to create short, fun, encouraging, automated descriptions for what a person's working motivators/energizers and 
+personality psychometric results suggest about what kinds of jobs and work environments and startups they would enjoy.
+The following defines generally what someone’s motivators/energizers and personality psychometric results might be. 
+When providing the short paragraph description of what startup roles someone would enjoy, please start with a short list 
+of specific types of startups the person would enjoy. 
+
+${WORKING_ENERGIZERS_AND_PERSONALITY_COMPONENT_CONTEXT}
 
 Based on the person’s responses, provide a detailed paragraph suggesting the specific types of startups and roles 
 they are likely to enjoy and excel in. Condense to one paragraph, and provide a select few examples for what types 
@@ -59,10 +85,8 @@ startups someone would enjoy rather than explicitly talking about their personal
 Give me an example for how this would work.
 `;
 
-const WorkingEnergizerList = ["Assessing", "Supporting", "Challenging", "Encouraging", "Novelizing", "Delivering"]
-
-export function inputToPrompt(input: ModelInput): string {
-    return PROMPT_CONTEXT + "\n" +
+export function inputToDescriptionPrompt(input: ModelInput): string {
+    return DESCRIPTION_PROMPT_CONTEXT + "\n" +
         workingMotivators(input["0"]) + "\n" +
         personalityComponents(input) + "\n" +
         "Make it short and focus on what startups they'd be interested in rather than their inputted traits." + "\n" +
