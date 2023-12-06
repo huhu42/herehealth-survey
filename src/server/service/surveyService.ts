@@ -84,6 +84,7 @@ export function createSurveyService(
             data: {
                 email: input.email,
                 requestMatches: input.requestMatches,
+                teamCode: input.teamCode
             },
         });
     }

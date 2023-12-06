@@ -42,6 +42,23 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
         surveyId: Id
     }
 
+    function isValidTeamCode(teamCode: string) {
+        if (!teamCode) {
+            return true;
+        }
+        return [
+            "AAAAA" /*Test Code*/, "DSLUI", "PVZDN", "ZKFKW", "RXOBF", "FFEWT", "NVGKI", "VUMEF", "NMMPY", "ZYDPF",
+            "PTHVZ", "KQSEL", "QICBI", "IWYIL", "NRHMH", "MBTNN", "SHAAL", "OOPCD", "XNTWE", "LLFVK", "DRSVK", "OVOLV",
+            "CCGLV", "IUIRP", "DHCMO", "OJDLH", "XATCB", "QQKHD", "QKQFB", "ZNNSV", "VFEHA", "LSETA", "MHTAA", "EFTHD",
+            "VXXRD", "PDXLT", "LHVGV", "MPWLG", "ODNMG", "ZRPFW", "YUXIN", "ANTKN", "VXJAM", "DYRWB", "KCKAJ", "CVBDF",
+            "IYBTC", "WWILO", "PPYYC", "UZBKK", "EHNRM", "ULKZD", "VIPWF", "VPYNP", "RZURX", "MROUE", "PIDRG", "DEYXE",
+            "HXMIQ", "BWQXS", "IGVEA", "NCIBN", "AIFVF", "TBBNI", "HUXCY", "FSRLN", "RLQBR", "PTWPF", "GOWID", "YNEIC",
+            "FPSWP", "PFDXB", "KVWKF", "IBLGX", "ETUEB", "JSRZE", "BRSAK", "EZLIM", "WICWO", "INFBP", "QTSTH", "WRMKN",
+            "WALPT", "EYCFW", "EDJVY", "SJIQI", "TBLED", "NRZKL", "ZQNMK", "BBJZE", "YTCLL", "ONTHM", "WGVVB", "VUUIU",
+            "SNPAV", "IUVUT", "DYEIA", "DOEHY", "IOGJZ", "NXFDF", "PIADC",
+        ].includes(teamCode.toUpperCase());
+    }
+
     function FollowUpForm({surveyId}: FollowUpFormProps) {
         const context = api.useContext();
         const followUp = api.survey.followUp.useMutation({
@@ -51,6 +68,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
         });
         const [emailTouched, setEmailTouched] = useState(false)
         const [emailInput, setEmailInput] = useState("");
+        const [teamCodeInput, setTeamCodeInput] = useState("");
         const [requestMatchesInput, setRequestMatchesInput] = useState(false);
         return (
             <Flex
@@ -107,15 +125,36 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                         </Text>
                     </Checkbox>
                 </FormControl>
+                <FormControl isInvalid={!isValidTeamCode(teamCodeInput)}>
+                    <FormLabel color={"white"}>Team Builder</FormLabel>
+                    <FormHelperText color={"white"}>
+                        Did you receive a team code for Uniphye's team analysis? If so, please input the code here.
+                    </FormHelperText>
+                    <Input
+                        mt={4}
+                        value={teamCodeInput}
+                        color="black"
+                        colorScheme="white"
+                        variant="solid"
+                        onChange={(e) => {
+                            setTeamCodeInput(e.target.value)
+                        }}
+                        placeholder="A 5-letter code"
+                    />
+                    <FormErrorMessage>Not a valid code. Please reach out to erin@uniphye.com if you are interested
+                        in a team analysis.</FormErrorMessage>
+                </FormControl>
                 <Button
                     aria-label={"submit-button"}
-                    mt={4}
-                    isDisabled={emailInput === ""}
+                    mt={6}
+                    // both the email and the code must be valid
+                    isDisabled={(!isEmail.test(emailInput)) || !isValidTeamCode(teamCodeInput)}
                     onClick={() => {
                         followUp.mutate({
                             id: surveyId,
                             email: emailInput,
-                            requestMatches: requestMatchesInput
+                            requestMatches: requestMatchesInput,
+                            teamCode: teamCodeInput
                         })
                     }}
                 >Join the movement!

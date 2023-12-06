@@ -48,5 +48,6 @@ export const FollowUpSchema = z.object({
     id: IdSchema,
     email: z.string().email(),
     requestMatches: z.boolean(),
+    teamCode: z.string().length(5).optional().or(z.literal(""))
 });
 export type FollowUp = z.infer<typeof FollowUpSchema>;

@@ -21,6 +21,7 @@ model Survey {
   result         Json
   email          String?
   requestMatches Boolean?
+  teamCode       String?
   createdAt      DateTime @default(now())
 }
 
