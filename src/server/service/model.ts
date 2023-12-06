@@ -15,60 +15,18 @@ export type Model = {
 };
 
 export function createModel(): Model {
-
-    /**
-     * HHHHH (1)
-     *
-     * HHHHL (1)
-     * HHHLH (1*)
-     * HHLHH (3)
-     * HLHHH (1*)
-     * LHHHH (1)
-     *
-     * LHHHL (1)
-     * LHHLH (1*)
-     * LHLHH (1*)
-     * LLHHH (1*)
-     *
-     * HLHHL (1*)
-     * HLHLH (2*)
-     * HLLHH (2*)
-     * HHLHL (2*)
-     * HHLLH (2*)
-     * HHHLL (2)
-     * ------
-     * LLLLL (3)
-     *
-     * LLLLH (3*)
-     * LLLHL (3*)
-     * LLHLL (2*)
-     * LHLLL (2)
-     * HLLLL (3)
-     *
-     * HLLLH (3*)
-     * HLLHL (3*)
-     * HLHLL (2*)
-     * HHLLL (2)
-     *
-     * LHLLH (3)
-     * LHLHL (3*)
-     * LHHLL (2)
-     * LLHLH (3*)
-     * LLHHL (3*)
-     * LLLHH (3*)
-     */
     function labelByPersonality(labelOne: string,
                                 labelTwo: string,
                                 labelThree: string,
                                 workingEnergizer: string,
                                 personality: string): string | undefined {
-        if (containedIn(personality, ["HHHHH", "HHHHL", "LHHHH", "LHHHL"])) {
+        if (containedIn(personality, ["HHHHH", "HHHHL", "LHHHH", "LHHHL", "HHHLH", "HLHHH", "LHHLH", "LHLHH", "LLHHH", "HLHHL"])) {
             return labelOne;
         }
-        if (containedIn(personality, ["HHHLL", "HHLLL", "LHHLL", "LHLLL"])) {
+        if (containedIn(personality, ["HHHLL", "HHLLL", "LHHLL", "LHLLL", "HLHLH", "HLLHH", "HHLHL", "HHLLH", "HHLLH", "LLHLL", "LLHLH"])) {
             return labelTwo;
         }
-        if (containedIn(personality, ["HHLLH", "HLLLL", "LHLLH", "LLLLL"])) {
+        if (containedIn(personality, ["HHLLH", "HLLLL", "LHLLH", "LLLLL", "LLLLH", "LLLHL", "HLLLH", "HLLHL", "LHLHL", "LLHHL", "LLLHH"])) {
             return labelThree;
         }
         console.warn("unexpected " + workingEnergizer + " + " + personality);
