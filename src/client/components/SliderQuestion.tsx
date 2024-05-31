@@ -93,7 +93,7 @@ export default function SliderQuestion({
                             onNext(sliderValue);
                         }}
                     >
-                        Find my calling!
+                        Optimize my morning!
                     </Button>
                     <BackButton
                         aria-label={"back-arrow-button"}

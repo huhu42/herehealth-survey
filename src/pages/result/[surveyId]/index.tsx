@@ -13,8 +13,8 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
     async function share(firstName: string, lastName: string): Promise<void> {
         if (navigator.share) {
             await navigator.share({
-                title: `${firstName} ${lastName}'s Dream Role`,
-                text: 'Take a look at my Uniphye AI psychometric results!',
+                title: `${firstName} ${lastName}'s Morning Routine`,
+                text: 'Get me started with my perfect morning routine!',
                 url: window.location.href,
             }).catch(e => {
                 console.error('error while sharing: ' + e);
@@ -114,8 +114,8 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 </Button>
             </Flex>
             <Text mt={{base: 6, md: 8}} color={"white"} fontSize={{base: "sm", md: "md"}}>
-                Don't stop here. Let Uniphye help you <b>actually </b>
-                find your dream job.
+                Don't stop here. Let Cleo help you <b>actually </b>
+                start your best morning.
             </Text>
             <Button mt={4}
                     colorScheme={"orange"}
@@ -166,10 +166,10 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     {response.data!.result.description}
                 </Text>
                 <NextActionButtons/>
-                <a href={"https://www.uniphye.com/"} target="_blank">
+                <a href={"https://www.cleocare.com/"} target="_blank">
                     <Logo w={20} mt={8}/>
                 </a>
-                <a href={"https://www.instagram.com/uniphye/"} target="_blank">
+                <a href={"https://www.instagram.com/cleoclinic/"} target="_blank">
                     <Flex direction={"column"}
                           alignItems={"center"}>
                         <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>

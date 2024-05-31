@@ -16,8 +16,7 @@ export default function LoadingSpinner() {
                 color={"gray.200"}
                 maxW={400}
                 mt={8}
-            >Unlocking your potential, one match at a time 🚀 Uniphye uses AI to align mission-driven talent with
-                groundbreaking startups. Let's build the future, together.</Text>
+            >Unlocking your potential, one morning at a time 🚀 Cleo is your personalized AI health coach. Let's create your optimal morning routine today!</Text>
             <Text
                 fontSize={"sm"}
                 color={"gray.200"}

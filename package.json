@@ -1,10 +1,10 @@
 {
-  "name": "uniphye-survey",
+  "name": "herehealth-survey",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev -p 4000",
     "postinstall": "prisma generate",
     "test": "jest",
     "lint": "next lint",

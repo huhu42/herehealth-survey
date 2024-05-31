@@ -17,23 +17,23 @@ export type Rank = z.infer<typeof RankSchema>;
 const PercentageSchema = z.number().min(0).max(100).multipleOf(1);
 const SurveySchema = z.object({
     0: RankSchema,
-    1: PercentageSchema,
-    2: PercentageSchema,
-    3: PercentageSchema,
-    4: PercentageSchema,
-    5: PercentageSchema
+    //1: PercentageSchema,
+    //2: PercentageSchema,
+    //3: PercentageSchema,
+    //4: PercentageSchema,
+    //5: PercentageSchema
 });
 export type Survey = z.infer<typeof SurveySchema>;
 
-export enum Tenure {
-    NEW_GRAD,
-    MID_CAREER
-}
+// export enum Tenure {
+//     NEW_GRAD,
+//     MID_CAREER
+// }
 
 export const RequestSchema = z.object({
     firstName: z.string(),
     lastName: z.string(),
-    tenure: z.nativeEnum(Tenure),
+    //tenure: z.nativeEnum(Tenure),
     survey: SurveySchema,
 });
 export type Request = z.infer<typeof RequestSchema>;
@@ -48,6 +48,6 @@ export const FollowUpSchema = z.object({
     id: IdSchema,
     email: z.string().email(),
     requestMatches: z.boolean(),
-    teamCode: z.string().length(5).optional().or(z.literal(""))
+    //teamCode: z.string().length(5).optional().or(z.literal(""))
 });
 export type FollowUp = z.infer<typeof FollowUpSchema>;

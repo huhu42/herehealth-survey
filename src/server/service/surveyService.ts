@@ -1,15 +1,17 @@
 import {
-    Tenure,
+    //Tenure,
     FollowUp,
     Id,
     Request,
     Response,
     SurveyService,
 } from "~/server/service/types";
-import {$Enums, PrismaClient} from "@prisma/client";
+//import {$Enums, PrismaClient} from "@prisma/client";
+import { PrismaClient} from "@prisma/client";
+
 import {Model, ModelResult} from "~/server/service/model";
 import {newId} from "~/server/utils";
-import DbTenure = $Enums.Tenure;
+//import DbTenure = $Enums.Tenure;
 import {StorageClient} from "~/server/storage/storageClient";
 
 export function createSurveyService(
@@ -18,24 +20,24 @@ export function createSurveyService(
     storage: StorageClient,
 ): SurveyService {
 
-    function toDatabaseEnum(tenure: Tenure): DbTenure {
-        switch (tenure) {
-            case Tenure.NEW_GRAD: {
-                return DbTenure.NEW_GRAD;
-            }
-            case Tenure.MID_CAREER: {
-                return DbTenure.MID_CAREER;
-            }
-            default: {
-                throw new Error(`unrecognized enum ${tenure}`);
-            }
-        }
-    }
+    // function toDatabaseEnum(tenure: Tenure): DbTenure {
+    //     switch (tenure) {
+    //         case Tenure.NEW_GRAD: {
+    //             return DbTenure.NEW_GRAD;
+    //         }
+    //         case Tenure.MID_CAREER: {
+    //             return DbTenure.MID_CAREER;
+    //         }
+    //         default: {
+    //             throw new Error(`unrecognized enum ${tenure}`);
+    //         }
+    //     }
+    // }
 
     async function request(input: Request): Promise<Id> {
         const modelResult = await model.apply({
             ...input.survey,
-            tenure: input.tenure
+            //tenure: input.tenure
         });
         return prisma.survey
             .create({
@@ -43,7 +45,7 @@ export function createSurveyService(
                     id: newId(),
                     firstName: input.firstName,
                     lastName: input.lastName,
-                    tenure: toDatabaseEnum(input.tenure),
+                    //tenure: toDatabaseEnum(input.tenure),
                     input: input.survey,
                     result: modelResult,
                 },
@@ -84,7 +86,7 @@ export function createSurveyService(
             data: {
                 email: input.email,
                 requestMatches: input.requestMatches,
-                teamCode: input.teamCode
+                //teamCode: input.teamCode
             },
         });
     }

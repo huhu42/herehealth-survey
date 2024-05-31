@@ -27,7 +27,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
         const url = window.location.href.slice(0, -8);
         if (navigator.share) {
             await navigator.share({
-                title: `Uniphye Survey Results`,
+                title: `Cleo Morning Routine Results`,
                 text: 'Take a look at my Uniphye AI psychometric results!',
                 url: url,
             }).catch(e => {
@@ -154,7 +154,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                             id: surveyId,
                             email: emailInput,
                             requestMatches: requestMatchesInput,
-                            teamCode: teamCodeInput
+                            // teamCode: teamCodeInput
                         })
                     }}
                 >Join the movement!

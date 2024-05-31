@@ -1,15 +1,15 @@
 import {Flex, FormControl, FormLabel, Input, Select, Text} from "@chakra-ui/react";
 import React, {useState} from "react";
 import {NextButton} from "~/client/components/NextButton";
-import {Tenure} from "~/server/service/types";
+//import {Tenure} from "~/server/service/types";
 
 type NameFormProps = {
     initialFirstName: string;
     setFirstName: (firstName: string) => void;
     initialLastName: string;
     setLastName: (lastName: string) => void;
-    initialTenure: Tenure | null;
-    setTenure: (tenure: Tenure) => void;
+    //initialTenure: Tenure | null;
+    //setTenure: (tenure: Tenure) => void;
     onNext: () => void;
 };
 
@@ -18,46 +18,47 @@ export default function PersonalInfoForm({
                                              setFirstName,
                                              initialLastName,
                                              setLastName,
-                                             setTenure,
-                                             initialTenure,
+                                             //setTenure,
+                                             //initialTenure,
                                              onNext,
-                                         }: NameFormProps) {
-    function toTenure(value: string): Tenure | null {
-        switch (value) {
-            case "0": {
-                return Tenure.NEW_GRAD;
-            }
-            case "1": {
-                return Tenure.MID_CAREER;
-            }
-            case "": {
-                return null;
-            }
-            default: {
-                throw new Error(`unrecognized value ${value}`);
-            }
-        }
-    }
-    function toValue(tenure: Tenure | null) {
-        switch (tenure) {
-            case Tenure.NEW_GRAD: {
-                return "0";
-            }
-            case Tenure.MID_CAREER: {
-                return "1";
-            }
-            case null: {
-                return "";
-            }
-            default: {
-                throw new Error(`unrecognized value ${tenure}`);
-            }
-        }
-    }
+                                         }: NameFormProps) 
+                                         {
+    // function toTenure(value: string): Tenure | null {
+    //     switch (value) {
+    //         case "0": {
+    //             return Tenure.NEW_GRAD;
+    //         }
+    //         case "1": {
+    //             return Tenure.MID_CAREER;
+    //         }
+    //         case "": {
+    //             return null;
+    //         }
+    //         default: {
+    //             throw new Error(`unrecognized value ${value}`);
+    //         }
+    //    }
+    // }
+    // function toValue(tenure: Tenure | null) {
+    //     switch (tenure) {
+    //         case Tenure.NEW_GRAD: {
+    //             return "0";
+    //         }
+    //         case Tenure.MID_CAREER: {
+    //             return "1";
+    //         }
+    //         case null: {
+    //             return "";
+    //         }
+    //         default: {
+    //             throw new Error(`unrecognized value ${tenure}`);
+    //         }
+    //     }
+    // }
 
     const [firstNameInput, setFirstNameInput] = useState(initialFirstName);
     const [lastNameInput, setLastNameInput] = useState(initialLastName);
-    const [tenureInput, setTenureInput] = useState<Tenure | null>(initialTenure);
+    //const [tenureInput, setTenureInput] = useState<Tenure | null>(initialTenure);
     const FORM_WIDTH = {base: 250, md: 400}
     return (
         <Flex
@@ -101,7 +102,7 @@ export default function PersonalInfoForm({
                     placeholder="e.g., Smith"
                 />
             </FormControl>
-            <FormControl isRequired={true}>
+            {/* <FormControl isRequired={true}>
                 <FormLabel color={"white"}>Experience</FormLabel>
                 <Select
                     mt={3}
@@ -116,14 +117,14 @@ export default function PersonalInfoForm({
                     <option value={Tenure.NEW_GRAD}>New graduate</option>
                     <option value={Tenure.MID_CAREER}>Experienced employee</option>
                 </Select>
-            </FormControl>
+            </FormControl> */}
             <NextButton
                 aria-label={"forward-arrow-button"}
-                isDisabled={firstNameInput === "" || lastNameInput === "" || tenureInput === null}
+                isDisabled={firstNameInput === "" || lastNameInput === "" } //tenureInput === null}
                 onClick={() => {
                     setFirstName(firstNameInput);
                     setLastName(lastNameInput);
-                    setTenure(tenureInput!)
+                    //setTenure(tenureInput!)
                     onNext();
                 }}
             />
