@@ -16,7 +16,7 @@ export default function LoadingSpinner() {
                 color={"gray.200"}
                 maxW={400}
                 mt={8}
-            >Unlocking your potential, one morning at a time 🚀 Cleo is your personalized AI health coach. Let's create your optimal morning routine today!</Text>
+            >Unlocking your potential, one morning at a time 🚀 HereHealth is your personalized AI health coach. Let's create your optimal morning routine today!</Text>
             <Text
                 fontSize={"sm"}
                 color={"gray.200"}

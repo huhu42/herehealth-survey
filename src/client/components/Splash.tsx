@@ -9,7 +9,7 @@ type SplashProps = {
 export default function Splash({onNavigation}: SplashProps) {
     return (
         <Flex direction={"column"} alignItems={"center"} textAlign="center">
-            <a href={"https://www.uniphye.com/"} target="_blank">
+            <a href={"https://www.herehealth.ai/"} target="_blank">
                 <Logo w={{base: "60", md: "80"}}/>
             </a>
             <Text
@@ -38,7 +38,7 @@ export default function Splash({onNavigation}: SplashProps) {
                 color={"white"}
                 mt={8}
             >
-                This 3 minute teaser to the <u><a href={"https://www.cleo.com/"} target="_blank">Cleo platform</a></u> helps
+                This 3 minute teaser to the <u><a href={"https://www.HereHealth.com/"} target="_blank">HereHealth platform</a></u> helps
                 you discover the best morning routines for your goals.
             </Text>
         </Flex>

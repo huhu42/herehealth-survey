@@ -47,7 +47,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
 
         return (
             <>
-                <Image w={{base: 150, md: 200}} src={resultImage.data} borderRadius={"10"}/>
+                {/* <Image w={{base: 150, md: 200}} src={resultImage.data} borderRadius={"10"}/> */}
                 <HStack spacing={0}>
                     <Text fontWeight={"extrabold"}
                           mt={6}
@@ -76,7 +76,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                               mt={6}
                               fontSize={{base: "xl", md: "2xl"}}
                               color={"white"}>
-                            {"'s Dream Role"}
+                            {"'s Best Self"}
                         </Text>
                     }
                 </HStack>
@@ -114,7 +114,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 </Button>
             </Flex>
             <Text mt={{base: 6, md: 8}} color={"white"} fontSize={{base: "sm", md: "md"}}>
-                Don't stop here. Let Cleo help you <b>actually </b>
+                Don't stop here. Let HereHealth help you <b>actually </b>
                 start your best morning.
             </Text>
             <Button mt={4}
@@ -166,10 +166,10 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                     {response.data!.result.description}
                 </Text>
                 <NextActionButtons/>
-                <a href={"https://www.cleocare.com/"} target="_blank">
+                <a href={"https://www.herehealth.ai/"} target="_blank">
                     <Logo w={20} mt={8}/>
                 </a>
-                <a href={"https://www.instagram.com/cleoclinic/"} target="_blank">
+                <a href={"https://www.instagram.com/HereHealthclinic/"} target="_blank">
                     <Flex direction={"column"}
                           alignItems={"center"}>
                         <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>

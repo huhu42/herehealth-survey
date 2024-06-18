@@ -86,7 +86,7 @@ export default function PersonalInfoForm({
                     colorScheme="white"
                     variant="solid"
                     onChange={(e) => setFirstNameInput(e.target.value)}
-                    placeholder="e.g., John"
+                    placeholder="FirstName"
                 />
             </FormControl>
             <FormControl isRequired={true}>
@@ -99,7 +99,7 @@ export default function PersonalInfoForm({
                     colorScheme="white"
                     variant="solid"
                     onChange={(e) => setLastNameInput(e.target.value)}
-                    placeholder="e.g., Smith"
+                    placeholder="LastName"
                 />
             </FormControl>
             {/* <FormControl isRequired={true}>

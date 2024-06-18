@@ -27,8 +27,8 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
         const url = window.location.href.slice(0, -8);
         if (navigator.share) {
             await navigator.share({
-                title: `Cleo Morning Routine Results`,
-                text: 'Take a look at my Uniphye AI psychometric results!',
+                title: `HereHealth Morning Routine Results`,
+                text: 'Take a look at my HereHealth Morning Routine results!',
                 url: url,
             }).catch(e => {
                 console.error('error while sharing: ' + e);
@@ -84,13 +84,12 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                     alignSelf={"start"}
                     color={"white"}
                 >
-                    Uniphye connects you with your ideal team
+                    HereHealth Best Morning Routine
                 </Text>
                 <FormControl isRequired={true} isInvalid={emailTouched && !isEmail.test(emailInput)}>
                     <FormLabel color={"white"}>Email</FormLabel>
                     <FormHelperText color={"white"}>
-                        You are more than your resume. Sign up for the beta waitlist of our psychometric AI team
-                        building platform. We will not share your email or data with other companies.
+                        Be your best self. Sign up for the beta waitlist of our personalized AI health assistant. We will not share your email or data with other companies.
                     </FormHelperText>
                     <Input
                         mt={4}
@@ -103,15 +102,15 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                             setEmailTouched(true);
                             setEmailInput(e.target.value)
                         }}
-                        placeholder="e.g., jsmith42@gmail.com"
+                        placeholder="e.g., myemail@gmail.com"
                     />
                     <FormErrorMessage>Must be valid email address.</FormErrorMessage>
                 </FormControl>
                 <FormControl>
                     <FormLabel color={"white"} mt={4}>Limited Offer</FormLabel>
                     <FormHelperText color={"white"}>
-                        The Uniphye Team of technologists and psychology experts is offering a white glove service
-                        to help <b>500 new signups</b> find matches with Silicon Valley startup teams for $10.
+                        The HereHealth Team of technologists and health data experts is offering a white glove service
+                        to help <b>500 new signups</b> analyze your goals and create your custom daily routine for $10.
                     </FormHelperText>
                     <FormHelperText color={"white"} mt={3}>
                         No payment required at this time.
@@ -125,10 +124,10 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                         </Text>
                     </Checkbox>
                 </FormControl>
-                <FormControl isInvalid={!isValidTeamCode(teamCodeInput)}>
+                {/* <FormControl isInvalid={!isValidTeamCode(teamCodeInput)}>
                     <FormLabel color={"white"}>Team Builder</FormLabel>
                     <FormHelperText color={"white"}>
-                        Did you receive a team code for Uniphye's team analysis? If so, please input the code here.
+                        Did you receive a team code for HereHealth's team analysis? If so, please input the code here.
                     </FormHelperText>
                     <Input
                         mt={4}
@@ -141,9 +140,9 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                         }}
                         placeholder="A 5-letter code"
                     />
-                    <FormErrorMessage>Not a valid code. Please reach out to erin@uniphye.com if you are interested
+                    <FormErrorMessage>Not a valid code. Please reach out to hello@herehealth.ai if you are interested
                         in a team analysis.</FormErrorMessage>
-                </FormControl>
+                </FormControl> */}
                 <Button
                     aria-label={"submit-button"}
                     mt={6}
@@ -169,13 +168,13 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                   fontWeight={"semibold"}
                   color={"white"}
             >
-                Thank-you for your interest in Uniphye!
+                Thank-you for your interest in HereHealth!
             </Text>
             <Text fontSize={"md"}
                   color={"white"}
                   mt={"4"}
             >
-                Visit us at <b><u><a href="https://www.uniphye.com/" target="_blank">uniphye.com</a></u></b>. We will
+                Visit us at <b><u><a href="https://www.herehealth.ai/" target="_blank">herehealth.ai</a></u></b>. We will
                 reach out to you soon.
             </Text>
             <IconButton
@@ -192,7 +191,7 @@ export default function FollowUpPage({surveyId}: InferGetServerSidePropsType<typ
                   color={"white"}
                   mt={"12"}
             >
-                There are currently thousands of users on the beta waitlist. <b>Share</b> your survey results to get
+                There are currently thousands of users on the beta waitlist. <b>Share</b> your results to get
                 priority access.
             </Text>
             <Button

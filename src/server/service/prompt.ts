@@ -109,16 +109,36 @@ Goals:
 `
 
 const PERSONAL_INFO: string = `
+Personal Info are as below:
 Name - Nikki Hu
 Gender - Female
 Height - 5'4
 Weight - 120 lb
 `
 
+const FORMATTING_INSTRUCTIONS: string = `
+Please format your responses using the following guidelines:
+- Use JSON formatting
+- Start each section of the SAVERS practice in a seperate paragraph with a space in between
+- Example:
+    {Silence:xxxxx,
+    Affirmations:xxxxx,
+    Visualizations:xxxxx,
+    Exercise:xxxxx,
+    Reading:xxxxx,
+    Scribing:xxxxx}
+`
+
 export function inputToDescriptionPrompt(input: ModelInput): string {
+    
+    //function personalInfo(PERSONAL_INFO: string): string {
+    //    return `For example, this persons working motivators/energizers rank most highly, in the following order of:
+    
+    //        `}
     return DESCRIPTION_PROMPT_CONTEXT + "\n" +
-        GOALS + "\n" +
-        PERSONAL_INFO + "\n"
+        GOALS + "\n"
+        PERSONAL_INFO + "\n" +
+        FORMATTING_INSTRUCTIONS + "\n"
         // workingMotivators(input["0"]) + "\n" +
         // personalityComponents(input) + "\n" +
         //"Make it short and focus on what startups they'd be interested in rather than their inputted traits." + "\n"
