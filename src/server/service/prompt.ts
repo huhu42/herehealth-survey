@@ -107,6 +107,21 @@ Goals:
 - I am working on my fitness and would like to be mindful of my eating habits, make sure I eat clean and exercise
 - I'd like to decrease screen time and be more focused
 `
+export const PersonalGoalList = ["Mental Health: my focus and mental sharpness",
+"Physical Health: increase my level of physical activies",
+"Energy Level: have more energy to complete my daily tasks",
+"Sleep & Rest: improve my sleep quality and feel more rested",
+"Diet & Nutrition: be more minfdul with what I eat and nourish my body",
+"Addiction: work on getting rid of my bad habits"]
+
+function topPersonalGoals(goalsRank: Rank) {
+    return `The top 3 goals this person is working on are:
+    1. ${PersonalGoalList[goalsRank[0]!]},
+    2. ${PersonalGoalList[goalsRank[1]!]}, 
+    3. ${PersonalGoalList[goalsRank[2]!]}`;
+    //, 4. ${PersonalGoalList[goalsRank[3]!]}, 
+    //5. ${PersonalGoalList[goalsRank[4]!]}, 6. ${PersonalGoalList[goalsRank[5]!]}`;
+}
 
 function getPersonalInfo(firstName: string, lastName: string): string {
     return `
@@ -127,14 +142,12 @@ Please format your responses using the following guidelines:
     Scribing:xxxxx}
 `
 
-
-
 export function inputToDescriptionPrompt(input: ModelInput): string {
     console.log("input");
     console.log(input); // This will print the input to the console
     let personalinfo = getPersonalInfo(input.firstName, input.lastName)
     let complete_prompt = DESCRIPTION_PROMPT_CONTEXT + "\n" +
-    GOALS + "\n" +
+    topPersonalGoals(input[0]) + "\n" +
     personalinfo + "\n" +
     FORMATTING_INSTRUCTIONS;
     console.log(complete_prompt); 

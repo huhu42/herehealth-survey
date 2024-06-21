@@ -114,6 +114,8 @@ export function createModel(): Model {
     async function apply(input: ModelInput): Promise<ModelResult> {    
         //const label = inputToLabel(input);
         const description = await openAIClient.complete(inputToDescriptionPrompt(input))
+        console.log("Response")
+        console.log(description);
         return {
             description: description
         }
