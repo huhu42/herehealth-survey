@@ -194,11 +194,11 @@ export default function Survey() {
     //const [tenure, setTenure] = useState<Tenure | null>(null);
     const [dragAndDropItems, setDragAndDropItems] = useState<Array<DragAndDropItem>>([
         {key: 0, description: "<b>Mental Health</b> my focus and mental sharpness"},
-        {key: 1, description: "<b>Physical Health</b> gain more muscles an "},
-        {key: 2, description: "<b>Energy</b> "},
-        {key: 3, description: "<b>Sleep</b> "},
-        {key: 4, description: "<b>Diet</b> "},
-        {key: 5, description: "<b>Lose Weight and Diet</b>"},
+        {key: 1, description: "<b>Physical Health</b> increase my level of physical activies"},
+        {key: 2, description: "<b>Energy Level</b> have more energy to complete my daily tasks"},
+        {key: 3, description: "<b>Sleep & Rest</b> improve my sleep quality and feel more rested"},
+        {key: 4, description: "<b>Diet & Nutrition</b> be more minfdul with what I eat and nourish my body"},
+        {key: 5, description: "<b>Addiction</b> work on getting rid of my bad habits"},
     ]);
     const [sliderOneValue, setSliderOneValue] = useState(50);
     const [sliderTwoValue, setSliderTwoValue] = useState(50);

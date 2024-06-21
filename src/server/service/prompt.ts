@@ -92,7 +92,7 @@ You are a personalized behavioral health coach providing the best morning routin
 Use the miracle morning routine SAVERS (silence, affirmation, visualization, exercise, reading and scribing) framework, come up with specific guided audios for each person.
 The whole routine should take between 10 - 15 minutes.
 Rules:
-- Please start with personalized morning greeting for the listener that is encouraging.
+- Please start with personalized morning greeting for the listener that is encouraging and motivating - see first name last name below
 - Silence: Spend a few minutes to talk about the importance of meditation and mindfulness
 - Affirmations: Personalized according to the listeners goals, get them to first listen to the affirmations then repeat after you
 - Visualizations: Personalized according to the listeners goals, help them visualize not only the result but also the 
@@ -108,13 +108,11 @@ Goals:
 - I'd like to decrease screen time and be more focused
 `
 
-const PERSONAL_INFO: string = `
-Personal Info are as below:
-Name - Nikki Hu
-Gender - Female
-Height - 5'4
-Weight - 120 lb
-`
+function getPersonalInfo(firstName: string, lastName: string): string {
+    return `
+    The person's name is: ${firstName} ${lastName}
+    `;
+}
 
 const FORMATTING_INSTRUCTIONS: string = `
 Please format your responses using the following guidelines:
@@ -129,23 +127,25 @@ Please format your responses using the following guidelines:
     Scribing:xxxxx}
 `
 
+
+
 export function inputToDescriptionPrompt(input: ModelInput): string {
-    
-    //function personalInfo(PERSONAL_INFO: string): string {
-    //    return `For example, this persons working motivators/energizers rank most highly, in the following order of:
-    
-    //        `}
-    return DESCRIPTION_PROMPT_CONTEXT + "\n" +
-        GOALS + "\n"
-        PERSONAL_INFO + "\n" +
-        FORMATTING_INSTRUCTIONS + "\n"
-        // workingMotivators(input["0"]) + "\n" +
+    console.log("input");
+    console.log(input); // This will print the input to the console
+    let personalinfo = getPersonalInfo(input.firstName, input.lastName)
+    let complete_prompt = DESCRIPTION_PROMPT_CONTEXT + "\n" +
+    GOALS + "\n" +
+    personalinfo + "\n" +
+    FORMATTING_INSTRUCTIONS;
+    console.log(complete_prompt); 
+    return complete_prompt;
+}
+
+
+// workingMotivators(input["0"]) + "\n" +
         // personalityComponents(input) + "\n" +
         //"Make it short and focus on what startups they'd be interested in rather than their inputted traits." + "\n"
         //tenureContext(input.tenure)
-        ;
-}
-
 // function workingMotivators(workingMotivatorsRank: Rank) {
 //     return `For example, this persons working motivators/energizers rank most highly, in the following order of:
 //     1. ${WorkingEnergizerList[workingMotivatorsRank[0]!]}, 2. ${WorkingEnergizerList[workingMotivatorsRank[1]!]}, 

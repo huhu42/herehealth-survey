@@ -37,6 +37,8 @@ export function createSurveyService(
     async function request(input: Request): Promise<Id> {
         const modelResult = await model.apply({
             ...input.survey,
+            firstName: input.firstName,
+            lastName: input.lastName
             //tenure: input.tenure
         });
         return prisma.survey

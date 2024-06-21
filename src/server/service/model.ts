@@ -111,11 +111,10 @@ export function createModel(): Model {
         return false;
     }
 
-    async function apply(input: ModelInput): Promise<ModelResult> {
+    async function apply(input: ModelInput): Promise<ModelResult> {    
         //const label = inputToLabel(input);
         const description = await openAIClient.complete(inputToDescriptionPrompt(input))
         return {
-            //label: label,
             description: description
         }
     }
