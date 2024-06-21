@@ -38,7 +38,7 @@ export default function Splash({onNavigation}: SplashProps) {
                 color={"white"}
                 mt={8}
             >
-                This 3 minute teaser to the <u><a href={"https://www.HereHealth.com/"} target="_blank">HereHealth platform</a></u> helps
+                This 3 minute teaser to the <u><a href={"https://www.herehealth.ai/"} target="_blank">HereHealth platform</a></u> helps
                 you discover the best morning routines for your goals.
             </Text>
         </Flex>
