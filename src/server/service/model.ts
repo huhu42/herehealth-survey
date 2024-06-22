@@ -12,7 +12,7 @@ export type ModelResult = {
     label?: string;
 };
 
-export type ModelInput = Survey; //& { tenure: Tenure };
+export type ModelInput = Survey & { firstName: string, lastName: string };  
 
 export type Model = {
     apply(input: ModelInput): Promise<ModelResult>;
