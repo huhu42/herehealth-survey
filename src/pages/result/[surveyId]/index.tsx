@@ -169,7 +169,7 @@ export default function ResultPage({surveyId}: InferGetServerSidePropsType<typeo
                 <a href={"https://www.herehealth.ai/"} target="_blank">
                     <Logo w={20} mt={8}/>
                 </a>
-                <a href={"https://www.instagram.com/HereHealthclinic/"} target="_blank">
+                <a href={"https://www.instagram.com/HereHealth.ai/"} target="_blank">
                     <Flex direction={"column"}
                           alignItems={"center"}>
                         <Text fontSize={"xs"} color={"white"} my={2}>Follow us on Instagram</Text>
