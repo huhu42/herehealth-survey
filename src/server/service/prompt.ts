@@ -101,12 +101,6 @@ Rules:
 - Scribing: provide a prompt that helps them set the right intensions and goals for the day
 `;
 
-const GOALS: string = `
-Goals:
-- I am an entrepreneur working on launching my MVP
-- I am working on my fitness and would like to be mindful of my eating habits, make sure I eat clean and exercise
-- I'd like to decrease screen time and be more focused
-`
 export const PersonalGoalList = ["Mental Health: my focus and mental sharpness",
 "Physical Health: increase my level of physical activies",
 "Energy Level: have more energy to complete my daily tasks",
